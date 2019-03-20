@@ -15,7 +15,7 @@ class FinderController extends Controller
    
 
 
-   		$workrooms = Workroom::all()->where('region', $request->region)->where('is_active', '1');
+   		$workrooms = Workroom::all()->where('region', $request->region)->where('is_active', '1')->where('is_verified', '1');
         return view('finder', compact('workrooms'))->with(['region' => request()->region]);
       
     

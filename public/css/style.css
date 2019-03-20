@@ -186,6 +186,7 @@
 		padding-left: 15px;
 		padding-right: 15px;
 		text-align: left;
+		padding-top: 90px;
 	}
 
 	.selectize-container {
@@ -243,10 +244,6 @@
 	.flex-center {
 	align-items: inherit;
 	display: block;
-	}
-	
-	.content {
-	padding-top: 50px;
 	}
 	
 	.nav.fixed {

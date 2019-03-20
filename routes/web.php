@@ -21,7 +21,7 @@ Route::get('show/{id}', 'FinderController@show');
 
 Auth::routes();
 
-Route::get('admin', 'HomeController@index');
+Route::get('admin', 'HomeController@index')->name('admin');
 Route::get('/admin/company-data', 'HomeController@company_data')->name('company-data');
 Route::post('/admin/company-data', 'DataInsertion@company_data')->name('company-data');
 

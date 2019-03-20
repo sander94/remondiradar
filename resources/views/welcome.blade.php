@@ -27,6 +27,11 @@
     <body>
         <div class="flex-center position-ref full-height">
 
+
+                <div class="top-left links">
+                     <img src="{{ asset('images/web/logo-white.png') }}" width=200>
+                </div>
+
                 <div class="top-right links">
 
                    <!--  <a href="{{ url('/hinnaparing') }}">REMONDIHINNA PÄRING</a> -->
@@ -40,6 +45,7 @@
             
 
             <div class="content">
+
                 <div class="title">
                     Auto vajab remonti?
                 </div>

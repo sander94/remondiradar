@@ -59,8 +59,15 @@ class WorkroomController extends Controller
      */
     public function show($id)
     {
-        $workroom = Workroom::find($id);
-        return view('admin.workrooms.show', compact('workroom'));
+        if($workroom = Workroom::find($id)) {
+            if($workroom_company_id == Auth::user()->id) {
+            return view('admin.workrooms.show', compact('workroom'));
+            }
+            else {
+            return redirect()->route('workrooms.index');
+            }
+        }
+        else { return redirect()->route('workrooms.index'); }
     }
 
     /**
@@ -72,12 +79,21 @@ class WorkroomController extends Controller
     public function edit($id)
     {
 
-        $workroom = Workroom::find($id);
-       
-        $workroom_openingtimes = WorkroomOpeningTimes::where('workroom_id', $id);
-  
+        if ($workroom = Workroom::find($id)) {
+            if($workroom->company_id == Auth::user()->id) {
+            return view('admin.workrooms.edit', compact('workroom'));
+            }
+            else {
+            return redirect()->route('workrooms.index');
+            }
+        }
 
-        return view('admin.workrooms.edit', compact('workroom'), compact('workroom_openingtimes'));
+        else
+           {
+            return redirect()->route('workrooms.index');
+           }
+
+
         
     }
 
