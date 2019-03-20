@@ -15,7 +15,9 @@
    			 <div class="nav fixed">
     	         	 <div class="top-left links">
    						<div class="left-menu-desktop">
-							 <a href="{{ route('home') }}">AVALEHT</a>
+							 <a href="{{ route('home') }}">
+                   			  <img src="{{ asset('images/web/logo-white.png') }}" width=200>
+							 </a>
 							@auth
 								<a href="{{ url('/admin') }}">ADMIN</a>
 							@endauth

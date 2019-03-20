@@ -8,7 +8,7 @@
             }
 
             body {
-           		background-image: url('https://vizitech3d.com/car/images/web/taust.jpg');
+           		background-image: url('/images/web/taust.jpg');
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-attachment: fixed;
