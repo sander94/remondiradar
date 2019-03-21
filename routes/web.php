@@ -25,5 +25,9 @@ Route::get('admin', 'HomeController@index')->name('admin');
 Route::get('/admin/company-data', 'HomeController@company_data')->name('company-data');
 Route::post('/admin/company-data', 'DataInsertion@company_data')->name('company-data');
 
+Route::get('/admin/change-password','ChangePasswordController@index')->name('changePassword');
+Route::post('/admin/change-password','ChangePasswordController@updatePassword')->name('updatePassword');
+
+
 
 Route::resource('admin/workrooms', 'WorkroomController');

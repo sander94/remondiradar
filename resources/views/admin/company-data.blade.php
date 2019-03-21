@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Ettevõtte info</div>
+                <div class="card-header"><b> {{ Auth::user()->name }} </b></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -15,9 +15,7 @@
                         </div>
                     @endif
 
-               
-                    <br>
-                     <h1> {{ Auth::user()->name }}</h1>
+                
                     
                         <form method="POST" action="{{ route('company-data') }}" autocomplete="off">
                         @csrf
