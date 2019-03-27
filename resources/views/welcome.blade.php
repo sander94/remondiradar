@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="links">
-                    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.default.css'>
+                   <!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.default.css'>
              
                     <form action="finder/" method="get">
                         <div class="selectize-container">
@@ -63,7 +63,11 @@
                         <div style="display: inline-block; vertical-align: top;">
                         <button type="submit" class="btn btn-success find-btn"><i class="fas fa-search"> </i> Leia</button>
                         </div>
-                    </form>
+                    </form> -->
+
+                    <a href="finder/?region=1" role="button" class="btn btn-success btn-primary btn-lg"><i class="fas fa-search"></i> Pärnu</a>
+                    <a href="finder/?region=2" role="button" class="btn btn-success btn-primary btn-lg"><i class="fas fa-search"></i> Tallinn</a>
+                    <a href="finder/?region=3" role="button" class="btn btn-success btn-primary btn-lg"><i class="fas fa-search"></i> Tartu</a>
                 </div>
             </div>
         </div>

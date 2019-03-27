@@ -62,7 +62,9 @@
 
             .links > a, .left-menu-desktop > a {
                 color: #FFF;
-                padding: 0 25px;
+               /* padding: 0 25px; */
+               margin-left: 10px;
+               margin-right: 10px;
                 font-size: 13px;
                 font-weight: 600;
                 letter-spacing: .1rem;
