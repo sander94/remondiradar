@@ -17,7 +17,8 @@ Route::get('/', function () {
 
 Route::get('finder', 'FinderController@index');
 Route::get('show/{id}', 'FinderController@show');
-
+Route::get('hinnaparing', 'PriceRequestController@index');
+Route::post('hinnaparing', 'PriceRequestController@post');
 
 Auth::routes();
 
@@ -31,3 +32,5 @@ Route::post('/admin/change-password','ChangePasswordController@updatePassword')-
 
 
 Route::resource('admin/workrooms', 'WorkroomController');
+Route::get('admin/requests/{id}', 'HomeController@requestsShow');
+Route::post('admin/requests/{id}', 'HomeController@requestsPost');

@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+
+
+
+    // if this pricerequest has a row in pricerequestsansers table called request_id, then fuck yeah!
+    public function workrooms() {
+        return $this->hasMany('App\Workroom', 'company_id')->where('is_active', '1');
+    }
 }

@@ -162,6 +162,12 @@
 				display: block;
 			}
 
+			.single-default {
+				background-color: #FFFFFF;
+				margin-top: 100px;
+				padding: 30px;
+			}
+
 
 
 @media screen and (min-width: 1200px) and (max-width: 1400px) {

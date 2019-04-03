@@ -68,6 +68,8 @@
                     <a href="finder/?region=1" role="button" class="btn btn-success btn-primary btn-lg"><i class="fas fa-search"></i> Pärnu</a>
                     <a href="finder/?region=2" role="button" class="btn btn-success btn-primary btn-lg"><i class="fas fa-search"></i> Tallinn</a>
                     <a href="finder/?region=3" role="button" class="btn btn-success btn-primary btn-lg"><i class="fas fa-search"></i> Tartu</a>
+                    <br><br>
+                    <a href="{{ url('/hinnaparing') }}">Küsi hinnapakkumisi remonttöödele</a>
                 </div>
             </div>
         </div>

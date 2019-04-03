@@ -69,6 +69,22 @@
     .mb-20 {
         margin-bottom: 20px;
     }
+
+
+.mybtn {
+    text-align: left;
+    width: 100%;
+    padding: 5px;
+    padding-left: 10px;
+    margin-right: 0;
+}
+
+.pricerequest-table tr td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 0;
+}
+
 </style>
 
 <div class="row">
@@ -124,6 +140,34 @@
                     </div>
 </div>
 
+
+
+
+<div class="row" style="margin-top: 30px;">
+    <div class="col-md-12"> 
+        <h3 style="margin-bottom: 0;">Saabunud päringud</h3><p style="margin-top: 0; color: #a9a9a9;">Näitab viimase 14 päeva päringuid</p> <?php echo $pricerequests->links(); ?>
+
+        <hr>
+        <table class="pricerequest-table" style="width: 100%;">
+            <tr style="font-weight: 700;">
+                <td>Auto</td>
+                <td>Mootor</td>
+                <td>Piirkond</td>
+                <td>Kuupäev</td>
+                <td>Pakkumine</td>
+            </tr>
+
+
+
+
+            <?php echo $lines; ?>
+
+
+
+        </table>
+
+    </div>
+</div>
 
 
                        

@@ -29,6 +29,7 @@ class CreateWrTable extends Migration
             $table->string('instagram_url');   
             $table->text('cars_serviced');
             $table->integer('is_active');
+            $table->integer('is_verified');
             $table->timestamps();
         });
     }
