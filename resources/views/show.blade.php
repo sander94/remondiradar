@@ -58,11 +58,12 @@
 	  	             			</div>
 	  	             			<div class="col-md-9 col-sm-9">
 		            			    <h1 class="single-workroom-title">	{{ $workroom->brand_name }}		 </h1>
+                          <h5 style="margin-top: 0; padding-top: 0; font-size: 16px; margin-left: 2px; margin-bottom: 30px; color: #b3b3b3;">  {{ $company_realname }} </h5>  
 	@if ($workroom->phone)			<h5 class="mb-15">	<i class="fa fa-phone fa-fw fa-flip-horizontal"> </i> {{ $workroom->phone }}</h5> @endif
 	@if ($workroom->email)		    <h5 class="mb-15">	<i class="fa fa-envelope fa-fw"> </i> {{ $workroom->email }}</h5> @endif
 	@if ($workroom->full_address)   <h5 class="mb-15">	<i class="fa fa-map-marker-alt fa-fw"> </i> {{ $workroom->full_address }}</h5> @endif
 	@if ($workroom->website_url) 	<h5 class="mb-15">	<i class="fa fa-mouse-pointer fa-fw"> </i> {{ $workroom->website_url }}</h5> @endif
-	<h5 class="mb-15">  {{ $company_realname }} </h5>   
+	 
 
 	            				</div>
 	            			</div>

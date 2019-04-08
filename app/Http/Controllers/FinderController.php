@@ -30,18 +30,31 @@ class FinderController extends Controller
   	 // get the first one to show on page
    		$workroom = Workroom::all()->where('id', $request->id)->where('is_active', '1')->first();
 		
-	 // get company name
-		$company_name = DB::table('users')->where('id', $workroom->company_id)->first();
-		$company_realname = $company_name->name;
+    if(!empty ($workroom->company_id)){
+                	 // get company name
+                		$company_name = DB::table('users')->where('id', $workroom->company_id)->first();
+                		$company_realname = $company_name->name;
+                  
+                	 // calculate view count
+                   		$newViewCount = $workroom->view_count+1;
 
-	 // calculate view count
-   		$newViewCount = $workroom->view_count+1;
+                		  Workroom::where('id', $request->id)->update(array(
+                		  	   	'view_count' => $newViewCount
+                		  	   ));
 
-		  Workroom::where('id', $request->id)->update(array(
-		  	   	'view_count' => $newViewCount
-		  	   ));
+                   		$region = $workroom->region;
+   
+          return view('show', compact('workroom'))->with(['id' => request()->id, 'region' => $region, 'company_realname' => $company_realname]);
+    }
 
-   		$region = $workroom->region;
-        return view('show', compact('workroom'))->with(['id' => request()->id, 'region' => $region, 'company_realname' => $company_realname]);
+
+    else {
+      return redirect()->route('home');
+    }
+
+
+
+
+        
    }
 }

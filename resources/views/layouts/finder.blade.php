@@ -11,10 +11,16 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
-        <!-- Styles -->
-        <style>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-137829474-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-        </style>
+  gtag('config', 'UA-137829474-1');
+</script>
+
             <script src="{{ asset('js/app.js') }}"></script>
 
             <script src='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.0/js/standalone/selectize.min.js'></script>
@@ -31,7 +37,7 @@
 
     	@yield('content')
 
-
+      @include('includes/footer')
 
    
     </body>

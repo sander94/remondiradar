@@ -5,9 +5,10 @@
 
 
 	@if(session()->has('message'))
-		Andmed saadetud!
+		<div class="alert alert-success">Andmed saadetud!</div>
 	@endif
-	<h2 style="margin-bottom: 20px;">Saada hinnapäring kohalikele töökodadele</h2>
+	<h2 style="margin-bottom: 0px;">Saada hinnapäring töökodadele</h2>
+	<p>Kohalikud remonditöökojad vaatavad selle üle ning saadavad sinu e-mailile vastused!</p>
 
 	<form action="{{ url('/hinnaparing') }}" method="post" class="needs-validation" autocomplete="off" autofill="false" novalidate>
 		@csrf
@@ -92,8 +93,8 @@
 					  <div class="form-group">
 					  	<div class="row">
 					  		<div class="col-12">
-							    <label for="additional_info">Lisainfo probleemi kohta:</label>
-							    <textarea class="form-control" name="additional_info" id="additional_info"></textarea>
+							    <label for="additional_info">Probleemi kirjeldus:</label>
+							    <textarea class="form-control" name="additional_info" id="additional_info" style="height: 150px;"></textarea>
 							    <div class="invalid-feedback">Nõutud väli.</div>
 							</div>
 						</div>
@@ -168,12 +169,12 @@
 
 					  <div class="form-group form-check">
 					    <label class="form-check-label">
-					      <input class="form-check-input" type="checkbox" name="remember" required> Nõustun privaatsustingimustega.
+					      <input class="form-check-input" type="checkbox" name="remember" required> Nõustun, et esitatud andmed edastatakse töökodadele.
 					      <div class="invalid-feedback">Päringu saatmiseks pead nõustuma tingimustega.</div>
 					    </label>
 					  </div>
 
-
+<br>
 				 	 <button type="submit" class="btn btn-primary">Küsi hinda</button>
 
 
@@ -208,4 +209,16 @@
   }, false);
 })();
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
 @endsection

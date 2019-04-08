@@ -16,7 +16,7 @@
         		<div class="card-body">
 
         			@if(Session::has('successmsg'))
-        				{{ Session::get('successmsg') }}
+        				<div class="alert alert-success"> <p> {{ Session::get('successmsg') }} </p> </div>
         			@endif
         			<br>
         			@if(Session::has('mail'))

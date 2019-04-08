@@ -14,15 +14,17 @@
                 background-attachment: fixed;
             }
 
+            a, a:hover, .footer-content a, .footer-content a:hover {
+			    text-decoration: none;
+			    color: #FFFFFF;
+			}
+
+
             .full-height {
                 height: 100vh;
             }
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+
 
             .position-ref {
                 position: relative;
@@ -44,7 +46,47 @@
                 width: 1300px;
                 padding-top: 150px;
                 margin: 0 auto;
-                margin-bottom: 200px;
+                min-height: 100%;
+            }
+
+            .home {
+            	padding-top: 300px;
+            }
+
+            .footer {
+            	width: 100%;
+            	min-height: 120px;
+            	background-color: #333d54;
+            	padding-top: 30px;
+            	padding-bottom: 30px;
+            }
+
+            .footer-content {
+            	margin-left: 20px;
+            	color: #FFFFFF;
+            	width: 1300px;
+            	margin: 0 auto;
+            }
+
+            .footer-content h3 {
+            	font-weight: 700;
+            	font-size: 18px;
+            	display: table;
+            	border-bottom: 2px solid #FFFFFF;
+            	padding-bottom: 8px;
+            	margin-bottom: 20px;
+            }
+
+            .footer-content p {
+            	line-height: 20px;
+            	margin-bottom: 0;
+            	font-weight: 600;
+            	font-size: 14px;
+            }
+
+            .footer-content p i {
+            	font-size: 12px;
+            	padding-right: 10px;
             }
 
 
@@ -148,10 +190,9 @@
 
 			.single-workroom-title {
 				font-weight: 600; 
-				display: table; 
-				border-bottom: 2px solid #eaeaea; 
-				padding-bottom: 20px; 
-				margin-bottom: 30px;
+				display: table;
+				padding-bottom: 0px; 
+				margin-bottom: 0px;
 			}
 			
 			.left-menu-mobile {
@@ -164,8 +205,10 @@
 
 			.single-default {
 				background-color: #FFFFFF;
-				margin-top: 100px;
 				padding: 30px;
+				margin-bottom: 100px;
+				
+
 			}
 
 
