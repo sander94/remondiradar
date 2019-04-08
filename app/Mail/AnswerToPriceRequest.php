@@ -39,7 +39,7 @@ class AnswerToPriceRequest extends Mailable
         $wr_info .= "<p style=\"font-family: 'Arial';\">Ettevõtte töökojad sinu piirkonnas: </p><ul>";
 
         foreach($user->workrooms as $usr_wr) {
-            $wr_info .= "<li><a style=\"color: #559be8; font-family: 'Arial'; text-decoration: none; font-size: 14px; line-height: 19px;\" href=\"https://remondiradar.ee/show/".$usr_wr->id."\">".$usr_wr->brand_name."</a></li>";
+            $wr_info .= "<li style='font-family: Arial;'><a style=\"color: #559be8; text-decoration: none; font-size: 14px; line-height: 19px;\" href=\"https://remondiradar.ee/show/".$usr_wr->id."\">".$usr_wr->brand_name."</a><br>Tel: ".$usr_wr->phone."</li>";
             $wr_info .= "";
         }
         $wr_info .= "</ul>";

@@ -94,7 +94,7 @@
 					  	<div class="row">
 					  		<div class="col-12">
 							    <label for="additional_info">Probleemi kirjeldus:</label>
-							    <textarea class="form-control" name="additional_info" id="additional_info" style="height: 150px;"></textarea>
+							    <textarea class="form-control" name="additional_info" id="additional_info" style="height: 150px;" required></textarea>
 							    <div class="invalid-feedback">Nõutud väli.</div>
 							</div>
 						</div>
@@ -133,7 +133,7 @@
 						<div class="row">
 							<div class="col-12">
 							    <label for="email">E-maili aadress:</label>
-							    <input type="text" class="form-control" id="email" name="email" required>
+							    <input type="email" class="form-control" id="email" name="email" required>
 							    <div class="invalid-feedback">Nõutud väli.</div>
 							</div>
 						</div>
