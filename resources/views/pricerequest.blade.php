@@ -1,15 +1,16 @@
-@extends('layouts.defaultcontent')
+@extends('layouts.main')
 
 @section('content')
 
-
+<div class="content">
+	<div class="content-box">
 
 	@if(session()->has('message'))
 		<div class="alert alert-success">Andmed saadetud!</div>
 	@endif
 	<h2 style="margin-bottom: 0px;">Saada hinnapäring töökodadele</h2>
 	<p>Kohalikud remonditöökojad vaatavad selle üle ning saadavad sinu e-mailile vastused!</p>
-
+	<div style="height: 50px;"></div>
 	<form action="{{ url('/hinnaparing') }}" method="post" class="needs-validation" autocomplete="off" autofill="false" novalidate>
 		@csrf
 <div class="row">
@@ -189,6 +190,17 @@
 
 
 
+
+
+
+
+
+</div>
+</div>
+
+
+
+
 <script>
 // Disable form submissions if there are invalid fields
 (function() {
@@ -209,15 +221,6 @@
   }, false);
 })();
 </script>
-
-
-
-
-
-
-
-
-
 
 
 

@@ -11,12 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', 'MainController@index')->name('frontpage');
 
-Route::get('finder', 'FinderController@index');
-Route::get('show/{id}', 'FinderController@show');
+// Route::get('finder', 'FinderController@index');
+Route::get('show/{id}', 'MainController@show');
 Route::get('hinnaparing', 'PriceRequestController@index');
 Route::post('hinnaparing', 'PriceRequestController@post');
 

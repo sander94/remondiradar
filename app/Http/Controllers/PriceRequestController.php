@@ -12,8 +12,11 @@ class PriceRequestController extends Controller
 
 
 
-    function index() {
-    	return view('pricerequest');
+    function index(Request $request) {
+    	
+        
+   		
+    	return view('pricerequest')->with('region', '0');
     }
 
     function post(Request $request) {
