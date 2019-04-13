@@ -211,6 +211,7 @@ h2.heading {
 
 .content.single .info-row {
 	margin-bottom: 10px;
+	font-weight: 400;
 }
 
 
@@ -248,7 +249,6 @@ h2.heading {
 /* FONTS */
 h5.company-name {
 	color: #bbbbbb;
-	margin-left: 5px;
 	margin-top: 0;
 	padding-top: 0;
 }
@@ -357,6 +357,25 @@ a.blue-link {
 	 .footer h3 {
 	 	font-size: 20px;
 	 }
+
+	 h1.brand-name {
+	 	font-size: 25px;
+	 	font-weight: 700;
+	 }
+
+	 h5.company-name {
+	 	font-size: 12px;
+	 }
+
+	 .content-box {
+	 	order: 1;
+	 }
+
+	 .map {
+	 	order: 2;
+	 }
+
+
 
 	.ask-offer-text-desktop { display: none; }
 	.ask-offer-text-mobile { display: block; }
