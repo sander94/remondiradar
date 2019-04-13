@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Workroom;
 use App\Finder;
+use App\Regions;
 use Illuminate\Support\Facades\DB;
 
 
@@ -20,7 +21,12 @@ class MainController extends Controller
    		
    		$workrooms = Workroom::all()->where('region', $request->region)->where('is_active', '1')->where('is_verified', '1');
    		
-        return view('frontpage', compact('workrooms'))->with(['region' => request()->region]);
+      // Make title tag for page
+      $regionName = Regions::where('id', $request->region)->first();
+      $title = $regionName->region_name.' - '.count($workrooms).' remonditöökoda | Remondiradar.ee';
+      $og_image = asset('images/web/logo-white.png');
+
+      return view('frontpage', compact('workrooms'))->with(['region' => request()->region, 'title' => $title, 'og_image' => $og_image]);
       
     
    }
@@ -46,9 +52,12 @@ class MainController extends Controller
                 		  	   	'view_count' => $newViewCount
                 		  	   ));
 
-                   		$region = $workroom->region;
+                  $region = $workroom->region;
    
-          return view('show2', compact('workroom'))->with(['id' => request()->id, 'region' => $region, 'company_realname' => $company_realname]);
+                  $title = $workroom->brand_name.' | Remondiradar.ee';
+                  $og_image = asset('images/t_logos/'.$workroom->brand_logo.'');
+
+          return view('show2', compact('workroom'))->with(['id' => request()->id, 'region' => $region, 'company_realname' => $company_realname, 'title' => $title, 'og_image' => $og_image]);
     }
 
 

@@ -4,9 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
         <meta name="HandheldFriendly" content="true" />
+		<meta property="og:image" content="{{ $og_image }}" />
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Remondiradar.ee</title>
+        <title>{{ $title }}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">

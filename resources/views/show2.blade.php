@@ -19,7 +19,11 @@
 
               <div class="col-md-3">
 
+                @if($workroom->brand_logo)
                   <img src="{{ asset('images/t_logos/'.$workroom->brand_logo.'') }}" class="wr-logo">
+                @else
+                  <img src="{{ asset('images/web/logo-missing.gif') }}" class="wr-logo">
+                @endif
 
               </div>
 

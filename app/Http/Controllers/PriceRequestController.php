@@ -16,7 +16,7 @@ class PriceRequestController extends Controller
     	
         
    		
-    	return view('pricerequest')->with('region', '0');
+    	return view('pricerequest')->with(['region' => '', 'title' => 'Küsi remonditöö hinda | Remondiradar.ee', 'og_image' => '']);
     }
 
     function post(Request $request) {
