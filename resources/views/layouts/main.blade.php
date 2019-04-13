@@ -42,11 +42,11 @@
 			<div class="nav-bar-content">
 
 				<div class="row">
-					<div class="col-md-6 col-sm-4 col-4">
+					<div class="col-md-6 col-sm-4 col-7">
 						<a href="/"><img src="{{ asset('images/web/logo-white.png') }}" class="logo"></a>
 					</div>
-					<div class="col-md-6 col-sm-8 col-8">
-						<a href="/hinnaparing" class="button yellow">Küsi hinnapakkumisi</a>
+					<div class="col-md-6 col-sm-8 col-5">
+						<a href="/hinnaparing" class="button yellow"><span class="ask-offer-text-desktop">Küsi hinnapakkumisi</span><span class="ask-offer-text-mobile">Hinnapäring</span></a>
 					</div>
 				</div>
 
@@ -60,9 +60,9 @@
 
 				<div class="row mt-20">
 					<div class="col-12 col-md-12">
-						<a href="/?region=1" class="button @if($region == '1') selected @endif"> Tallinn </a>
-						<a href="/?region=2" class="button @if($region == '2') selected @endif"> Tartu </a>
-						<a href="/?region=3" class="button @if($region == '3') selected @endif"> Pärnu </a>
+						<a href="/?region=3" class="button @if($region == '3') selected @endif"> Tallinn </a>
+						<a href="/?region=1" class="button @if($region == '1') selected @endif"> Tartu </a>
+						<a href="/?region=2" class="button @if($region == '2') selected @endif"> Pärnu </a>
 					</div>
 				</div>
 

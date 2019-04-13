@@ -47,7 +47,10 @@ clip-path: polygon(0 0, 100% 0, 100% 10%, 0 100%);
 
 .logo {
 	width: 250px;
-	display: block;
+}
+
+a.logo {
+	display: table;
 }
 
 a.button {
@@ -152,7 +155,7 @@ h2.heading {
 }
 
 .headline-logo {
-	height: 130px;
+	height: 145px;
 }
 
 .contact-info {
@@ -227,6 +230,10 @@ a.blue-link {
 	color: #155ef6;
 }
 
+.ask-offer-text-mobile {
+	display: none;
+}
+
 /* MEDIA QUERIES */
 
 
@@ -256,7 +263,7 @@ a.blue-link {
 
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 991px) {
 
 	.content, .footer-content {
 		width: 90%;
@@ -288,9 +295,12 @@ a.blue-link {
 		width: 80px;
 	}
 
+	.headline-logo { height: auto; }
+
 }
 
 @media screen and (max-width: 767px) {
+
 	.rating-stars {
 		margin-left: 30px;
 	}
@@ -298,5 +308,27 @@ a.blue-link {
 	.logo {
 		width: 170px;
 	}
+
+	a.button.yellow { 
+		width: 90px;
+		font-size: 12px;
+		margin-right: 0;
+	 }
+
+	 a.button {
+	 	margin-right: 10px;
+	 }
+
+	 .nav-bar h2.heading {
+	 	font-size: 20px;
+	 }
+
+	 .footer h3 {
+	 	font-size: 20px;
+	 }
+
+	.ask-offer-text-desktop { display: none; }
+	.ask-offer-text-mobile { display: block; }
+
 }
 
