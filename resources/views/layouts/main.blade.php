@@ -60,9 +60,9 @@
 
 				<div class="row mt-20">
 					<div class="col-12 col-md-12">
-						<a href="/?region=3" class="button @if($region == '3') selected @endif"> Tallinn </a>
-						<a href="/?region=1" class="button @if($region == '1') selected @endif"> Tartu </a>
-						<a href="/?region=2" class="button @if($region == '2') selected @endif"> Pärnu </a>
+						<a href="/?region=2" class="button @if($region == '2') selected @endif"> Tallinn </a>
+						<a href="/?region=3" class="button @if($region == '3') selected @endif"> Tartu </a>
+						<a href="/?region=1" class="button @if($region == '1') selected @endif"> Pärnu </a>
 					</div>
 				</div>
 

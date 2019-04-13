@@ -22,19 +22,54 @@
               <h5 class="company-name">{{ $company_realname }}</h5>
               <div class="contact-info">
               @if ($workroom->phone) 
-                <h5 class="mb-15">  <i class="fa fa-phone fa-fw fa-flip-horizontal"> </i> {{ $workroom->phone }}</h5> 
+                <div class="info-row">
+                  <div class="icon"> 
+                    <i class="fa fa-phone fa-fw fa-flip-horizontal"> </i>
+                  </div>
+                  <div class="icon-text">
+                    {{ $workroom->phone }}
+                  </div>
+                </div>
               @endif
               @if ($workroom->email) 
-              <h5 class="mb-15">  <i class="fa fa-envelope fa-fw"> </i> {{ $workroom->email }}</h5> 
+                <div class="info-row">
+                  <div class="icon">
+                    <i class="fa fa-envelope fa-fw"> </i> 
+                  </div>
+                  <div class="icon-text">
+                    {{ $workroom->email }}
+                  </div> 
+                </div>
               @endif
               @if ($workroom->full_address) 
-              <h5 class="mb-15">  <i class="fa fa-map-marker-alt fa-fw"> </i> {{ $workroom->full_address }}</h5> 
+                <div class="info-row">
+                  <div class="icon">
+                    <i class="fa fa-map-marker-alt fa-fw"> </i> 
+                  </div>
+                  <div class="icon-text">
+                    {{ $workroom->full_address }}
+                  </div> 
+                </div>
               @endif
               @if ($workroom->website_url) 
-              <h5 class="mb-15">  <i class="fa fa-mouse-pointer fa-fw"> </i> <a class="blue-link" target="_blank" href="{{ $workroom->website_url }}">{{ $workroom->website_url }}</a></h5> 
+                <div class="info-row">
+                  <div class="icon">
+                    <i class="fa fa-mouse-pointer fa-fw"> </i> 
+                  </div>
+                  <div class="icon-text">
+                    <a class="blue-link" target="_blank" href="{{ $workroom->website_url }}">{{ $workroom->website_url }}</a>
+                  </div>
+                </div>
               @endif
               @if ($workroom->facebook_url) 
-              <h5 class="mb-15">  <i class="fab fa-facebook fa-fw"> </i> <a class="blue-link" target="_blank" href="{{ $workroom->facebook_url }}">Facebooki leht</a></h5> 
+                <div class="info-row">
+                  <div class="icon">
+                    <i class="fab fa-facebook fa-fw"> </i> 
+                  </div>
+                  <div class="icon-text">
+                    <a class="blue-link" target="_blank" href="{{ $workroom->facebook_url }}">Facebooki leht</a>
+                  </div>
+               </div>
               @endif
               </div>
 
@@ -76,6 +111,7 @@
       </div>
  
   </div>
+  @if($workroom->google_maps)  <div id="map" style="height: 250px; border-top-right-radius: 10px; border-top-left-radius: 10px;"></div> @endif
 
 </div>
 

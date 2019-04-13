@@ -2,7 +2,7 @@ html, body {
 	color: #4a4a4a;
 	font-family: 'Nunito', sans-serif;
 	font-weight: 200;
-	height: 100vh;
+	height: 100%;
 	margin: 0;
 }
 
@@ -101,6 +101,7 @@ h2.heading {
 	display: block;
 	position: relative;
 	margin-top: -180px;
+	padding-bottom: 80px;
 }
 
 .content-box {
@@ -145,7 +146,7 @@ h2.heading {
 
 .wr-logo {
 	max-width: 100%;
-	max-height: 150px;
+	max-height: 130px;
 	margin-bottom: 25px;
 }
 
@@ -182,6 +183,36 @@ h2.heading {
 	border-top-right-radius: 3px;
 	border-bottom-right-radius: 3px;
 }
+
+.wr-card .icon {
+	width: 20px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.wr-card .icon-text {
+	width: calc(100% - 25px);
+	display: inline-block;
+} 
+
+.content.single .icon {
+	width: 25px;
+	display: inline-block;
+	vertical-align: top;
+	font-size: 18px;
+}
+
+.content.single .icon-text {
+	width: calc(100% - 29px);
+	display: inline-block;
+	font-size: 18px;
+	word-break: break-all;
+}
+
+.content.single .info-row {
+	margin-bottom: 10px;
+}
+
 
 .content.single .rating-stars i {
 	font-size: 18px;

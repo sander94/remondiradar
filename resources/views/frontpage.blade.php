@@ -30,24 +30,38 @@
 							</div>
 
 							<div class="col-4">
-
-								<img src="{{ asset('images/t_logos/'.$workroom->brand_logo.'') }}" class="wr-logo">
-
+								@if($workroom->brand_logo)
+									<img src="{{ asset('images/t_logos/'.$workroom->brand_logo.'') }}" class="wr-logo">
+								@else
+									<img src="{{ asset('images/web/logo-missing.gif') }}" class="wr-logo">
+								@endif
 							</div>
 
 						</div>
 
 						<div class="row dashed-top">
 
-							<div class="col-6">
+							<div class="col-6 col-sm-9">
 
-								<div class="info-row"><i class="fas fa-map-marker-alt fa-fw"> </i> {{ $workroom->full_address }}</div>
+								<div class="info-row">
 
-								<div class="info-row"><i class="fas fa-phone fa-flip-horizontal fa-fw"> </i> {{ $workroom->phone }}</div>
+									<div class="icon"><i class="fas fa-map-marker-alt fa-fw"> </i></div>
+									
+									<div class="icon-text"> {{ $workroom->full_address }}</div>
+
+								</div>
+
+								<div class="info-row">
+
+									<div class="icon"><i class="fas fa-phone fa-flip-horizontal fa-fw"> </i></div>
+
+									<div class="icon-text"> {{ $workroom->phone }} </div>
+
+								</div>
 
 							</div>
 
-							<div class="col-6">
+							<div class="col-6 col-sm-3">
 
 								  <div class="rating-stars">
 
