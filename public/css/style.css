@@ -150,6 +150,9 @@ h2.heading {
 	margin-bottom: 25px;
 }
 
+.finder .wr-logo { float: right; }
+.single .wr-logo { max-height: 100%; }
+
 .dashed-top {
 	border-top: 2px dashed #dadada;
 	padding-top: 20px;

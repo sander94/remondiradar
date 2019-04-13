@@ -176,7 +176,7 @@
 					  </div>
 
 <br>
-				 	 <button type="submit" class="btn btn-primary">Küsi hinda</button>
+				 	 <button type="submit" class="btn btn-primary btn-block">Küsi hinda</button>
 
 
 
