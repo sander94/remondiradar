@@ -24,13 +24,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        $regionsArray =       
-            ['0' => 'Vali piirkond',
-            '1' => 'Pärnu', 
-            '2' => 'Tallinn', 
-            '3' => 'Tartu'
-            ];
 
-        view()->share('regionsArray', $regionsArray);
     }
 }

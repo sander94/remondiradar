@@ -1,5 +1,3 @@
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.default.css'>
-
 <div class="form-group row">
 	<label for="is_active" class="col-md-4 col-form-label text-md-right">Avalikusta kohe</label>
 		<div class="col-md-6">
@@ -42,7 +40,11 @@
 <div class="form-group row">
 	<label for="region" class="col-md-4 col-form-label text-md-right">Piirkond, milles töökoda asub</label>
 		<div class="col-md-6">
-			@include ('includes.selectLocation', ['region' => '0'])
+			<select name="region" class="form-control">
+				@foreach($regions as $region)
+					<option value="{{ $region->id }}">{{ $region->region_name }}</option>
+				@endforeach
+			</select>
 		</div>
 </div>
 

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Workroom;
 use App\WorkroomOpeningTimes;
+use App\Regions;
 
 class WorkroomController extends Controller
 {
@@ -27,7 +28,8 @@ class WorkroomController extends Controller
      */
     public function create()
     {
-        return view('admin.workrooms.create');
+        $regions = Regions::all();
+        return view('admin.workrooms.create', compact('regions'));
     }
 
     /**
@@ -48,7 +50,7 @@ class WorkroomController extends Controller
 
         $request->request->add(['company_id' => Auth::user()->id]); //add request
        Workroom::create($request->all());
-       return redirect()->route('workrooms.index')->with('success', 'Workroom added successfully');
+       return redirect()->route('workrooms.index')->with('success', 'Töökoda edukalt lisatud!');
     }
 
     /**
@@ -80,8 +82,9 @@ class WorkroomController extends Controller
     {
 
         if ($workroom = Workroom::find($id)) {
+            $regions = Regions::all();
             if($workroom->company_id == Auth::user()->id) {
-            return view('admin.workrooms.edit', compact('workroom'));
+            return view('admin.workrooms.edit', compact('workroom', 'regions'));
             }
             else {
             return redirect()->route('workrooms.index');

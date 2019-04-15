@@ -58,9 +58,9 @@ class HomeController extends Controller
 
             foreach($pricerequests as $pricerequest) {
          
-            if($pricerequest->region == '1') { $requestRegion = 'Pärnu'; } 
-            if($pricerequest->region == '2') { $requestRegion = 'Tallinn'; } 
-            if($pricerequest->region == '3') { $requestRegion = 'Tartu'; } 
+            if($pricerequest->region == '1') { $requestRegion = 'Tallinn'; } 
+            if($pricerequest->region == '2') { $requestRegion = 'Tartu'; } 
+            if($pricerequest->region == '3') { $requestRegion = 'Pärnu'; } 
            
 
             $line .= "
