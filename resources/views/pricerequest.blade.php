@@ -158,9 +158,9 @@
 							    <label for="region">Piirkond:</label>
 							    <select class="form-control" id="region" name="region" required>
 							    	<option value="">Vali töökoja piirkond</option>
-							    	<option value="1">Pärnu</option>
-							    	<option value="2">Tallinn</option>
-							    	<option value="3">Tartu</option>
+							    	<option value="3">Pärnu</option>
+							    	<option value="1">Tallinn</option>
+							    	<option value="2">Tartu</option>
 							    </select>
 							    <div class="invalid-feedback">Nõutud väli.</div>
 							</div>
