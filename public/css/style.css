@@ -86,12 +86,16 @@ a.button.yellow {
 	width: 250px;
 }
 
+a.button.yellow:hover {
+	background-color: #FFFFFF;
+}
 
 
 h2.heading {
-	color: #FFFFFF;
 	font-weight: 600;
 }
+
+.white { color: #FFFFFF; }
 
 .content {
 	width: 1200px;
@@ -187,6 +191,10 @@ h2.heading {
 	border-bottom-right-radius: 3px;
 }
 
+.btn-primary {
+	background-color: #175df6;
+}
+
 .wr-card .icon {
 	width: 20px;
 	display: inline-block;
@@ -220,7 +228,7 @@ h2.heading {
 
 .content.single .rating-stars i {
 	font-size: 18px;
-	color: blue;
+	color: #155ef6;
 }
 
 .content.finder .rating-stars i {
@@ -232,6 +240,11 @@ h2.heading {
 	position: absolute;
 	right: 15px;
 	bottom: 0;
+}
+
+.pricerequest .content-box {
+	padding-left: 50px;
+	padding-right: 50px;
 }
 
 .footer {
@@ -353,8 +366,12 @@ a.blue-link {
 	 	margin-right: 10px;
 	 }
 
-	 .nav-bar h2.heading {
+	 h2.heading {
 	 	font-size: 20px;
+	 }
+
+	 h1.heading {
+	 	font-size: 24px;
 	 }
 
 	 .footer h3 {
@@ -370,18 +387,15 @@ a.blue-link {
 	 	font-size: 12px;
 	 }
 
-	 .content-box {
-	 	order: 1;
+
+	 .single .wr-logo { max-height: 150px; }
+
+	 .pricerequest .content-box {
+	 	padding-left: 20px;
+	 	padding-right: 20px;
 	 }
-
-	 .map {
-	 	order: 2;
-	 }
-
-
 
 	.ask-offer-text-desktop { display: none; }
 	.ask-offer-text-mobile { display: block; }
 
 }
-

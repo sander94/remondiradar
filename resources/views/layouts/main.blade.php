@@ -53,7 +53,7 @@
 
 				<div class="row mt-20">
 					<div class="col-12">
-						<h2 class="heading">
+						<h2 class="heading white">
 							Aitab otsimisest - sobiva remonditöökoja leiad siit!
 						</h2>
 					</div>

@@ -1,17 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
-<style>
-.flexbox {
-  display: flex;
-  flex-direction: column;
-}
-</style>
+
 
 <div class="content single">
-
-  <div class="flexbox">
-      @if($workroom->google_maps)  <div id="map" class="map" style="position: relative; height: 250px; border-top-right-radius: 10px; border-top-left-radius: 10px;"></div> @endif
         
         <div class="content-box">
           
@@ -27,7 +19,7 @@
 
               </div>
 
-              <div class="col-md-6">
+              <div class="col-md-7">
 
                   <h1 class="brand-name">{{ $workroom->brand_name }}</h1>
                   <h5 class="company-name">{{ $company_realname }}</h5>
@@ -86,7 +78,7 @@
 
               </div>
 
-              <div class="col-md-3">
+              <div class="col-md-2">
 
                   <div class="rating-stars">
 
@@ -95,7 +87,7 @@
                       <i class="fas fa-star"> </i>
                       <i class="fas fa-star"> </i>
                       <i class="fas fa-star"> </i><br />
-                      Arvustused ja kommentaarid (0)
+                      Hinnangud (0)
 
                   </div>
 
@@ -116,13 +108,19 @@
               <div class="col-md-6 dashed-top">
                   <h3>Lisainfo</h3>
                   <p style="font-size: 16px;"> {!! nl2br($workroom->additional_info) !!} </p>
-
+                  @if($workroom->google_maps)  <div id="map" class="map" style="position: relative; height: 250px; border-top-right-radius: 10px; border-top-left-radius: 10px;"></div> @endif
               </div>
 
           </div>
+
+
+          <div class="row mt-20">
+            <div class="col-12">
+
+            </div>
+          </div>
      
       </div>
-    </div>
 
 </div>
 

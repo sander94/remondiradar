@@ -2,19 +2,24 @@
 
 @section('content')
 
-<div class="content">
+<div class="content pricerequest">
 	<div class="content-box">
-
-	@if(session()->has('message'))
-		<div class="alert alert-success">Andmed saadetud!</div>
-	@endif
-	<h2 style="margin-bottom: 0px;">Saada hinnapäring töökodadele</h2>
-	<p>Kohalikud remonditöökojad vaatavad selle üle ning saadavad sinu e-mailile vastused!</p>
-	<div style="height: 50px;"></div>
+		<div class="row">
+			<div class="col-md-12">
+			@if(session()->has('message'))
+				<div class="alert alert-success">Andmed saadetud!</div>
+			@endif
+			<h1 class="heading" style="margin-bottom: 10px;"><strong>Saada hinnapäring töökodadele</strong></h1>
+			<p>Kohalikud remonditöökojad vaatavad selle üle ning saadavad sinu e-mailile vastused!<br>Sina saad valida sobiva töökoja.</p>
+			<div style="height: 50px;"></div>
+		</div>
+		</div>
+			
 	<form action="{{ url('/hinnaparing') }}" method="post" class="needs-validation" autocomplete="off" autofill="false" novalidate>
 		@csrf
 <div class="row">
-		<div class="col-md-4">
+
+		<div class="col-md-6">
 			<div class="card">
 				<div class="card-header">
 					<strong>1) Auto andmed</strong>
@@ -110,7 +115,7 @@
 
 
 
-		<div class="col-md-4">
+		<div class="col-md-6">
 
 			<div class="card">
 				<div class="card-header">
@@ -183,6 +188,13 @@
 				</div>
 			</div>
 		</div>
+
+
+
+		
+
+
+
 	</div>
 	</form>
 
