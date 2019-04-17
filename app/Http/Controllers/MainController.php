@@ -64,10 +64,17 @@ class MainController extends Controller
     else {
       return redirect()->route('frontpage');
     }
-
-
-
-
         
-   }
+}
+
+
+    public function aboutUs() {
+      return view('aboutUs')->with(['og_image' => '', 'title' => 'Meie missioon | Remondiradar.ee', 'region' => '']);
+    }
+
+
+
+
+
+
 }

@@ -18,6 +18,8 @@ Route::get('show/{id}', 'MainController@show');
 Route::get('hinnaparing', 'PriceRequestController@index');
 Route::post('hinnaparing', 'PriceRequestController@post');
 
+Route::get('meist', 'MainController@aboutUs');
+
 Auth::routes();
 
 Route::get('admin', 'HomeController@index')->name('admin');
