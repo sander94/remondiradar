@@ -61,6 +61,10 @@
 		margin-bottom: 30px;
 	}
 
+	.explainerBox h4 {
+		font-size: 24px;
+	}
+
 	@media screen and (max-width: 1300px) {
 		.explainerBox {
 			height: 350px;
