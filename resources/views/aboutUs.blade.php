@@ -6,7 +6,7 @@
 	<div class="content-box">
 		<div class="row">
 			<div class="col-md-5">
-				<h1 class="heading" style="margin-bottom: 10px;"><strong>Mis on Remondiradar?</strong></h1>
+				<h1 class="heading" style="margin-bottom: 20px;"><strong>Mis on Remondiradar?</strong></h1>
 				<style>
 				p strong { font-weight: 700; }
 				</style>
@@ -25,12 +25,12 @@
 				
 				
 				</p>
-				<div style="height: 100px;"></div>
+				<div style="height: 50px;"></div>
 			</div>
 
 			<div class="col-md-7">
 
-				<div style="height: 270px; width: 100%; background-color: orange;"><img src="{{ url('images/web/about_us.jpg') }}" style="width: 100%;"></div>
+				<div style="width: 100%; background-color: orange;"><img src="{{ url('images/web/about_us.jpg') }}" style="width: 100%;"></div>
 
 			</div>
 
@@ -44,12 +44,14 @@
 		padding-left: 25px;
 		padding-right: 25px;
 		padding: 25px;
-		min-height: 250px;
+		min-height: 380px;
 		background-color: #72cbff;
+		margin-top: 20px;
 	} 
 
 	.explainerBox-white {
 		background-color: #FFFFFF;
+		border: 0;
 	}
 
 	.explainerBox p {
@@ -61,13 +63,9 @@
 		margin-bottom: 30px;
 	}
 
-	.explainerBox h4 {
-		font-size: 24px;
-	}
-
 	@media screen and (max-width: 1300px) {
 		.explainerBox {
-			height: 350px;
+			height: 450px;
 		}
 		.explainerBox h4 {
 			font-size: 16px;
@@ -76,7 +74,7 @@
 
 		@media screen and (max-width: 790px) {
 		.explainerBox {
-			height: 450px;
+			height: 550px;
 		}
 	}
 
@@ -85,7 +83,15 @@
 			height: auto;
 			min-height: auto;
 		}
+		
+		.explainerBox h4 {
+			font-size: 20px;
+		}
+		
+		span.liitu { display: block; }
 	}
+	
+
 </style>
 
 
@@ -94,7 +100,7 @@
 		<div class="row" style="margin-top: 50px;">
 
 			<div class="col-md-12">
-				<h2 class="text-center" style="font-weight: 700;">Omad töökoda? <a href="{{ url('register') }}" style="color: #175df6;">Liitu tasuta!</a></h2>
+				<h2 class="text-center" style="font-weight: 700;">Omad töökoda? <a href="{{ url('register') }}" style="color: #175df6;"><span class="liitu">Liitu tasuta!</span></a></h2>
 					
 					<div class="row" style="margin-top: 50px;">
 
