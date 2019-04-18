@@ -37,7 +37,7 @@ class PriceRequestNotification extends Mailable
         Teile saabus uus hinnapäring Remondiradarist!
 
         Auto: <strong>".$request->reg_no."</strong> ".$request->make." ".$request->model." ".$request->year."
-        Logi sisse ja vasta päringule: <a href=\"https://remondiradar.ee/admin/\">https://remondiradar.ee/admin/</a>
+        Päringule vastamiseks sisene: <a href=\"https://remondiradar.ee/admin/\">https://remondiradar.ee/admin/</a>
 
         Parimat
         Remondiradari meeskond</p><hr><p style=\"font-size: 12px; color: #adadad; font-family: 'Arial';\">Kui te ei soovi hinnapakkumiste kohta meiliteateid, saate need välja lülitada oma kohto lehelt.</p>";
