@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'reg_no', 'phone', 'legal_address', 'website'
+        'name', 'email', 'password', 'reg_no', 'phone', 'legal_address', 'website', 'pricerequest_email_to_user'
     ];
 
     /**
@@ -46,4 +46,6 @@ class User extends Authenticatable
     public function workrooms() {
         return $this->hasMany('App\Workroom', 'company_id')->where('is_active', '1');
     }
+
+
 }

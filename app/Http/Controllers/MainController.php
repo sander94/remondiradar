@@ -23,7 +23,8 @@ class MainController extends Controller
    		
       // Make title tag for page
       $regionName = Regions::where('id', $request->region)->first();
-      $title = $regionName->region_name.' - '.count($workrooms).' remonditöökoda | Remondiradar.ee';
+   //    $title = $regionName->region_name.' - '.count($workrooms).' remonditöökoda | Remondiradar.ee';
+      $title = "Remondiradar.ee - Leia kiirelt kohalik remonditöökoda.";
       $og_image = asset('images/web/logo-white.png');
 
       return view('frontpage', compact('workrooms'))->with(['region' => request()->region, 'title' => $title, 'og_image' => $og_image]);

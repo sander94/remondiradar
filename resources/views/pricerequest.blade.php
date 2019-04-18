@@ -11,6 +11,7 @@
 			@endif
 			<h1 class="heading" style="margin-bottom: 10px;"><strong>Saada hinnapäring töökodadele</strong></h1>
 			<p>Kohalikud remonditöökojad vaatavad selle üle ning saadavad sinu e-mailile vastused!<br>Sina saad valida sobiva töökoja.</p>
+			<p>Võimalusel täida kõik väljad.</p>
 			<div style="height: 50px;"></div>
 		</div>
 		</div>
@@ -26,6 +27,16 @@
 				</div>
 				<div class="card-body">
 
+
+					<div class="form-group">
+						<div class="row">
+							<div class="col-12">
+							    <label for="reg_no">Registreerimisnumber:</label>
+							    <input type="text" class="form-control" id="reg_no" name="reg_no" placeholder="123ABC">
+							    <div class="invalid-feedback">Nõutud väli.</div>
+							</div>
+						</div>
+				 	 </div>
 
 					<div class="form-group">
 						<div class="row">
@@ -56,12 +67,12 @@
 					  	<div class="row">
 					  		<div class="col-6">
 							    <label for="engine">Mootori maht:</label>
-							    <input type="text" class="form-control" id="engine" name="engine" required>
+							    <input type="text" class="form-control" id="engine" name="engine" >
 							    <div class="invalid-feedback">Nõutud väli.</div>
 							</div>
 							<div class="col-6">
 							    <label for="kw">Võimsus kW:</label>
-							    <input type="text" class="form-control" id="kw" name="kw" required>
+							    <input type="text" class="form-control" id="kw" name="kw" >
 							    <div class="invalid-feedback">Nõutud väli.</div>
 							</div>
 						</div>
@@ -129,7 +140,7 @@
 						<div class="row">
 							<div class="col-12">
 							    <label for="name">Nimi:</label>
-							    <input type="text" class="form-control" id="name" name="name">
+							    <input type="text" class="form-control" id="name" name="name" required>
 							    <div class="invalid-feedback">Nõutud väli.</div>
 							</div>
 						</div>

@@ -18,10 +18,7 @@ class DataInsertion extends Controller
 
     	$user = auth()->user();
 
-		// üksiku välja süntaks
-		// $user->fill([ 'phone' => $request->phone ])->save();
 
-		// kõik väljad update
 		$user->fill($request->all())->save();
 
     	return view('admin.company-data');

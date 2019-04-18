@@ -58,7 +58,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                     <a class="dropdown-item" href="{{ url('admin/company-data') }}">
-                                        <i class="fas fa-user fa-fw"> </i> {{ __('Ettevõtte andmed') }}
+                                        <i class="fas fa-user fa-fw"> </i> {{ __('Konto seaded') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ url('admin/workrooms') }}">

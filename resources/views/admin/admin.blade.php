@@ -120,7 +120,7 @@
                         <div class="admin-menu-box">
                             <div class="admin-menu-box-content">
                                 <i class="fas fa-user"></i>
-                                <p>Ettevõtte andmed</p>
+                                <p>Konto seaded</p>
                             </div>
                         </div>
                         </a>

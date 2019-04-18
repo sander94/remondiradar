@@ -33,7 +33,7 @@
 								@if($workroom->brand_logo)
 									<img src="{{ asset('images/t_logos/'.$workroom->brand_logo.'') }}" class="wr-logo">
 								@else
-									<img src="{{ asset('images/web/logo-missing.gif') }}" class="wr-logo">
+									
 								@endif
 							</div>
 
@@ -41,7 +41,7 @@
 
 						<div class="row dashed-top">
 
-							<div class="col-6 col-sm-9">
+							<div class="col-12 col-sm-12">
 
 								<div class="info-row">
 
@@ -59,21 +59,26 @@
 
 								</div>
 
+
+
+
 							</div>
 
-							<div class="col-6 col-sm-3">
+					
 
-								  <div class="rating-stars">
 
-					                  <i class="fas fa-star"> </i>
-					                  <i class="fas fa-star"> </i>
-					                  <i class="fas fa-star"> </i>
-					                  <i class="fas fa-star"> </i>
-					                  <i class="fas fa-star"> </i>
+							<div style="position: absolute; right: 0; bottom: 18px;">
+								  <div class="rating-stars" style="position: relative;">
+
+					                  <i class="fas fa-star"> </i> 
+					                  <i class="fas fa-star"> </i> 
+					                  <i class="fas fa-star"> </i> 
+					                  <i class="fas fa-star"> </i> 
+					                  <i class="fas fa-star"> </i> 
 
 					              </div>
-
-							</div>
+					        </div>
+						
 
 						</div>
 

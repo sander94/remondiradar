@@ -30,7 +30,7 @@
                         <i class="fa fa-phone fa-fw fa-flip-horizontal"> </i>
                       </div>
                       <div class="icon-text">
-                        {{ $workroom->phone }}
+                        <a href="tel:{{ $workroom->phone }}">{{ $workroom->phone }}</a>
                       </div>
                     </div>
                   @endif

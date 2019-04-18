@@ -172,6 +172,10 @@ h2.heading {
 
 /* EXTRAS */
 
+input::placeholder {
+	color: #e6e6e6 !important;
+}
+
 .mt-20 {
 	margin-top: 20px;
 }
