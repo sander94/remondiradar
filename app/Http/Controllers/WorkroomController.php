@@ -5,17 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Workroom;
-use App\Timeslots;
+use App\Timeslot;
 use App\WorkroomOpeningTimes;
 use App\Regions;
 
 class WorkroomController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,6 +24,7 @@ class WorkroomController extends Controller
     public function index()
     {
         $workrooms = Workroom::latest()->where('company_id', Auth::user()->id)->paginate(5);
+
         return view('admin.workrooms.index', compact('workrooms'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -35,111 +36,118 @@ class WorkroomController extends Controller
     public function create()
     {
         $regions = Regions::all();
-        $timeslots = Timeslots::all();
-        return view('admin.workrooms.create', compact('regions', 'timeslots'));
+        $times = generateDateRange(now()->startOfDay(), now()->endOfDay());
+
+        return view('admin.workrooms.create', compact('regions', 'timeslots', 'times'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        request()->validate([
-  
-            'brand_logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:80000'
+        $request->validate([
+
+            'brand_logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:80000',
         ]);
 
-
-
         $request->request->add(['company_id' => Auth::user()->id]); //add request
-      
-         $workroomStore = Workroom::create($request->all()); // create workroom
 
-         $request->request->add(['wr_id' => $workroomStore->id]); // get id of latest workroom
+        $workroomStore = Workroom::create($request->all()); // create workroom
 
-         WorkroomOpeningTimes::create($request->all()); // store openingtimes to table
+        $request->request->add(['wr_id' => $workroomStore->id]); // get id of latest workroom
 
-       return redirect()->route('workrooms.index')->with('success', 'Töökoda edukalt lisatud! Vaatame andmed üle ning aktiveerime selle peatselt!');
+        /** @var \App\WorkroomOpeningTimes $opening_times */
+        $opening_time = WorkroomOpeningTimes::create($request->all());
+
+        foreach ($request->get('timeslots') as $timeslot) {
+            /** @var \App\Timeslot $timeslot */
+            $timeslot = Timeslot::make($timeslot);
+            $timeslot->opening_time()->associate($opening_time);
+            $timeslot->save();
+        }
+
+        return redirect()->route('workrooms.index')->with('success', 'Töökoda edukalt lisatud! Vaatame andmed üle ning aktiveerime selle peatselt!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        if($workroom = Workroom::find($id)) {
-            if($workroom_company_id == Auth::user()->id) {
-            return view('admin.workrooms.show', compact('workroom'));
+        if ($workroom = Workroom::find($id)) {
+            if ($workroom_company_id == Auth::user()->id) {
+                return view('admin.workrooms.show', compact('workroom'));
+            } else {
+                return redirect()->route('workrooms.index');
             }
-            else {
+        } else {
             return redirect()->route('workrooms.index');
-            }
         }
-        else { return redirect()->route('workrooms.index'); }
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param \App\Workroom $workroom
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Workroom $workroom)
     {
-
-        if ($workroom = Workroom::find($id)) {
-            $regions = Regions::all();
-            $timeslots = Timeslots::all();
-            if($workroom->company_id == Auth::user()->id) {
-            return view('admin.workrooms.edit', compact('workroom', 'regions', 'timeslots'));
-            }
-            else {
+        $regions = Regions::all();
+        $times = generateDateRange(now()->startOfDay(), now()->endOfDay());
+        $timeslots = $workroom->openingtimes->timeslots->keyBy('day_of_week');
+        if ($workroom->company_id == Auth::user()->id) {
+            return view('admin.workrooms.edit', compact('workroom', 'regions', 'times', 'timeslots'));
+        } else {
             return redirect()->route('workrooms.index');
-            }
         }
-
-        else
-           {
-            return redirect()->route('workrooms.index');
-           }
-
-
-        
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Workroom $workroom
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Workroom $workroom)
     {
         request()->validate([
-            'brand_logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'brand_logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-       Workroom::find($id)->update($request->all());
-       WorkroomOpeningTimes::where('wr_id', $id)->first()->update($request->all());
-       return redirect()->route('workrooms.edit', ['id' => $id])->with('success', 'Töökoja andmed uuendatud!');
+        $workroom->update($request->all());
+        $workroom->openingtimes->update($request->all());
+
+        $timeslots = $workroom->openingtimes->timeslots->keyBy(function ($item) {
+            return $item['day_of_week']->value();
+        });
+        foreach ($timeslots as $key => $timeslot) {
+            $timeslot->update(
+                $request->get('timeslots')[$key]
+            );
+        }
+
+        return redirect()->route('workrooms.edit', $workroom)->with('success', 'Töökoja andmed uuendatud!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         Workroom::find($id)->delete();
+
         return redirect()->route('workrooms.index');
     }
 }
