@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -16,7 +17,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'reg_no', 'phone', 'legal_address', 'website', 'pricerequest_email_to_user'
+        'name',
+        'email',
+        'password',
+        'reg_no',
+        'phone',
+        'legal_address',
+        'website',
+        'pricerequest_email_to_user',
     ];
 
     /**
@@ -25,7 +33,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -37,15 +46,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-
-
-
-
     // if this pricerequest has a row in pricerequestsansers table called request_id, then fuck yeah!
-    public function workrooms() {
+    public function workrooms()
+    {
         return $this->hasMany('App\Workroom', 'company_id')->where('is_active', '1');
     }
 
-
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
 }
