@@ -118,39 +118,38 @@
         rippmenüüst</label>
     <div class="col-md-6">
         {!!  Form::text('google_maps', null, ['placeholder' => 'Google aadress', 'class' => 'form-control', 'id' => 'googleInput']) !!}
-            </script>
-
-        <
-        script >
-        var geocoder;
-        var map;
-        var address = "{{ $workroom->google_maps }}";
 
 
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 16,
-                center: {lat: -34.397, lng: 150.644}
-            });
-            geocoder = new google.maps.Geocoder();
-            codeAddress(geocoder, map);
-            var input = document.getElementById('googleInput');
-            var autocomplete = new google.maps.places.Autocomplete(input);
-        }
+        <script>
+            var geocoder;
+            var map;
+            var address = "{{ $workroom->google_maps }}";
 
-        function codeAddress(geocoder, map) {
-            geocoder.geocode({'address': address}, function (results, status) {
-                if (status === 'OK') {
-                    map.setCenter(results[0].geometry.location);
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location
-                    });
-                } else {
 
-                }
-            });
-        }
+            function initMap() {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 16,
+                    center: {lat: -34.397, lng: 150.644}
+                });
+                geocoder = new google.maps.Geocoder();
+                codeAddress(geocoder, map);
+                var input = document.getElementById('googleInput');
+                var autocomplete = new google.maps.places.Autocomplete(input);
+            }
+
+            function codeAddress(geocoder, map) {
+                geocoder.geocode({'address': address}, function (results, status) {
+                    if (status === 'OK') {
+                        map.setCenter(results[0].geometry.location);
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location
+                        });
+                    } else {
+
+                    }
+                });
+            }
         </script>
 
 
@@ -221,7 +220,7 @@
             <td>
                 <select name="timeslots[{{ $value }}][from]" class="form-control">
                     @foreach($times as $time)
-                        <option  {{ selected($timeslots[$name]->from === $time) }}>{{ $time }}</option>
+                        <option {{ selected($timeslots[$name]->from === $time) }}>{{ $time }}</option>
                     @endforeach
                 </select>
             </td>
