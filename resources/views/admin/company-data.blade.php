@@ -32,38 +32,46 @@
                                 </select>
                             </div>
                         </div>
+
+                        <hr style="margin-top: 20px; margin-bottom: 20px;">
+
+                        <div class="form-group row">
+                            <div class="col-md-5">
+                                Parooli seaded
+                            </div>
+                            <div class="col-md-7">
+                                <a href="{{ url('admin/change-password') }}">Vaheta konto parool</a>
+                            </div>
+                        </div>
                         
                         <hr style="margin-top: 20px; margin-bottom: 20px;">
                         <div class="form-group row">
                             <div class="col-md-5">
-                            	Registrikood
+                            	Ettevõtte registrikood
                             </div>
                             <div class="col-md-7">
                                 <input type="text" class="form-control" name="reg_no" value="{{ Auth::user()->reg_no }}" autofocus>
                             </div>
                         </div>
 
-
+                        <div class="form-group row">
+                            <div class="col-md-5">
+                                Juriidiline aadress
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" name="legal_address" value="{{ Auth::user()->legal_address }}">
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <div class="col-md-5">
-                            	Kontakttelefon
+                            	Peamine kontakttelefon
                             </div>
                             <div class="col-md-7">
                                 <input type="text" name="phone" class="form-control" value="{{ Auth::user()->phone }}">
                             </div>
                         </div>
 
-
-
-                        <div class="form-group row">
-                            <div class="col-md-5">
-                            	Juriidiline aadress
-                            </div>
-                            <div class="col-md-7">
-                                <input type="text" class="form-control" name="legal_address" value="{{ Auth::user()->legal_address }}">
-                            </div>
-                        </div>
 
 
                         <div class="form-group row">

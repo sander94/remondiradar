@@ -25,8 +25,9 @@
 
 								<h3>{{ $workroom->brand_name }}</h3>
 
-								<p>{{ $workroom->short_description }}</p>
+								<p>{{ substr($workroom->short_description, 0, 160) }}</p>
 
+	
 							</div>
 
 							<div class="col-4">
@@ -64,17 +65,44 @@
 
 							</div>
 
-					
+
+							<?php
+							// Calculate average rating
+							$rating  = 0;
+							foreach($workroom->reviews as $review)
+							{
+								$rating = $rating+$review->stars;
+							}
+
+							
+							if(count($workroom->reviews) > 0) {
+								$avgrating = round($rating/count($workroom->reviews), 2);
+								$percentage = ($avgrating/5)*100;
+							}
+							else {
+								$percentage = 0;
+							}
+
+							?>	
 
 
 							<div style="position: absolute; right: 0; bottom: 18px;">
 								  <div class="rating-stars" style="position: relative;">
 
-					                  <i class="fas fa-star"> </i> 
-					                  <i class="fas fa-star"> </i> 
-					                  <i class="fas fa-star"> </i> 
-					                  <i class="fas fa-star"> </i> 
-					                  <i class="fas fa-star"> </i> 
+
+
+
+
+									    <div class="stars-rating">
+									    	<div class="stars-score" style="width: {{ $percentage }}%">
+									    		<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+									    	</div>
+											<div class="stars-scale">
+												<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+											</div>
+									    </div>
+
+
 
 					              </div>
 					        </div>

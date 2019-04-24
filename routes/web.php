@@ -20,6 +20,11 @@ Route::post('hinnaparing', 'PriceRequestController@post');
 
 Route::get('meist', 'MainController@aboutUs');
 
+Route::get('tagasiside-antud', 'MainController@thanksForReview')->name('thanksForReview');
+
+Route::get('tagasiside/{token}', 'MainController@writeReview');
+Route::post('tagasiside/{token}', 'MainController@sendReview');
+
 Auth::routes();
 
 Route::get('admin', 'HomeController@index')->name('admin');
@@ -29,7 +34,8 @@ Route::post('/admin/company-data', 'DataInsertion@company_data')->name('company-
 Route::get('/admin/change-password','ChangePasswordController@index')->name('changePassword');
 Route::post('/admin/change-password','ChangePasswordController@updatePassword')->name('updatePassword');
 
-
+Route::get('/admin/reviews', 'ReviewsController@index')->name('reviewsIndex');
+Route::post('/admin/reviews', 'ReviewsController@sendReviewRequest')->name('reviewsPost');
 
 Route::resource('admin/workrooms', 'WorkroomController');
 Route::get('admin/requests/{id}', 'HomeController@requestsShow');

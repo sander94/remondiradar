@@ -5,11 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Workroom;
+use App\Timeslots;
 use App\WorkroomOpeningTimes;
 use App\Regions;
 
 class WorkroomController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +35,8 @@ class WorkroomController extends Controller
     public function create()
     {
         $regions = Regions::all();
-        return view('admin.workrooms.create', compact('regions'));
+        $timeslots = Timeslots::all();
+        return view('admin.workrooms.create', compact('regions', 'timeslots'));
     }
 
     /**
@@ -41,16 +48,21 @@ class WorkroomController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'brand_name' => 'required',
-            'additional_info' => 'required',
-            'brand_logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:8000'
+  
+            'brand_logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:80000'
         ]);
 
 
 
         $request->request->add(['company_id' => Auth::user()->id]); //add request
-       Workroom::create($request->all());
-       return redirect()->route('workrooms.index')->with('success', 'Töökoda edukalt lisatud!');
+      
+         $workroomStore = Workroom::create($request->all()); // create workroom
+
+         $request->request->add(['wr_id' => $workroomStore->id]); // get id of latest workroom
+
+         WorkroomOpeningTimes::create($request->all()); // store openingtimes to table
+
+       return redirect()->route('workrooms.index')->with('success', 'Töökoda edukalt lisatud! Vaatame andmed üle ning aktiveerime selle peatselt!');
     }
 
     /**
@@ -83,8 +95,9 @@ class WorkroomController extends Controller
 
         if ($workroom = Workroom::find($id)) {
             $regions = Regions::all();
+            $timeslots = Timeslots::all();
             if($workroom->company_id == Auth::user()->id) {
-            return view('admin.workrooms.edit', compact('workroom', 'regions'));
+            return view('admin.workrooms.edit', compact('workroom', 'regions', 'timeslots'));
             }
             else {
             return redirect()->route('workrooms.index');
@@ -110,12 +123,11 @@ class WorkroomController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'brand_name' => 'required',
-            'additional_info' => 'required',
             'brand_logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
        Workroom::find($id)->update($request->all());
+       WorkroomOpeningTimes::where('wr_id', $id)->first()->update($request->all());
        return redirect()->route('workrooms.edit', ['id' => $id])->with('success', 'Töökoja andmed uuendatud!');
     }
 

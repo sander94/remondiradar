@@ -144,8 +144,46 @@ h2.heading {
 	color: #175df6;
 }
 
+.wr-card:hover .stars-score i, .wr-card:hover .stars-rating i {
+ color: orange;
+}
+
 .wr-card h3 {
 	font-weight: 700;
+}
+
+
+.wr-card .stars-rating, .single .stars-rating {
+	position: relative;
+    display: inline-block;
+}
+
+.wr-card .stars-rating .stars-score, .single .stars-rating .stars-score {
+              position: absolute;
+              top: 0;
+              left: 0;
+              overflow: hidden;
+              width: 20%;
+              white-space: nowrap;
+}
+
+.comment-card {
+	margin-top: 30px;
+}
+
+.comment-card-content {
+	padding-top: 5px;
+}
+
+.star-column {
+	width: 120px;
+	display: inline-block;
+	padding-left: 20px;
+}
+
+.comment-column {
+	display: inline-block;
+	width: calc(100% - 130px);
 }
 
 .wr-logo {
@@ -195,6 +233,19 @@ input::placeholder {
 	border-bottom-right-radius: 3px;
 }
 
+.review-datetime {
+	color: #bbbbbb;
+	margin-top: 0;
+	padding-top: 0;
+	font-size: 12px;
+}
+
+.review-name {
+	margin-bottom: 0;
+	padding-bottom: 0;
+	font-weight: 700;
+}
+
 .btn-primary {
 	background-color: #175df6;
 }
@@ -229,15 +280,33 @@ input::placeholder {
 	font-weight: 400;
 }
 
+.content.single .rating-stars {
+	position: absolute;
+	right: 40px;
+}
+
 
 .content.single .rating-stars i {
 	font-size: 18px;
 	color: #155ef6;
 }
 
+.star-column i {
+	color: orange;
+}
+
+.content.single .comment-card {
+	border-top: 1px solid #eeeeee;
+	padding: 10px;
+}
+
+.content.single .comment-card:first-of-type {
+	border: 0;
+}
+}
+
 .content.finder .rating-stars i {
 	font-size: 12px;
-	color: #b6c4e6;
 }
 
 .content.finder .rating-stars {
@@ -249,6 +318,8 @@ input::placeholder {
 .pricerequest .content-box {
 	padding-left: 50px;
 	padding-right: 50px;
+	padding-bottom: 50px;
+	text-align: center;
 }
 
 .footer {
@@ -354,6 +425,7 @@ a.blue-link {
 
 	.rating-stars {
 		margin-left: 30px;
+		top: 40px;
 	}
 
 	.logo {
@@ -402,4 +474,29 @@ a.blue-link {
 	.ask-offer-text-desktop { display: none; }
 	.ask-offer-text-mobile { display: block; }
 
+	.comment-column {
+		display: block;
+		width: 100%;
+		padding-left: 20px;
+	}
+
+	.star-column {
+		display: block;
+		width: 100%;
+	}
+
 }
+
+
+@media screen and (max-width: 400px) {
+		.content.single .rating-stars {
+		top: 0;
+		right: auto;
+		position: relative;
+	}
+}
+
+
+
+
+

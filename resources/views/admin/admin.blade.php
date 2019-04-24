@@ -116,6 +116,18 @@
 
 
                     <div class="col-md-4 js-tilt mb-20">
+                        <a href="{{ url('/admin/reviews') }}">
+                        <div class="admin-menu-box">
+                            <div class="admin-menu-box-content">
+                                <i class="fas fa-star"></i>
+                                <p>Arvustused</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-md-4 js-tilt mb-20">
                         <a href="{{ url('/admin/company-data') }}">
                         <div class="admin-menu-box">
                             <div class="admin-menu-box-content">
@@ -128,16 +140,7 @@
 
 
 
-                    <div class="col-md-4 js-tilt">
-                        <a href="{{ url('/admin/change-password') }}">
-                        <div class="admin-menu-box">
-                            <div class="admin-menu-box-content">
-                                <i class="fas fa-key"></i>
-                                <p>Vaheta parooli</p>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
+
 </div>
 
 
@@ -159,9 +162,15 @@
 
 
 
-
-            <?php echo $lines; ?>
-
+            @if(empty($lines))
+            <tr style="font-weight: 700; font-size: 15px;">
+                <td colspan="5">
+                  <i class="fas fa-info-circle" style="color: green;"> </i> Hetkel päringuid saadetud pole
+                 </td>
+            </tr>
+            @else
+            {!! $lines !!} 
+            @endif
 
 
         </table>

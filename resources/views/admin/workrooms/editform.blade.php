@@ -63,47 +63,19 @@
 
 <div class="form-group row">
 	<label for="short_description" class="col-md-4 col-form-label text-md-right">Lühitutvustus<br>
-		<span class="char-count">150</span> tähte</label>
+		<span id="chars">150</span> tähte</label>
 		<div class="col-md-6">
-		{!! Form::textarea('short_description', null, ['placeholder'=>'Müügitekst', 'class' => 'form-control char-textarea', 'data-length' => '150', 'id' => 'short_description', 'style' => 'height: 100px']) !!}
+		{!! Form::textarea('short_description', null, ['placeholder'=>'Müügitekst', 'class' => 'form-control char-textarea', 'maxlength' => '150', 'id' => 'short_description', 'style' => 'height: 100px']) !!}
 
 
 
-		<script>
-			$(".char-textarea").on("keydown",function(event){
-  checkTextAreaMaxLength(this,event);
+<script>
+var maxLength = 150;
+$('#short_description').keyup(function() {
+  var length = $(this).val().length;
+  var length = maxLength-length;
+  $('#chars').text(length);
 });
-
-/*
-Checks the MaxLength of the Textarea
------------------------------------------------------
-@prerequisite:	textBox = textarea dom element
-				e = textarea event
-                length = Max length of characters
-*/
-function checkTextAreaMaxLength(textBox, e) { 
-    
-    var maxLength = parseInt($(textBox).data("length"));
-    
-  
-    if (!checkSpecialKeys(e)) { 
-        if (textBox.value.length > maxLength - 1) textBox.value = textBox.value.substring(0, maxLength); 
-   } 
-  $(".char-count").html(maxLength - textBox.value.length);
-    
-    return true; 
-} 
-/*
-Checks if the keyCode pressed is inside special chars
--------------------------------------------------------
-@prerequisite:	e = e.keyCode object for the key pressed
-*/
-function checkSpecialKeys(e) { 
-    if (e.keyCode != 8 && e.keyCode != 46 && e.keyCode != 37 && e.keyCode != 38 && e.keyCode != 39 && e.keyCode != 40) 
-        return false; 
-    else 
-        return true; 
-}
 </script>
 
 
@@ -211,7 +183,224 @@ var autocomplete = new google.maps.places.Autocomplete(input);
 </div>
 
 
+<hr>
 
+<style>
+.checkbox-styled {
+	transform: scale(1.5);
+	margin-top: 10px;
+}
+
+.disableField {
+	background-color: gray;
+}
+
+.openingtimes-table tr td {
+padding: 5px 10px;
+}
+</style>
+
+
+<div class="form-group row">
+
+	<div class="col-md-4">
+		<h2>Avatud</h2>
+	</div>
+
+</div>
+
+
+<table border=0 cellpadding=0 cellspacing=0 width=100% class="openingtimes-table">
+	<tr>
+		<td>
+		</td>
+		<td>
+			Alates
+		</td>
+		<td>
+			Kuni
+		</td>
+		<td>
+			Töökoda avatud vaid kokkuleppel
+		</td>
+	</tr>
+
+	<tr>
+		<td> Esmaspäev </td>
+		<td>
+			<select name="mon_from" class="form-control">
+				@foreach($timeslots as $timeslot)
+					<option value="{{ $timeslot->id }}" @if($timeslot->id == $workroom->timeslots->mon_from) selected @endif>{{ $timeslot->time }}</option>
+				@endforeach	
+			</select>
+		</td>
+		<td>
+			<select name="mon_to" class="form-control">
+				@foreach($timeslots as $timeslot)
+					<option value="{{ $timeslot->id }}" @if($timeslot->id == $workroom->timeslots->mon_to) selected @endif>{{ $timeslot->time }}</option>
+				@endforeach	
+			</select>
+		</td>
+		<td>
+			<select name="mon_opt" class="form-control">
+				<option value="0" @if($workroom->timeslots->mon_opt == '0') selected @endif>Avatud</option>
+				<option value="1" @if($workroom->timeslots->mon_opt == '1') selected @endif>Suletud</option>
+				<option value="2" @if($workroom->timeslots->mon_opt == '2') selected @endif>Avatud kokkuleppel</option>
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<td> Teisipäev </td>
+		<td>
+			<select name="tue_from" class="form-control">
+				@foreach($timeslots as $timeslot)
+					<option value="{{ $timeslot->id }}" @if($timeslot->id == $workroom->timeslots->tue_from) selected @endif>{{ $timeslot->time }}</option>
+				@endforeach	
+			</select>
+		</td>
+		<td>
+			<select name="tue_to" class="form-control">
+				@foreach($timeslots as $timeslot)
+					<option value="{{ $timeslot->id }}" @if($timeslot->id == $workroom->timeslots->tue_to) selected @endif>{{ $timeslot->time }}</option>
+				@endforeach	
+			</select>
+		</td>
+		<td>
+			<select name="tue_opt" class="form-control">
+				<option value="0" @if($workroom->timeslots->tue_opt == '0') selected @endif>Avatud</option>
+				<option value="1" @if($workroom->timeslots->tue_opt == '1') selected @endif>Suletud</option>
+				<option value="2" @if($workroom->timeslots->tue_opt == '2') selected @endif>Avatud kokkuleppel</option>
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<td> Kolmapäev </td>
+		<td>
+			<select name="wed_from" class="form-control">
+				@foreach($timeslots as $timeslot)
+					<option value="{{ $timeslot->id }}" @if($timeslot->id == $workroom->timeslots->wed_from) selected @endif>{{ $timeslot->time }}</option>
+				@endforeach	
+			</select>
+		</td>
+		<td>
+			<select name="wed_to" class="form-control">
+				@foreach($timeslots as $timeslot)
+					<option value="{{ $timeslot->id }}" @if($timeslot->id == $workroom->timeslots->wed_to) selected @endif>{{ $timeslot->time }}</option>
+				@endforeach	
+			</select>
+		</td>
+		<td>
+			<select name="wed_opt" class="form-control">
+				<option value="0" @if($workroom->timeslots->wed_opt == '0') selected @endif>Avatud</option>
+				<option value="1" @if($workroom->timeslots->wed_opt == '1') selected @endif>Suletud</option>
+				<option value="2" @if($workroom->timeslots->wed_opt == '2') selected @endif>Avatud kokkuleppel</option>
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<td> Neljapäev </td>
+		<td>
+			<select name="thu_from" class="form-control">
+				@foreach($timeslots as $timeslot)
+					<option value="{{ $timeslot->id }}" @if($timeslot->id == $workroom->timeslots->thu_from) selected @endif>{{ $timeslot->time }}</option>
+				@endforeach	
+			</select>
+		</td>
+		<td>
+			<select name="thu_to" class="form-control">
+				@foreach($timeslots as $timeslot)
+					<option value="{{ $timeslot->id }}" @if($timeslot->id == $workroom->timeslots->thu_to) selected @endif>{{ $timeslot->time }}</option>
+				@endforeach	
+			</select>
+		</td>
+		<td>
+			<select name="thu_opt" class="form-control">
+				<option value="0" @if($workroom->timeslots->thu_opt == '0') selected @endif>Avatud</option>
+				<option value="1" @if($workroom->timeslots->thu_opt == '1') selected @endif>Suletud</option>
+				<option value="2" @if($workroom->timeslots->thu_opt == '2') selected @endif>Avatud kokkuleppel</option>
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<td> Reede </td>
+		<td>
+			<select name="fri_from" class="form-control">
+				@foreach($timeslots as $timeslot)
+					<option value="{{ $timeslot->id }}" @if($timeslot->id == $workroom->timeslots->fri_from) selected @endif>{{ $timeslot->time }}</option>
+				@endforeach	
+			</select>
+		</td>
+		<td>
+			<select name="fri_to" class="form-control">
+				@foreach($timeslots as $timeslot)
+					<option value="{{ $timeslot->id }}" @if($timeslot->id == $workroom->timeslots->fri_to) selected @endif>{{ $timeslot->time }}</option>
+				@endforeach	
+			</select>
+		</td>
+		<td>
+			<select name="fri_opt" class="form-control">
+				<option value="0" @if($workroom->timeslots->fri_opt == '0') selected @endif>Avatud</option>
+				<option value="1" @if($workroom->timeslots->fri_opt == '1') selected @endif>Suletud</option>
+				<option value="2" @if($workroom->timeslots->fri_opt == '2') selected @endif>Avatud kokkuleppel</option>
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<td> Laupäev </td>
+		<td>
+			<select name="sat_from" class="form-control">
+				@foreach($timeslots as $timeslot)
+					<option value="{{ $timeslot->id }}" @if($timeslot->id == $workroom->timeslots->sat_from) selected @endif>{{ $timeslot->time }}</option>
+				@endforeach	
+			</select>
+		</td>
+		<td>
+			<select name="sat_to" class="form-control">
+				@foreach($timeslots as $timeslot)
+					<option value="{{ $timeslot->id }}" @if($timeslot->id == $workroom->timeslots->sat_to) selected @endif>{{ $timeslot->time }}</option>
+				@endforeach	
+			</select>
+		</td>
+		<td>
+			<select name="sat_opt" class="form-control">
+				<option value="0" @if($workroom->timeslots->sat_opt == '0') selected @endif>Avatud</option>
+				<option value="1" @if($workroom->timeslots->sat_opt == '1') selected @endif>Suletud</option>
+				<option value="2" @if($workroom->timeslots->sat_opt == '2') selected @endif>Avatud kokkuleppel</option>
+			</select>
+		</td>
+	</tr>
+
+	<tr>
+		<td> Pühapäev </td>
+		<td>
+			<select name="sun_from" class="form-control">
+				@foreach($timeslots as $timeslot)
+					<option value="{{ $timeslot->id }}" @if($timeslot->id == $workroom->timeslots->sun_from) selected @endif>{{ $timeslot->time }}</option>
+				@endforeach	
+			</select>
+		</td>
+		<td>
+			<select name="sun_to" class="form-control">
+				@foreach($timeslots as $timeslot)
+					<option value="{{ $timeslot->id }}" @if($timeslot->id == $workroom->timeslots->sun_to) selected @endif>{{ $timeslot->time }}</option>
+				@endforeach	
+			</select>
+		</td>
+		<td>
+			<select name="sun_opt" class="form-control">
+				<option value="0" @if($workroom->timeslots->sun_opt == '0') selected @endif>Avatud</option>
+				<option value="1" @if($workroom->timeslots->sun_opt == '1') selected @endif>Suletud</option>
+				<option value="2" @if($workroom->timeslots->sun_opt == '2') selected @endif>Avatud kokkuleppel</option>
+			</select>
+		</td>
+	</tr>
+
+</table>
 
 
 
