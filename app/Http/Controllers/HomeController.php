@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\PriceRequests;
 use App\User;
-use App\Timeslots;
-use App\WorkroomOpeningTimes;
 use App\PriceRequestsAnswers;
 use App\Mail\AnswerToPriceRequest;
 

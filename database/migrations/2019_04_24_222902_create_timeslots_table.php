@@ -18,10 +18,10 @@ class CreateTimeslotsTable extends Migration
             $table->time('to');
             $table->char('open_type');
             $table->char('day_of_week');
-            $table->unsignedBigInteger('opening_time_id')->index();
-            $table->foreign('opening_time_id')
+            $table->unsignedBigInteger('workroom_id')->index();
+            $table->foreign('workroom_id')
                 ->references('id')
-                ->on('wr_opening_times');
+                ->on('wr');
             $table->timestamps();
         });
     }

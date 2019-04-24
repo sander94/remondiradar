@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Workroom;
 use App\Timeslot;
-use App\WorkroomOpeningTimes;
+
 use App\Regions;
 
 class WorkroomController extends Controller
@@ -60,13 +60,10 @@ class WorkroomController extends Controller
 
         $request->request->add(['wr_id' => $workroomStore->id]); // get id of latest workroom
 
-        /** @var \App\WorkroomOpeningTimes $opening_times */
-        $opening_time = WorkroomOpeningTimes::create($request->all());
-
         foreach ($request->get('timeslots') as $timeslot) {
             /** @var \App\Timeslot $timeslot */
             $timeslot = Timeslot::make($timeslot);
-            $timeslot->opening_time()->associate($opening_time);
+            $timeslot->workroom()->associate($workroomStore);
             $timeslot->save();
         }
 
@@ -102,7 +99,7 @@ class WorkroomController extends Controller
     {
         $regions = Regions::all();
         $times = generateDateRange(now()->startOfDay(), now()->endOfDay());
-        $timeslots = $workroom->openingtimes->timeslots->keyBy('day_of_week');
+        $timeslots = $workroom->timeslots->keyBy('day_of_week');
         if ($workroom->company_id == Auth::user()->id) {
             return view('admin.workrooms.edit', compact('workroom', 'regions', 'times', 'timeslots'));
         } else {
@@ -124,9 +121,8 @@ class WorkroomController extends Controller
         ]);
 
         $workroom->update($request->all());
-        $workroom->openingtimes->update($request->all());
 
-        $timeslots = $workroom->openingtimes->timeslots->keyBy(function ($item) {
+        $timeslots = $workroom->timeslots->keyBy(function ($item) {
             return $item['day_of_week']->value();
         });
         foreach ($timeslots as $key => $timeslot) {

@@ -63,9 +63,9 @@ class Timeslot extends Model
         //
     ];
 
-    public function opening_time()
+    public function workroom()
     {
-        return $this->belongsTo(WorkroomOpeningTimes::class);
+        return $this->belongsTo(Workroom::class);
     }
 }
 

@@ -84,11 +84,6 @@ class Workroom extends Model
 
     public function timeslots()
     {
-        return $this->hasOne('\App\WorkroomOpeningTimes', 'wr_id');
-    }
-
-    public function openingtimes()
-    {
-        return $this->hasOne('\App\WorkroomOpeningTimes', 'wr_id');
+        return $this->hasMany(Timeslot::class);
     }
 }
