@@ -15,11 +15,11 @@ if (! function_exists('generateDateRange')) {
         $dates = [];
         $slots = $start_date->diffInMinutes($end_date) / $slot_duration;
 
-        $dates[] = $start_date->toTimeString();
+        $dates[] = $start_date->format('H:i');
 
         for ($s = 1; $s <= $slots; $s++) {
 
-            $dates[] = $start_date->addMinute($slot_duration)->toTimeString();
+            $dates[] = $start_date->addMinute($slot_duration)->format('H:i');
         }
 
         return $dates;

@@ -220,14 +220,14 @@
             <td>
                 <select name="timeslots[{{ $value }}][from]" class="form-control">
                     @foreach($times as $time)
-                        <option {{ selected($timeslots[$name]->from === $time) }}>{{ $time }}</option>
+                        <option {{ selected($timeslots[$name]->from === $time || $time === '08:00') }} value="{{ $time }}">{{ $time }}</option>
                     @endforeach
                 </select>
             </td>
             <td>
                 <select name="timeslots[{{ $value }}][to]" class="form-control">
                     @foreach($times as $time)
-                        <option {{ selected($timeslots[$name]->to === $time) }}>{{ $time }}</option>
+                        <option {{ selected($timeslots[$name]->to === $time || $time === '17:30') }} value="{{ $time }}">{{ $time }}</option>
                     @endforeach
                 </select>
             </td>

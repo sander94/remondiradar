@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Workroom;
@@ -36,7 +37,7 @@ class WorkroomController extends Controller
     public function create()
     {
         $regions = Regions::all();
-        $times = generateDateRange(now()->startOfDay(), now()->endOfDay());
+        $times = generateDateRange(Carbon::parse("07:00:00"), Carbon::parse("20:00:00"));
 
         return view('admin.workrooms.create', compact('regions', 'timeslots', 'times'));
     }
@@ -98,7 +99,7 @@ class WorkroomController extends Controller
     public function edit(Workroom $workroom)
     {
         $regions = Regions::all();
-        $times = generateDateRange(now()->startOfDay(), now()->endOfDay());
+        $times = generateDateRange(Carbon::parse("07:00:00"), Carbon::parse("20:00:00"));
         $timeslots = $workroom->timeslots->keyBy('day_of_week');
         if ($workroom->company_id == Auth::user()->id) {
             return view('admin.workrooms.edit', compact('workroom', 'regions', 'times', 'timeslots'));
