@@ -220,21 +220,22 @@
             <td>
                 <select name="timeslots[{{ $value }}][from]" class="form-control">
                     @foreach($times as $time)
-                        <option {{ selected($timeslots[$name]->from === $time || $time === '08:00') }} value="{{ $time }}">{{ $time }}</option>
+                        <option {{ selected($timeslots[$value]->from === $time || $time === '08:00') }} value="{{ $time }}">{{ $time }}</option>
                     @endforeach
                 </select>
             </td>
+
             <td>
                 <select name="timeslots[{{ $value }}][to]" class="form-control">
                     @foreach($times as $time)
-                        <option {{ selected($timeslots[$name]->to === $time || $time === '17:30') }} value="{{ $time }}">{{ $time }}</option>
+                        <option {{ selected($timeslots[$value]->to === $time) }} value="{{ $time }}">{{ $time }}</option>
                     @endforeach
                 </select>
             </td>
             <td>
                 <select name="timeslots[{{ $value }}][open_type]" class="form-control">
-                    @foreach(\App\Enums\OpenTypeEnum::choices() as $value => $type)
-                        <option value="{{ $value }}" {{ selected($timeslots[$name]->open_type->value() === $value) }}>{{ $type }}</option>
+                    @foreach(\App\Enums\OpenTypeEnum::choices() as $openValue => $type)
+                        <option value="{{ $openValue }}" {{ selected($timeslots[$value]->open_type->value() === $openValue) }}>{{ $type }}</option>
                     @endforeach
                 </select>
             </td>

@@ -100,7 +100,9 @@ class WorkroomController extends Controller
     {
         $regions = Regions::all();
         $times = generateDateRange(Carbon::parse("07:00:00"), Carbon::parse("20:00:00"));
-        $timeslots = $workroom->timeslots->keyBy('day_of_week');
+        $timeslots = $workroom->timeslots->keyBy(function ($item) {
+            return $item['day_of_week']->value();
+        });
         if ($workroom->company_id == Auth::user()->id) {
             return view('admin.workrooms.edit', compact('workroom', 'regions', 'times', 'timeslots'));
         } else {

@@ -4,6 +4,7 @@ namespace App;
 
 use App\Enums\DayOfWeekEnum;
 use App\Enums\OpenTypeEnum;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Konekt\Enum\Eloquent\CastsEnums;
 
@@ -66,6 +67,16 @@ class Timeslot extends Model
     public function workroom()
     {
         return $this->belongsTo(Workroom::class);
+    }
+
+    public function getFromAttribute($value)
+    {
+        return Carbon::parse($value)->format('H:i');
+    }
+
+    public function getToAttribute($value)
+    {
+        return Carbon::parse($value)->format('H:i');
     }
 }
 
