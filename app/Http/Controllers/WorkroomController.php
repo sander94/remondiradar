@@ -39,7 +39,7 @@ class WorkroomController extends Controller
         $regions = Regions::all();
         $times = generateDateRange(Carbon::parse("07:00:00"), Carbon::parse("20:00:00"));
 
-        return view('admin.workrooms.create', compact('regions', 'timeslots', 'times'));
+        return view('admin.workrooms.create', compact('regions', 'times'));
     }
 
     /**
