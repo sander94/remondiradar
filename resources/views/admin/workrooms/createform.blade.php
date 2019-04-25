@@ -183,7 +183,7 @@
             <td>
                 <select name="timeslots[{{ $value }}][from]" class="form-control">
                     @foreach($times as $time)
-                        <option>{{ $time }}</option>
+                        <option {{ selected($time === '08:00') }}>{{ $time }}</option>
                     @endforeach
                 </select>
             </td>
@@ -197,7 +197,7 @@
             <td>
                 <select name="timeslots[{{ $value }}][open_type]" class="form-control">
                     @foreach(\App\Enums\OpenTypeEnum::choices() as $value => $type)
-                        <option {{ selected($time === '17:30') }} value="{{ $time }}">{{ $time }}</option>
+                        <option value="{{ $value }}">{{ $type }}</option>
                     @endforeach
                 </select>
             </td>
