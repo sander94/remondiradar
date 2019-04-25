@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Workroom;
 use App\Finder;
+use App\Timeslots;
 use Illuminate\Support\Facades\DB;
 
 
@@ -30,7 +31,10 @@ class FinderController extends Controller
   	 // get the first one to show on page
    		$workroom = Workroom::all()->where('id', $request->id)->where('is_active', '1')->first();
 		
+    
+
     if(!empty ($workroom->company_id)){
+        
                 	 // get company name
                 		$company_name = DB::table('users')->where('id', $workroom->company_id)->first();
                 		$company_realname = $company_name->name;
@@ -44,7 +48,7 @@ class FinderController extends Controller
 
                    		$region = $workroom->region;
    
-          return view('show', compact('workroom'))->with(['id' => request()->id, 'region' => $region, 'company_realname' => $company_realname]);
+          return view('show', compact('workroom', 'timeslots'))->with(['id' => request()->id, 'region' => $region, 'company_realname' => $company_realname]);
     }
 
 

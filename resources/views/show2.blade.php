@@ -19,7 +19,7 @@
 
               </div>
 
-              <div class="col-md-9">
+              <div class="col-md-5">
 
                   <h1 class="brand-name">{{ $workroom->brand_name }}</h1>
                   <h5 class="company-name">{{ $company_realname }}</h5>
@@ -76,12 +76,51 @@
                   @endif
 
                   
-                  Esmaspäev
-                  {{ $workroom->timeslots->getMonFromAttribute()->time }} 
+
+
+
+
+
+
 
                   </div>
 
               </div>
+
+
+              <div class="col-md-4">
+                <div class="openingtimes">
+                 <?php
+                  // Short list of weekdays. 
+                  $arrayOfWeekdays = ['E', 'T', 'K', 'N', 'R', 'L', 'P'];
+                  $i = 0;
+
+                  // For each timeslot
+                  foreach($timeslots as $timeslot) {
+
+                      echo "<strong style=\"margin-right: 10px; font-weight: 700;\">".$arrayOfWeekdays[$i]."</strong>";
+                      echo " ";
+
+                      // If its closed, say closed
+                      if($timeslot->open_type == "Suletud") { echo "suletud"; }
+                      // if its opened on agreement, say opened on agreement
+                      else if($timeslot->open_type == "Avatud kokkuleppel") { echo "avatud kokkuleppel"; }
+                      // else show both times
+                      else {
+                      echo $timeslot->from;
+                      echo " – ";
+                      echo $timeslot->to;
+                      }
+                      echo "<br>";
+
+                      $i++;
+                   }
+                   ?>
+                </div>
+              </div>
+
+
+
 
           
               <?php

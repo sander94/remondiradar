@@ -8,6 +8,7 @@ use App\Workroom;
 use App\Finder;
 use App\Regions;
 use App\Reviews;
+use App\Timeslot;
 use Illuminate\Support\Facades\DB;
 
 
@@ -51,6 +52,9 @@ class MainController extends Controller
     $query->orderBy('stars', 'desc');
 }])->first();
 		
+
+      $timeslots = Timeslot::all()->where('workroom_id', $request->id);
+
     if(!empty ($workroom->company_id)){
                 	 // get company name
                 		$company_name = DB::table('users')->where('id', $workroom->company_id)->first();
@@ -68,7 +72,7 @@ class MainController extends Controller
                   $title = $workroom->brand_name.' | Remondiradar.ee';
                   $og_image = asset('images/t_logos/'.$workroom->brand_logo.'');
 
-          return view('show2', compact('workroom'))->with(['id' => request()->id, 'region' => $region, 'company_realname' => $company_realname, 'title' => $title, 'og_image' => $og_image]);
+          return view('show2', compact('workroom', 'timeslots'))->with(['id' => request()->id, 'region' => $region, 'company_realname' => $company_realname, 'title' => $title, 'og_image' => $og_image]);
     }
 
 

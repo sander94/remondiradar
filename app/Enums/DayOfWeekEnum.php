@@ -6,27 +6,28 @@ use Konekt\Enum\Enum;
 
 class DayOfWeekEnum extends Enum
 {
-    const SUNDAY = 1;
 
-    const MONDAY = 2;
+    const MONDAY = 1;
 
-    const TUESDAY = 3;
+    const TUESDAY = 2;
 
-    const WEDNESDAY = 4;
+    const WEDNESDAY = 3;
 
-    const THURSDAY = 5;
+    const THURSDAY = 4;
 
-    const FRIDAY = 6;
+    const FRIDAY = 5;
 
-    const SATURDAY = 7;
+    const SATURDAY = 6;
+
+    const SUNDAY = 7;
 
     protected static $labels = [
-        self::SUNDAY    => 'Sunday',
-        self::MONDAY    => 'Monday',
-        self::TUESDAY   => 'Tuesday',
-        self::WEDNESDAY => 'Wednesday',
-        self::THURSDAY  => 'Thursday',
-        self::FRIDAY    => 'Friday',
-        self::SATURDAY  => 'Saturday',
+        self::MONDAY    => 'Esmaspäev',
+        self::TUESDAY   => 'Teisipäev',
+        self::WEDNESDAY => 'Kolmapäev',
+        self::THURSDAY  => 'Neljapäev',
+        self::FRIDAY    => 'Reede',
+        self::SATURDAY  => 'Laupäev',
+        self::SUNDAY    => 'Pühapäev',
     ];
 }
