@@ -86,4 +86,5 @@ class Workroom extends Model
     {
         return $this->hasMany(Timeslot::class);
     }
+
 }

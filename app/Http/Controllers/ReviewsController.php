@@ -51,6 +51,6 @@ class ReviewsController extends Controller
             \Mail::to($request->reviewer_email)
               ->send($mailable); 
 
-
+        return redirect()->back()->with('successMsg', 'Tagasiside päring saadetud kliendi e-mailile!');
     }
 }

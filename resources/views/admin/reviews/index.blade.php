@@ -10,7 +10,10 @@
                     <h2>Arvustused</h2>
                 </div>
                 <div class="card-body">
-
+              @if(Session::has('successMsg'))
+                <div class="alert alert-success"> <p> {{ Session::get('successMsg') }} </p> </div>
+              @endif
+              <br>
                 	<form action="" method=post>
                 		@csrf
 
@@ -44,7 +47,6 @@
                           		</td>
                           		<td style="padding: 0px 10px;">
                           			<select name="wr_id" class="form-control">
-                          				<option disabled selected></option>
                           				@foreach($workrooms as $wr)
                           					<option value="{{ $wr->id }}">{{ $wr->brand_name }}</option>
                           				@endforeach
@@ -65,6 +67,36 @@
                     </form>
 
                 
+<!--
+
+
+                    <div class="form-group row">
+                      <div class="col-md-12">
+
+                        <table border=0 cellpadding=0 cellspacing=0>
+
+                          <tr>
+                            <td>
+                              Nimi
+                            </td>
+                            <td>
+                              Kommentaar
+                            </td>
+                            <td>
+                              Hinnang
+                            </td>
+                          </tr>
+
+
+                      </div>
+                    </div>
+
+
+-->
+
+
+
+
 
                     
                 </div>
