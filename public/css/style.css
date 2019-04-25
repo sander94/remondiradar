@@ -181,6 +181,10 @@ h2.heading {
 	padding-left: 20px;
 }
 
+.finder-starcontainer {
+	position: absolute; right: 0; bottom: 18px;
+}
+
 .comment-column {
 	display: inline-block;
 	width: calc(100% - 130px);
@@ -435,6 +439,10 @@ a.blue-link {
 
 	.logo {
 		width: 170px;
+	}
+
+	.finder-starcontainer {
+		position: absolute; right: 0; bottom: 48px;
 	}
 
 	a.button.yellow { 

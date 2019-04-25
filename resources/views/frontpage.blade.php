@@ -86,7 +86,7 @@
 							?>	
 
 
-							<div style="position: absolute; right: 0; bottom: 18px;">
+							<div class="finder-starcontainer">
 								  <div class="rating-stars" style="position: relative;">
 
 
