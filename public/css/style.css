@@ -507,8 +507,8 @@ a.blue-link {
 
 @media screen and (max-width: 400px) {
 		.content.single .rating-stars {
-		top: 0;
-		right: auto;
+		top: 10px;
+		left: -4px;
 		position: relative;
 	}
 }
