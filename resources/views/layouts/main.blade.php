@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
         <meta name="HandheldFriendly" content="true" />
 		<meta property="og:image" content="{{ $og_image }}" />
+		<meta property="og:title" content="Remondiradar.ee" />
+		<meta property="og:description" content="Sirvi töökodasid või saada hinnapäring kõigile töökodadele korraga!" />
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ $title }}</title>
