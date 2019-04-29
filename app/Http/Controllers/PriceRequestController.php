@@ -64,7 +64,7 @@ class PriceRequestController extends Controller
 
         // Send email to users
            $mailable = new PriceRequestNotification;
-            $mailable->from('info@remondiradar.ee', 'Remondiradar.ee');
+            $mailable->from('info@remondiradar.ee', 'Hinnapäring remonttööde kohta');
             $mailable->subject('Uus hinnapäring');
 
             \Mail::to($email_array[$i])
@@ -78,7 +78,7 @@ class PriceRequestController extends Controller
 		PriceRequests::create($request->all());
 
 
-   	  return redirect()->back()->with('message', 'IT WORKS!');
+   	  return redirect()->back()->with('message', '');
     }
 
 
