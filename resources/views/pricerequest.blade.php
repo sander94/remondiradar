@@ -161,7 +161,7 @@
 						<div class="row">
 							<div class="col-12">
 							    <label for="phone">Telefon:</label>
-							    <input type="text" class="form-control" id="phone" name="phone">
+							    <input type="text" class="form-control" id="phone" name="phone" required>
 							    <div class="invalid-feedback">Nõutud väli.</div>
 							</div>
 						</div>
