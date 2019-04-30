@@ -19,6 +19,7 @@
 <div class="form-group row">
     <label for="brand_name" class="col-md-4 col-form-label text-md-right">Töökoja / brändi nimetus</label>
     <div class="col-md-6">
+        <input type="hidden" value="{{ $workroom->brand_name }}" name="current_brand_name">
         {!! Form::text('brand_name', null, ['placeholder'=>'Brändi, töökoja nimi', 'class' => 'form-control', 'id' => 'brand_name']) !!}
     </div>
 </div>

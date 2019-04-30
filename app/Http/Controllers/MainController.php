@@ -47,7 +47,7 @@ class MainController extends Controller
 
 
   	 // get the first one to show on page
-   		$workroom = Workroom::where('id', $request->id)->where('is_active', '1')->with(['reviews' => function ($query) {
+   		$workroom = Workroom::where('slug', $request->slug)->where('is_active', '1')->with(['reviews' => function ($query) {
     $query->where('is_active', '1');
     $query->orderBy('stars', 'desc');
 }])->first();

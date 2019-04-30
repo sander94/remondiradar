@@ -14,7 +14,7 @@ class ResetPasswordNotification extends ResetPassword
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Forgot Password')
+            ->subject('Parooli taastamine')
             ->markdown('emails.users.resetpassword', ['token' => $this->token]);
     }
 }

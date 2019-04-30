@@ -14,7 +14,7 @@
 Route::get('/', 'MainController@index')->name('frontpage');
 
 // Route::get('finder', 'FinderController@index');
-Route::get('show/{id}', 'MainController@show');
+Route::get('tookoda/{slug}', 'MainController@show');
 Route::get('hinnaparing', 'PriceRequestController@index');
 Route::post('hinnaparing', 'PriceRequestController@post');
 

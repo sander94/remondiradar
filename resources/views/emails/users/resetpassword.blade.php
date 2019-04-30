@@ -1,12 +1,12 @@
 @component('mail::message')
-# Introduction
+# Parooli taastamine
 
-The body of your message.
+Vajuta allolevat nuppu, et logida uuesti Remondiradarisse sisse.
 
 @component('mail::button', ['url' => ''])
-Button Text
+Vajuta siia
 @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
+<br>
+Sinu Remondiradar.ee
 @endcomponent

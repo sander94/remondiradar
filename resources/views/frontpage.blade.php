@@ -13,7 +13,7 @@
 	
 			<div class="col-12 col-sm-12 col-md-12 col-lg-6 wr-card-container js-tilt">
 			
-				<a href="/show/{{ $workroom->id }}">
+				<a href="/tookoda/{{ $workroom->slug }}">
 				
 					<div class="wr-card">
 
