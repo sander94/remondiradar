@@ -20,8 +20,9 @@ class PriceRequestController extends Controller
     function index(Request $request) {
     	
         
-   		$regions = Regions::all();
-    	return view('pricerequest', compact('regions'))->with(['title' => 'Küsi remonditöö hinda | Remondiradar.ee', 'og_image' => '']);
+   	 $allRegions = Regions::all();
+
+    	return view('pricerequest', compact('allRegions'))->with(['title' => 'Küsi remonditöö hinda | Remondiradar.ee', 'og_image' => '', 'region' => '', 'regionName' => 'Otsi töökoda']);
     }
 
     function post(Request $request) {

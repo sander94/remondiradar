@@ -63,9 +63,40 @@
 
 				<div class="row mt-20">
 					<div class="col-12 col-md-12">
-						<a href="/?region=1" class="button @if($region == '1') selected @endif"> Tallinn </a>
-						<a href="/?region=2" class="button @if($region == '2') selected @endif"> Tartu </a>
-						<a href="/?region=3" class="button @if($region == '3') selected @endif"> Pärnu </a>
+						<div class="button" style="text-align: left; padding-left: 20px; position: relative;" id="region-menu-activator">
+							{{ $regionName }}
+							<i class="fas fa-search fa-fw" style="position: absolute; top: 13px; right: 14px;"> </i>
+						</div>
+						<div class="region-menu">
+
+
+							<div class="row">
+						
+
+								@foreach($allRegions as $thisRegion)
+
+								
+										<div class="col-sm-6 col-md-4">
+								
+											<a href="/?region={{ $thisRegion->id }}" 
+												@if($region == $thisRegion->id) class="selected" @endif> 
+												<i class="fas fa-map-marker-alt fa-fw"> </i> {{ $thisRegion->region_name }} 
+											</a> 
+
+											<br>
+
+										</div>
+
+
+								@endforeach
+				
+							</div>
+
+
+						
+						</div>
+
+
 					</div>
 				</div>
 
@@ -85,6 +116,22 @@
     scale: 1.03,
     maxTilt: 3
 })
+</script>
+
+<script>
+$(".region-menu ").hide();
+$("#region-menu-activator").show();
+$('#region-menu-activator').click(function(e){
+    $(".region-menu ").slideToggle();
+    e.stopPropagation();
+});
+
+$(document).on('click', function(e){
+    if( !$('.region-menu').is(":hover")){
+        $('.region-menu').slideUp();
+    }
+});
+
 </script>
     
     </body>

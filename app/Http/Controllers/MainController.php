@@ -20,6 +20,8 @@ class MainController extends Controller
    		if(empty($request->region)) {
         $request->region = 1;
    		}
+
+      $allRegions = Regions::all();
    		
       // get workrooms and order them by how many reviews they have got
    		$workrooms = Workroom::where('region', $request->region)->where('is_active', '1')->where('is_verified', '1')->withCount('reviews')->orderBy('reviews_count', 'desc')->with(['reviews' => function ($query) {
@@ -30,12 +32,13 @@ class MainController extends Controller
 
    		
       // Make title tag for page
-      $regionName = Regions::where('id', $request->region)->first();
+      $currentRegion = Regions::where('id', $request->region)->first();
+      $regionName = $currentRegion->region_name;
    //    $title = $regionName->region_name.' - '.count($workrooms).' remonditöökoda | Remondiradar.ee';
       $title = "Remondiradar.ee - Leia kiirelt kohalik remonditöökoda.";
       $og_image = asset('images/web/ogimg.jpg');
 
-      return view('frontpage', compact('workrooms'))->with(['region' => request()->region, 'title' => $title, 'og_image' => $og_image]);
+      return view('frontpage', compact('workrooms', 'allRegions'))->with(['region' => request()->region, 'regionName' => $regionName, 'title' => $title, 'og_image' => $og_image]);
       
     
    }
@@ -52,8 +55,9 @@ class MainController extends Controller
     $query->orderBy('stars', 'desc');
 }])->first();
 		
+    
 
-      $timeslots = Timeslot::all()->where('workroom_id', $request->id);
+      $timeslots = Timeslot::all()->where('workroom_id', $workroom->id);
 
     if(!empty ($workroom->company_id)){
                 	 // get company name
@@ -68,11 +72,13 @@ class MainController extends Controller
                 		  	   ));
 
                   $region = $workroom->region;
-   
+                  $allRegions = Regions::all();
+                  $currentRegion = Regions::all()->where('id', $workroom->region)->first();
+                  $regionName = $currentRegion->region_name;
                   $title = $workroom->brand_name.' | Remondiradar.ee';
                   $og_image = asset('images/t_logos/'.$workroom->brand_logo.'');
 
-          return view('show2', compact('workroom', 'timeslots'))->with(['id' => request()->id, 'region' => $region, 'company_realname' => $company_realname, 'title' => $title, 'og_image' => $og_image]);
+          return view('show2', compact('workroom', 'timeslots', 'allRegions'))->with(['id' => request()->id, 'region' => $region, 'company_realname' => $company_realname, 'title' => $title, 'og_image' => $og_image, 'regionName' => $regionName]);
     }
 
 
@@ -84,26 +90,27 @@ class MainController extends Controller
 
 
     public function aboutUs () {
-      return view('aboutUs')->with(['og_image' => '', 'title' => 'Meie missioon | Remondiradar.ee', 'region' => '']);
+      $allRegions = Regions::all();
+      return view('aboutUs', compact('allRegions'))->with(['og_image' => '', 'title' => 'Meie missioon | Remondiradar.ee', 'region' => '', 'regionName' => 'Otsi töökoda']);
     }
 
 
     public function writeReview (Request $request) {
-
+      $allRegions = Regions::all();
       $review = Reviews::all()->where('token', $request->token)->where('is_active', '0')->first();
-      return view('writeReview', compact('review'))->with(['og_image' => '', 'title' => 'Saada tagasiside | Remondiradar.ee', 'region' => '']);
+      return view('writeReview', compact('review', 'allRegions'))->with(['og_image' => '', 'title' => 'Saada tagasiside | Remondiradar.ee', 'region' => '', 'regionName' => 'Otsi töökoda']);
     }
 
 
     public function sendReview (Request $request) {
-
       Reviews::where('token', $request->token)->update(['name' => $request->name, 'comment' => $request->comment, 'stars' => $request->stars, 'is_active' => '1']);
       return redirect('/tagasiside-antud');
 
     }
 
     public function thanksForReview() {
-      return view('thanksForReview')->with(['og_image' => '', 'title' => 'Saada tagasiside | Remondiradar.ee', 'region' => '']);
+      $allRegions = Regions::all();
+      return view('thanksForReview', compact('allRegions'))->with(['og_image' => '', 'title' => 'Saada tagasiside | Remondiradar.ee', 'region' => '', 'regionName' => 'Otsi töökoda']);
     }
 
 

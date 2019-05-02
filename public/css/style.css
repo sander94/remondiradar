@@ -17,6 +17,7 @@ body {
 a, a:hover { 
 	text-decoration: none; 
 	color: inherit;
+	cursor: pointer;
 }
 
 .nav-bar {
@@ -53,11 +54,34 @@ a.logo {
 	display: table;
 }
 
-a.button {
+.region-menu {
+	display: none;
+	position: absolute;
+	width: 750px;
+	height: 300px;
+	z-index: 10;
+	background-color: #FFFFFF;
+	padding: 40px 40px;
+	color: #000;
+	top: 48px;
+	font-size: 20px;
+	line-height: 42px;
+	border-radius: 10px;
+	border: 1px solid rgba(36, 97, 237);
+}
+
+.region-menu a i {
+	color: rgba(255, 186, 0, 0.36);
+}
+
+.region-menu a.selected { font-weight: bold; }
+
+
+.button {
 	border: 1px solid rgba(255, 255, 255, 0.54);
 	border-radius: 10px;
 	background-color: #094ede;
-	width: 150px;
+	width: 180px;
 	padding-top: 8px;
 	padding-bottom: 8px;
 	display: inline-block;
@@ -68,17 +92,18 @@ a.button {
 	transition: all 0.1s ease-in;
 }
 
-a.button:hover {
+.button:hover {
+	background-color: #FFFFFF;
+	color: #000000;
+	cursor: pointer;
+}
+
+.button.selected {
 	background-color: #FFFFFF;
 	color: #000000;
 }
 
-a.button.selected {
-	background-color: #FFFFFF;
-	color: #000000;
-}
-
-a.button.yellow {
+.button.yellow {
 	background-color: yellow;
 	border: 0;
 	color: #000000;
@@ -86,7 +111,7 @@ a.button.yellow {
 	width: 250px;
 }
 
-a.button.yellow:hover {
+.button.yellow:hover {
 	background-color: #FFFFFF;
 }
 
@@ -414,16 +439,23 @@ a.blue-link {
 		width: 200px;
 	}
 
-	a.button.yellow {
+	.button.yellow {
 		width: 190px;
 		vertical-align: top;
 	}
 
-	a.button {
-		width: 80px;
+	.button {
+		width: 160px;
 	}
 
 	.headline-logo { height: auto; }
+
+
+	.region-menu {
+		width: 650px;
+		height: 300px;
+	}
+
 
 }
 
@@ -443,13 +475,13 @@ a.blue-link {
 		position: absolute; right: 0; bottom: 48px;
 	}
 
-	a.button.yellow { 
+	.button.yellow { 
 		width: 90px;
 		font-size: 12px;
 		margin-right: 0;
 	 }
 
-	 a.button {
+	 .button {
 	 	margin-right: 10px;
 	 }
 
@@ -500,15 +532,29 @@ a.blue-link {
 		width: 100%;
 	}
 
+	.region-menu {
+		width: 450px;
+		height: 400px;
+	}
+
+
 }
 
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
 		.content.single .rating-stars {
 		top: 10px;
 		left: -4px;
 		position: relative;
 	}
+
+	.region-menu {
+		width: auto;
+		height: auto;
+		font-size: 16px;
+		line-height: 34px;
+	}
+
 }
 
 

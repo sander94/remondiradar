@@ -174,8 +174,8 @@
 							    <label for="region">Piirkond:</label>
 							    <select class="form-control" id="region" name="region" required>
 							    	<option value="">Vali töökoja piirkond</option>
-										@foreach($regions as $region)
-											<option value="{{ $region->id }}">{{ $region->region_name }}</option>
+										@foreach($allRegions as $listRegion)
+											<option value="{{ $listRegion->id }}">{{ $listRegion->region_name }}</option>
 										@endforeach
 							    </select>
 							    <div class="invalid-feedback">Nõutud väli.</div>
