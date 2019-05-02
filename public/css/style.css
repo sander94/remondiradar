@@ -544,17 +544,18 @@ a.blue-link {
 
 
 @media screen and (max-width: 500px) {
-		.content.single .rating-stars {
+	.content.single .rating-stars {
 		top: 10px;
 		left: -4px;
 		position: relative;
 	}
 
 	.region-menu {
-		width: auto;
+		width: 90%;
 		height: auto;
 		font-size: 16px;
 		line-height: 34px;
+		padding: 20px;
 	}
 
 }
