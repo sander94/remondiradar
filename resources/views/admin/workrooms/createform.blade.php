@@ -5,6 +5,9 @@
     </div>
 </div>
 
+<input type="hidden" id="lat" name="lat">
+<input type="hidden" id="lng" name="lng">
+
 <div class="form-group row">
     <label for="brand_name" class="col-md-4 col-form-label text-md-right">Töökoja / brändi nimetus</label>
     <div class="col-md-6">
@@ -62,15 +65,22 @@
 
         var input = document.getElementById('googleInput');
         var autocomplete = new google.maps.places.Autocomplete(input);
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+            document.getElementById('lat').value = place.geometry.location.lat();
+            document.getElementById('lng').value = place.geometry.location.lng();
+            //alert("This function is working!");
+            //alert(place.name);
+            // alert(place.address_components[0].long_name);
+
+        });
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
 
-<script src="https://maps.googleapis.com/maps/api/js?libraries=places&language=et&region=ee&key=AIzaSyCFGE2zSlkuGfx9Vg_71R2BQYP54I0OuDM&sensor=false&callback=initialize"
-        async defer>
-</script>
 
 
 <div class="form-group row">
@@ -223,3 +233,9 @@
     });
 </script>
 
+
+@push('js')
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&language=et&region=ee&key={{ config('services.google.key') }}&sensor=false&callback=initialize"
+            async defer>
+    </script>
+@endpush

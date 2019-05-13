@@ -26,7 +26,9 @@ class Workroom extends Model
         'additional_info',
         'short_description',
         'is_active',
-        'slug'
+        'slug',
+        'lat',
+        'lng'
     ];
 
     public function setCarsServicedAttribute($value)

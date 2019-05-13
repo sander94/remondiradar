@@ -19,6 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @stack('js')
 </head>
 <body>
     <div id="app">
@@ -95,5 +97,6 @@
         <a href="https://remondiradar.ee" style="margin: 0 auto; text-align: center; color: #8a8a8a; font-weight: bold;">Remondiradar.ee</a>
         </div>
     </div>
+@stack('js-body)
 </body>
 </html>

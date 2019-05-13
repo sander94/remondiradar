@@ -51,35 +51,25 @@ class WorkroomController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
             'brand_logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:80000',
         ]);
 
-
-
-
-
-                    /* GENERATE SLUG AND CHECK IF PREVIOUS EXISTS */
-                    $makeSlug = str_slug($request->brand_name);
-                    if(Workroom::where('slug', $makeSlug)->count() > 0) {
-                    $i=2;
-                       while(true) {
-                            $newSlug = $makeSlug."-".$i;
-                            if(Workroom::where('slug', $newSlug)->count() > 0) {
-                                $i++;
-                            }
-                            else {
-                                $latestSlug = $newSlug;
-                                break;
-                            }
-
-                       }
-                    } else { $latestSlug = $makeSlug; }
-
-
-
-
-
+        /* GENERATE SLUG AND CHECK IF PREVIOUS EXISTS */
+        $makeSlug = str_slug($request->brand_name);
+        if (Workroom::where('slug', $makeSlug)->count() > 0) {
+            $i = 2;
+            while (true) {
+                $newSlug = $makeSlug."-".$i;
+                if (Workroom::where('slug', $newSlug)->count() > 0) {
+                    $i++;
+                } else {
+                    $latestSlug = $newSlug;
+                    break;
+                }
+            }
+        } else {
+            $latestSlug = $makeSlug;
+        }
 
         $request->request->add(['company_id' => Auth::user()->id, 'slug' => $latestSlug]); //add request
 
@@ -149,50 +139,36 @@ class WorkroomController extends Controller
             'brand_logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-
-
-
         // IF BRAND NAME STAYS THE SAME, THEN SLUG FUNCTION
-        if($request->current_brand_name == $request->brand_name) { 
+        if ($request->current_brand_name == $request->brand_name) {
 
             $slug = $request->workroom->slug;
+        } else {
 
+
+            /* GENERATE SLUG AND CHECK IF PREVIOUS EXISTS */
+            $slug = str_slug($request->brand_name);
+            if (Workroom::where('slug', $slug)->count() > 0) {
+                $i = 2;
+                while (true) {
+                    $newSlug = $slug."-".$i;
+                    if (Workroom::where('slug', $newSlug)->count() > 0) {
+                        $i++;
+                    } else {
+                        $slug = $newSlug;
+                        break;
+                    }
+                }
+            } else {
+                $slug = $slug;
+            }
         }
-
-            else {
-
-
-                    /* GENERATE SLUG AND CHECK IF PREVIOUS EXISTS */
-                    $slug = str_slug($request->brand_name);
-                    if(Workroom::where('slug', $slug)->count() > 0) {
-                    $i=2;
-                       while(true) {
-                            $newSlug = $slug."-".$i;
-                            if(Workroom::where('slug', $newSlug)->count() > 0) {
-                                $i++;
-                            }
-                            else {
-                                $slug = $newSlug;
-                                break;
-                            }
-
-                       }
-                    } else { $slug = $slug; }
-
-        }
-       
 
         $request->request->add(['slug' => $slug]);
 
         // SLUG FUNCTION END
 
-
-
-
-
-
-
-         $workroom->update($request->all());
+        $workroom->update($request->all());
 
         $timeslots = $workroom->timeslots->keyBy(function ($item) {
             return $item['day_of_week']->value();
