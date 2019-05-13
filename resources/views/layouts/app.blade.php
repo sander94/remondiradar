@@ -97,6 +97,6 @@
         <a href="https://remondiradar.ee" style="margin: 0 auto; text-align: center; color: #8a8a8a; font-weight: bold;">Remondiradar.ee</a>
         </div>
     </div>
-@stack('js-body)
+@stack('js-body')
 </body>
 </html>
