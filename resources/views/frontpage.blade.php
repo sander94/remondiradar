@@ -11,11 +11,12 @@
                 center: myLatLng
             });
 
+            let contentString;
             @foreach($workrooms as $workroom)
             @php
                 $coordinate = ['lat' => (float)$workroom->lat, 'lng' => (float)$workroom->lng]
             @endphp
-            let contentString = '<div id="content">' +
+            contentString = '<div id="content">' +
                 "{{ $workroom->brand_name }}"
             '</div>';
             let infowindow = new google.maps.InfoWindow({
