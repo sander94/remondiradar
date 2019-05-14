@@ -4,33 +4,41 @@
     <script>
 
         function initMap() {
-            let myLatLng = @json($coordinates[0] ?? ['lat' => 0, 'lng' => 0]);
+            let myLatLng = @json(['lat' => (float) $workrooms[0]->lat, 'lng' => (float) $workrooms[0]->lng] ?? ['lat' => 0, 'lng' => 0]);
 
             let map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 4,
                 center: myLatLng
             });
 
-            let contentString;
-            @foreach($workrooms as $workroom)
-            @php
-                $coordinate = ['lat' => (float)$workroom->lat, 'lng' => (float)$workroom->lng]
-            @endphp
-            contentString = '<div id="content">' +
-                "{{ $workroom->brand_name }}"
-            '</div>';
-            let infowindow = new google.maps.InfoWindow({
-                content: contentString
-            });
-            let marker = new google.maps.Marker({
-                position: @json($coordinate),
-                map: map
-            });
+            const workrooms = @json($workrooms);
+            const markers = [];
+            const views = [];
 
-            marker.addListener('click', function () {
-                infowindow.open(map, marker);
-            });
+            @foreach($workrooms as $workroom)
+            views.push('@include('googlemaps.infobox', $workroom)');
             @endforeach
+
+            workrooms.forEach((item, key) => {
+
+                let infoWindow =  new google.maps.InfoWindow({
+                    content: views[key]
+                });
+
+                const {lat, lng} = item;
+                const position = {lat: parseFloat(lat), lng: parseFloat(lng)};
+                const marker = new google.maps.Marker({
+                    position,
+                    map: map
+                });
+
+                markers.push(marker);
+
+                marker.addListener('click', function () {
+                    infoWindow.open(map, marker);
+                });
+
+            });
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&language=et&region=ee&key={{ config('services.google.key') }}&sensor=false&callback=initMap">
