@@ -5,8 +5,9 @@
     </div>
 </div>
 
-<input type="hidden" id="lat" name="lat">
-<input type="hidden" id="lng" name="lng">
+<input type="hidden" id="lat" value="{{ old('lat') ?? $workroom->lat ?? null }}" name="lat">
+<input type="hidden" id="lng" value="{{ old('lng') ?? $workroom->lng ?? null }}" name="lng">
+
 
 <div class="form-group row">
     <label for="brand_name" class="col-md-4 col-form-label text-md-right">Töökoja / brändi nimetus</label>

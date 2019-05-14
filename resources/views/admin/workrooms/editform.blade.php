@@ -113,6 +113,8 @@
     </div>
 </div>
 
+<input type="hidden" id="lat" value="{{ old('lat') ?? $workroom->lat ?? null }}" name="lat">
+<input type="hidden" id="lng" value="{{ old('lng') ?? $workroom->lng ?? null }}" name="lng">
 
 <div class="form-group row">
     <label for="region" class="col-md-4 col-form-label text-md-right">Google Maps - vali täpne asukoht
@@ -130,12 +132,20 @@
             function initMap() {
                 var map = new google.maps.Map(document.getElementById('map'), {
                     zoom: 16,
-                    center: {lat: -34.397, lng: 150.644}
+                    center: @json(['lat' => (float) $workroom->lat, 'lng' => (float) $workroom->lng])
                 });
-                geocoder = new google.maps.Geocoder();
-                codeAddress(geocoder, map);
-                var input = document.getElementById('googleInput');
-                var autocomplete = new google.maps.places.Autocomplete(input);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    draggable:true,
+                    position: @json(['lat' => (float) $workroom->lat, 'lng' => (float) $workroom->lng])
+                });
+
+                google.maps.event.addListener(marker, 'dragend', function()
+                {
+                    let {lat, lng} = marker.getPosition();
+                    document.getElementById('lat').value = lat();
+                    document.getElementById('lng').value = lng();
+                });
             }
 
             function codeAddress(geocoder, map) {
