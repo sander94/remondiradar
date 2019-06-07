@@ -62,23 +62,43 @@
 </div>
 
 <script>
-    function initialize() {
+    var geocoder;
+    var map;
+    var address = "";
 
-        var input = document.getElementById('googleInput');
-        var autocomplete = new google.maps.places.Autocomplete(input);
 
-        google.maps.event.addListener(autocomplete, 'place_changed', function () {
-            var place = autocomplete.getPlace();
-            document.getElementById('lat').value = place.geometry.location.lat();
-            document.getElementById('lng').value = place.geometry.location.lng();
-            //alert("This function is working!");
-            //alert(place.name);
-            // alert(place.address_components[0].long_name);
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+            center: @json(['lat' => 0, 'lng' => 0])
+        });
+        var marker = new google.maps.Marker({
+            map: map,
+            draggable:true,
+            position: @json(['lat' => 0, 'lng' => 0])
+        });
 
+        google.maps.event.addListener(marker, 'dragend', function()
+        {
+            let {lat, lng} = marker.getPosition();
+            document.getElementById('lat').value = lat();
+            document.getElementById('lng').value = lng();
         });
     }
 
-    google.maps.event.addDomListener(window, 'load', initialize);
+    function codeAddress(geocoder, map) {
+        geocoder.geocode({'address': address}, function (results, status) {
+            if (status === 'OK') {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            } else {
+
+            }
+        });
+    }
 </script>
 
 
@@ -142,6 +162,13 @@
     <div class="col-md-6">
         {!! Form::file('brand_logo', ['id' => 'imgupload'] ) !!}
 
+    </div>
+</div>
+
+
+<div class="form-group row">
+    <div class="col-12">
+        <div id="map" style="height: 200px;"></div>
     </div>
 </div>
 
@@ -236,7 +263,7 @@
 
 
 @push('js')
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&language=et&region=ee&key={{ config('services.google.key') }}&sensor=false&callback=initialize"
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&language=et&region=ee&key={{ config('services.google.key') }}&sensor=false&callback=initMap"
             async defer>
     </script>
 @endpush
