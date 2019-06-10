@@ -127,6 +127,7 @@
             var geocoder;
             var map;
             var address = "{{ $workroom->google_maps }}";
+            var marker;
 
 
             function initMap() {
@@ -134,10 +135,39 @@
                     zoom: 16,
                     center: @json(['lat' => (float) $workroom->lat, 'lng' => (float) $workroom->lng])
                 });
-                var marker = new google.maps.Marker({
+                marker = new google.maps.Marker({
                     map: map,
                     draggable:true,
                     position: @json(['lat' => (float) $workroom->lat, 'lng' => (float) $workroom->lng])
+                });
+
+                var input = document.getElementById('googleInput');
+                var autocomplete = new google.maps.places.Autocomplete(input);
+
+                // Bind the map's bounds (viewport) property to the autocomplete object,
+                // so that the autocomplete requests use the current map bounds for the
+                // bounds option in the request.
+                autocomplete.bindTo('bounds', map);
+
+                autocomplete.setFields(
+                    ['address_components', 'geometry', 'icon', 'name']);
+
+                autocomplete.addListener('place_changed', function() {
+                    var place = autocomplete.getPlace();
+
+                    // If the place has a geometry, then present it on a map.
+                    if (place.geometry.viewport) {
+                        map.fitBounds(place.geometry.viewport);
+                    } else {
+                        map.setCenter(place.geometry.location);
+                        map.setZoom(17);
+                    }
+                    marker.setPosition(place.geometry.location);
+
+                    let {lat, lng} = marker.getPosition();
+                    document.getElementById('lat').value = lat();
+                    document.getElementById('lng').value = lng();
+
                 });
 
                 google.maps.event.addListener(marker, 'dragend', function()
