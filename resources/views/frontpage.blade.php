@@ -7,7 +7,7 @@
             let myLatLng = @json(['lat' => (float) $workrooms[0]->lat, 'lng' => (float) $workrooms[0]->lng] ?? ['lat' => 0, 'lng' => 0]);
 
             let map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 4,
+                zoom: 15,
                 center: myLatLng
             });
 
@@ -49,7 +49,7 @@
 
     <div class="content finder">
 
-        <div id="map"></div>
+        <div id="map" style="height: 400px;"></div>
 
         <div class="row">
 

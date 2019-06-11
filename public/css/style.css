@@ -20,6 +20,10 @@ a, a:hover {
 	cursor: pointer;
 }
 
+#map {
+	border-radius: 10px;
+}
+
 .nav-bar {
 	width: 100%;
 	background-image: url('/images/web/background.png');
@@ -90,7 +94,6 @@ box-shadow: 0px 3px 11px 2px rgba(0,0,0,0.37);
 	color: #FFFFFF;
 	font-weight: 700;
 	text-align: center;
-	margin-right: 15px;
 	transition: all 0.1s ease-in;
 }
 

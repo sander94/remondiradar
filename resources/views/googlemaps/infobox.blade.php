@@ -1,1 +1,1 @@
-{{ $workroom->id }}
+{{ $workroom->brand_name }} 
