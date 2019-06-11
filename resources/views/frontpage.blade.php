@@ -3,6 +3,7 @@
 @push('js-body')
     <script>
 
+        @if(isset($workrooms[0]))
         function initMap() {
             let myLatLng = @json(['lat' => (float) $workrooms[0]->lat, 'lng' => (float) $workrooms[0]->lng] ?? ['lat' => 0, 'lng' => 0]);
 
@@ -21,7 +22,7 @@
 
             workrooms.forEach((item, key) => {
 
-                let infoWindow =  new google.maps.InfoWindow({
+                let infoWindow = new google.maps.InfoWindow({
                     content: views[key]
                 });
 
@@ -40,8 +41,10 @@
 
             });
         }
+        @endif
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&language=et&region=ee&key={{ config('services.google.key') }}&sensor=false&callback=initMap">
+    <script
+        src="https://maps.googleapis.com/maps/api/js?libraries=places&language=et&region=ee&key={{ config('services.google.key') }}&sensor=false&callback=initMap">
     </script>
 @endpush
 @section('content')
@@ -49,8 +52,9 @@
 
     <div class="content finder">
 
-        <div id="map" style="height: 400px;"></div>
-
+        @if(!empty($workrooms))
+            <div id="map" style="height: 400px;"></div>
+        @endif
         <div class="row">
 
             @foreach($workrooms as $workroom)
@@ -134,13 +138,13 @@
                                         <div class="stars-rating">
                                             <div class="stars-score" style="width: {{ $percentage }}%">
                                                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                        class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                                        class="fas fa-star"></i>
+                                                    class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                                    class="fas fa-star"></i>
                                             </div>
                                             <div class="stars-scale">
                                                 <i class="far fa-star"></i><i class="far fa-star"></i><i
-                                                        class="far fa-star"></i><i class="far fa-star"></i><i
-                                                        class="far fa-star"></i>
+                                                    class="far fa-star"></i><i class="far fa-star"></i><i
+                                                    class="far fa-star"></i>
                                             </div>
                                         </div>
 
