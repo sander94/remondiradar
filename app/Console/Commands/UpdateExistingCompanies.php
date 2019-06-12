@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Workroom;
 use GoogleMaps\Facade\GoogleMapsFacade;
+use GoogleMaps\GoogleMaps;
 use Illuminate\Console\Command;
 
 class UpdateExistingCompanies extends Command
@@ -37,7 +38,7 @@ class UpdateExistingCompanies extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(GoogleMaps $googleMaps)
     {
         $workrooms = Workroom::query()
             ->whereNotNull('google_maps')
@@ -45,7 +46,7 @@ class UpdateExistingCompanies extends Command
             ->whereNull('lng')->get();
 
         foreach ($workrooms as $workroom) {
-            $response = json_decode(GoogleMapsFacade::load('geocoding')
+            $response = json_decode($googleMaps->load('geocoding')
                 ->setParam(['address' => $workroom->google_maps])
                 ->get());
 
