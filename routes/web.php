@@ -13,6 +13,8 @@
 
 Route::get('/', 'MainController@index')->name('frontpage');
 
+Route::post('toggleMap', 'MainController@toggleMap')->name('toggleMap');
+
 // Route::get('finder', 'FinderController@index');
 Route::get('tookoda/{slug}', 'MainController@show');
 Route::get('hinnaparing', 'PriceRequestController@index');
