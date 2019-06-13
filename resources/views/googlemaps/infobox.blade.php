@@ -1,1 +1,1 @@
-{{ $workroom->brand_name }} 
+<div style="padding: 0px 0px;"><b><h5>{{ $workroom->brand_name }}</h5></b><p>{{ $workroom->full_address }}<div><a class="btn btn-primary" href="{{ url('/tookoda', $workroom->slug) }}">Vaata töökoda</a></div></div>
