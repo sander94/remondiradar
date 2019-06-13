@@ -52,7 +52,7 @@
 
     <div class="content finder">
 
-        @if(!empty($workrooms))
+        @if(!empty($workrooms) && \Illuminate\Support\Facades\Cookie::get('map_toggle'))
             <div id="map" style="height: 400px;"></div>
         @endif
         <div class="row">

@@ -39,13 +39,14 @@ class MainController extends Controller
         $og_image = asset('images/web/ogimg.jpg');
 
         $coordinates = $workrooms->map(function ($item) {
-           return ['lat' => (float) $item->lat, 'lng' => (float) $item->lng];
+            return ['lat' => (float) $item->lat, 'lng' => (float) $item->lng];
         });
 
-        return view('frontpage', compact('workrooms', 'allRegions', 'coordinates'))->with(['region'     => request()->region,
-                                                                            'regionName' => $regionName,
-                                                                            'title'      => $title,
-                                                                            'og_image'   => $og_image,
+        return view('frontpage', compact('workrooms', 'allRegions', 'coordinates'))->with([
+            'region'     => request()->region,
+            'regionName' => $regionName,
+            'title'      => $title,
+            'og_image'   => $og_image,
         ]);
     }
 
@@ -82,12 +83,13 @@ class MainController extends Controller
             $title = $workroom->brand_name.' | Remondiradar.ee';
             $og_image = asset('images/t_logos/'.$workroom->brand_logo.'');
 
-            return view('show2', compact('workroom', 'timeslots', 'allRegions'))->with(['id'               => request()->id,
-                                                                                        'region'           => $region,
-                                                                                        'company_realname' => $company_realname,
-                                                                                        'title'            => $title,
-                                                                                        'og_image'         => $og_image,
-                                                                                        'regionName'       => $regionName,
+            return view('show2', compact('workroom', 'timeslots', 'allRegions'))->with([
+                'id'               => request()->id,
+                'region'           => $region,
+                'company_realname' => $company_realname,
+                'title'            => $title,
+                'og_image'         => $og_image,
+                'regionName'       => $regionName,
             ]);
         } else {
             return redirect()->route('frontpage');
@@ -98,10 +100,11 @@ class MainController extends Controller
     {
         $allRegions = Regions::all();
 
-        return view('aboutUs', compact('allRegions'))->with(['og_image'   => '',
-                                                             'title'      => 'Meie missioon | Remondiradar.ee',
-                                                             'region'     => '',
-                                                             'regionName' => 'Otsi töökoda',
+        return view('aboutUs', compact('allRegions'))->with([
+            'og_image'   => '',
+            'title'      => 'Meie missioon | Remondiradar.ee',
+            'region'     => '',
+            'regionName' => 'Otsi töökoda',
         ]);
     }
 
@@ -110,19 +113,21 @@ class MainController extends Controller
         $allRegions = Regions::all();
         $review = Reviews::all()->where('token', $request->token)->where('is_active', '0')->first();
 
-        return view('writeReview', compact('review', 'allRegions'))->with(['og_image'   => '',
-                                                                           'title'      => 'Saada tagasiside | Remondiradar.ee',
-                                                                           'region'     => '',
-                                                                           'regionName' => 'Otsi töökoda',
+        return view('writeReview', compact('review', 'allRegions'))->with([
+            'og_image'   => '',
+            'title'      => 'Saada tagasiside | Remondiradar.ee',
+            'region'     => '',
+            'regionName' => 'Otsi töökoda',
         ]);
     }
 
     public function sendReview(Request $request)
     {
-        Reviews::where('token', $request->token)->update(['name'      => $request->name,
-                                                          'comment'   => $request->comment,
-                                                          'stars'     => $request->stars,
-                                                          'is_active' => '1',
+        Reviews::where('token', $request->token)->update([
+            'name'      => $request->name,
+            'comment'   => $request->comment,
+            'stars'     => $request->stars,
+            'is_active' => '1',
         ]);
 
         return redirect('/tagasiside-antud');
@@ -132,10 +137,20 @@ class MainController extends Controller
     {
         $allRegions = Regions::all();
 
-        return view('thanksForReview', compact('allRegions'))->with(['og_image'   => '',
-                                                                     'title'      => 'Saada tagasiside | Remondiradar.ee',
-                                                                     'region'     => '',
-                                                                     'regionName' => 'Otsi töökoda',
+        return view('thanksForReview', compact('allRegions'))->with([
+            'og_image'   => '',
+            'title'      => 'Saada tagasiside | Remondiradar.ee',
+            'region'     => '',
+            'regionName' => 'Otsi töökoda',
         ]);
+    }
+
+    public function toggleMap(Request $request)
+    {
+        $toggle = ! $request->cookie('map_toggle');
+        $cookie = cookie('map_toggle', $toggle);
+
+        return response()->json(compact('toggle'))
+            ->cookie($cookie);
     }
 }

@@ -181,7 +181,7 @@ input:checked + .slider:before {
                 <div class="maptoggle"> 
                     <span class="text">Kaart</span>
                     <label class="switch">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" id="mapCheckbox" @if(\Illuminate\Support\Facades\Cookie::get('map_toggle')) checked @endif>
                         <span class="slider round"></span>
                     </label> 
                 </div>
@@ -220,6 +220,16 @@ input:checked + .slider:before {
             $('.region-menu').slideUp();
         }
     });
+
+    const checkbox = document.getElementById('mapCheckbox')
+    const map = document.getElementById('map')
+
+    checkbox.addEventListener('change', (event) => {
+        axios.post(@json(route('toggleMap')))
+            .then(response => {
+                map.style.display = response.data.toggle ? 'block' : 'none'
+            })
+    })
 
 </script>
 
