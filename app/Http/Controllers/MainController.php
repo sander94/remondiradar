@@ -147,10 +147,15 @@ class MainController extends Controller
 
     public function toggleMap(Request $request)
     {
-        $toggle = ! $request->cookie('map_toggle');
-        $cookie = cookie('map_toggle', $toggle);
+        $cookie = $request->cookie('map_disabled');
+        if ($cookie === null) {
+            $cookie = false;
+        }
 
-        return response()->json(compact('toggle'))
+        $disabled = !$cookie;
+        $cookie = cookie('map_disabled', $disabled);
+
+        return response()->json(compact('disabled'))
             ->cookie($cookie);
     }
 }

@@ -52,8 +52,8 @@
 
     <div class="content finder">
 
-        @if(!empty($workrooms) && \Illuminate\Support\Facades\Cookie::get('map_toggle'))
-            <div id="map" style="height: 400px;"></div>
+        @if(!empty($workrooms))
+            <div id="map" style="height: 400px; @if(!!\Illuminate\Support\Facades\Cookie::get('map_disabled')) display:none; @endif"></div>
         @endif
         <div class="row">
 
