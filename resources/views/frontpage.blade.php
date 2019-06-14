@@ -8,7 +8,7 @@
             let myLatLng = @json(['lat' => (float) $workrooms[0]->lat, 'lng' => (float) $workrooms[0]->lng] ?? ['lat' => 0, 'lng' => 0]);
 
             let map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 15,
+                zoom: 12,
                 center: myLatLng
             });
 
@@ -53,7 +53,9 @@
     <div class="content finder">
 
         @if(!empty($workrooms))
+        <div id="map-container" style=" @if(!!\Illuminate\Support\Facades\Cookie::get('map_disabled')) display:none; @endif">
             <div id="map" style="height: 400px; @if(!!\Illuminate\Support\Facades\Cookie::get('map_disabled')) display:none; @endif"></div>
+        </div>
         @endif
         <div class="row">
 

@@ -227,12 +227,14 @@ input:checked + .slider:before {
 
     const checkbox = document.getElementById('mapCheckbox')
     const map = document.getElementById('map')
+    const mapcontainer = document.getElementById('map-container')
 
     checkbox.addEventListener('change', (event) => {
         axios.post(@json(route('toggleMap')))
             .then(response => {
                 console.log(response.data);
                 map.style.display = response.data.disabled ? 'none' : 'block'
+                mapcontainer.style.display = response.data.disabled ? 'none' : 'block'
             })
     })
 
