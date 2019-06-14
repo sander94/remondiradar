@@ -75,13 +75,17 @@
   left: 4px;
   right: 4px;
   bottom: 2px;
-  background-color: #0dc73e;
+  background-color: #e44a4a;
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 input:checked + .slider {
   background-color: #f1f1f1;
+}
+
+input:checked + .slider:before {
+background-color: #06b333;
 }
 
 input:focus + .slider {

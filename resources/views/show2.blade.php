@@ -171,7 +171,7 @@
               <div class="col-md-8 offset-md-3 dashed-top">
                   <h3>Lisainfo</h3>
                   <p style="font-size: 16px;"> {!! nl2br($workroom->additional_info) !!} </p>
-                  @if($workroom->google_maps)  <div id="map" class="map" style="position: relative; height: 250px; border-top-right-radius: 10px; border-top-left-radius: 10px;"></div> @endif
+                  @if($workroom->google_maps)  <div id="gmap" class="map" style="position: relative; height: 250px; border-top-right-radius: 10px; border-top-left-radius: 10px;"></div> @endif
               </div>
 
               <div class="col-md-1">
@@ -236,28 +236,28 @@
 @if($workroom->google_maps)
     <script>
       var geocoder;
-      var map;
+      var gmap;
       var address = "{{ $workroom->google_maps }}";
       function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 13,
+        var gmap = new google.maps.Map(document.getElementById('gmap'), {
+          zoom: 10,
           center: {lat: -34.397, lng: 150.644}
         });
         geocoder = new google.maps.Geocoder();
-        codeAddress(geocoder, map);
+        codeAddress(geocoder, gmap);
       }
 
-      function codeAddress(geocoder, map) {
+      function codeAddress(geocoder, gmap) {
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
-            map.setCenter(results[0].geometry.location);
+            gmap.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({
-              map: map,
+              gmap: gmap,
               position: results[0].geometry.location
             });
           } else {
             // alert('Geocode was not successful for the following reason: ' + status);
-            document.getElementById('map').style.display = "none";
+            document.getElementById('gmap').style.display = "none";
           }
         });
       }
