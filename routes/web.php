@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'MainController@index')->name('frontpage');
+Route::get('region/{region}', 'MainController@region')->name('region.workrooms');
 
 Route::post('toggleMap', 'MainController@toggleMap')->name('toggleMap');
 

@@ -5,7 +5,7 @@
 
         @if(isset($workrooms[0]))
         function initMap() {
-            let myLatLng = @json(['lat' => (float) $workrooms[0]->lat, 'lng' => (float) $workrooms[0]->lng] ?? ['lat' => 0, 'lng' => 0]);
+            let myLatLng = @json(['lat' => (float) ($region->lat ?? $workrooms[0]->lat), 'lng' => (float) ($region->lng ?? $workrooms[0]->lng)]);
 
             let map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 12,

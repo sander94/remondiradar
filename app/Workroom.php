@@ -90,4 +90,14 @@ class Workroom extends Model
         return $this->hasMany(Timeslot::class);
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', '1');
+    }
+
+    public function scopeVerified($query)
+    {
+        return $query->where('is_verified', '1');
+    }
+
 }

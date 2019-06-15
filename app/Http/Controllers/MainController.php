@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use GoogleMaps\Facade\GoogleMapsFacade;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Workroom;
 use App\Finder;
@@ -16,24 +14,17 @@ class MainController extends Controller
 {
     public function index(Request $request)
     {
+        /** @var \App\Regions $region */
+        $region = Regions::query()->default()->first();
 
+        return $this->region($region);
+    }
 
-        if (empty($request->region)) {
-            $request->region = 1;
-        }
+    public function region(Regions $region)
+    {
+        $workrooms = $this->getWorkroomsForRegion($region);
 
-        $allRegions = Regions::all();
-
-        // get workrooms and order them by how many reviews they have got
-        $workrooms = Workroom::where('region', $request->region)->where('is_active', '1')->where('is_verified', '1')->withCount('reviews')->orderBy('reviews_count', 'desc')->with([
-            'reviews' => function ($query) {
-                $query->where('is_active', '1');
-            },
-        ])->get();
-
-        // Make title tag for page
-        $currentRegion = Regions::where('id', $request->region)->first();
-        $regionName = $currentRegion->region_name;
+        $regionName = $region->region_name;
         //    $title = $regionName->region_name.' - '.count($workrooms).' remonditöökoda | Remondiradar.ee';
         $title = "Remondiradar.ee - Leia kiirelt kohalik remonditöökoda.";
         $og_image = asset('images/web/ogimg.jpg');
@@ -42,8 +33,8 @@ class MainController extends Controller
             return ['lat' => (float) $item->lat, 'lng' => (float) $item->lng];
         });
 
-        return view('frontpage', compact('workrooms', 'allRegions', 'coordinates'))->with([
-            'region'     => request()->region,
+        return view('frontpage', compact('workrooms', 'coordinates'))->with([
+            'region'     => $region,
             'regionName' => $regionName,
             'title'      => $title,
             'og_image'   => $og_image,
@@ -52,8 +43,6 @@ class MainController extends Controller
 
     public function show(Request $request)
     {
-
-
         // get the first one to show on page
         $workroom = Workroom::where('slug', $request->slug)->where('is_active', '1')->with([
             'reviews' => function ($query) {
@@ -77,13 +66,12 @@ class MainController extends Controller
             ]);
 
             $region = $workroom->region;
-            $allRegions = Regions::all();
             $currentRegion = Regions::all()->where('id', $workroom->region)->first();
             $regionName = $currentRegion->region_name;
             $title = $workroom->brand_name.' | Remondiradar.ee';
             $og_image = asset('images/t_logos/'.$workroom->brand_logo.'');
 
-            return view('show2', compact('workroom', 'timeslots', 'allRegions'))->with([
+            return view('show2', compact('workroom', 'timeslots'))->with([
                 'id'               => request()->id,
                 'region'           => $region,
                 'company_realname' => $company_realname,
@@ -98,9 +86,7 @@ class MainController extends Controller
 
     public function aboutUs()
     {
-        $allRegions = Regions::all();
-
-        return view('aboutUs', compact('allRegions'))->with([
+        return view('aboutUs')->with([
             'og_image'   => '',
             'title'      => 'Meie missioon | Remondiradar.ee',
             'region'     => '',
@@ -110,10 +96,9 @@ class MainController extends Controller
 
     public function writeReview(Request $request)
     {
-        $allRegions = Regions::all();
         $review = Reviews::all()->where('token', $request->token)->where('is_active', '0')->first();
 
-        return view('writeReview', compact('review', 'allRegions'))->with([
+        return view('writeReview', compact('review'))->with([
             'og_image'   => '',
             'title'      => 'Saada tagasiside | Remondiradar.ee',
             'region'     => '',
@@ -135,9 +120,7 @@ class MainController extends Controller
 
     public function thanksForReview()
     {
-        $allRegions = Regions::all();
-
-        return view('thanksForReview', compact('allRegions'))->with([
+        return view('thanksForReview')->with([
             'og_image'   => '',
             'title'      => 'Saada tagasiside | Remondiradar.ee',
             'region'     => '',
@@ -152,10 +135,25 @@ class MainController extends Controller
             $cookie = false;
         }
 
-        $disabled = !$cookie;
+        $disabled = ! $cookie;
         $cookie = cookie('map_disabled', $disabled);
 
         return response()->json(compact('disabled'))
             ->cookie($cookie);
+    }
+
+    private function getWorkroomsForRegion(Regions $region)
+    {
+        return $region
+            ->workrooms()
+            ->active()
+            ->verified()
+            ->withCount('reviews')
+            ->orderBy('reviews_count', 'desc')
+            ->with([
+                'reviews' => function ($query) {
+                    $query->where('is_active', '1');
+                },
+            ])->get();
     }
 }
