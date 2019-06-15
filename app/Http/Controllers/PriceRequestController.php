@@ -10,80 +10,65 @@ use App\Workroom;
 use App\User;
 use App\Mail\PriceRequestNotification;
 
-
-
 class PriceRequestController extends Controller
 {
+    function index(Request $request)
+    {
 
-
-
-    function index(Request $request) {
-    	
-        
-   	 $allRegions = Regions::all();
-
-    	return view('pricerequest', compact('allRegions'))->with(['title' => 'Küsi remonditöö hinda | Remondiradar.ee', 'og_image' => '', 'region' => '', 'regionName' => 'Otsi töökoda']);
+        return view('pricerequest')->with([
+            'title'      => 'Küsi remonditöö hinda | Remondiradar.ee',
+            'og_image'   => '',
+            'region'     => null,
+            'regionName' => 'Otsi töökoda',
+        ]);
     }
 
-    function post(Request $request) {
-
-   	 
-
-   	 // GET ALL WORKROOMS FROM THIS REGION WHO WANT EMAILS
-   	 // GET THEIR COMPANY EMAILS
-   	 // SEND EMAILS
+    function post(Request $request)
+    {
 
 
-/** THIS PART NEEDS TO BE REWRITTEN
-* It selects all workrooms that are verified and active in requested region
-* Then gets the usernames, who are the owners of these workrooms
-* Then gets an array of those emails
-*/
+        // GET ALL WORKROOMS FROM THIS REGION WHO WANT EMAILS
+        // GET THEIR COMPANY EMAILS
+        // SEND EMAILS
 
+        /** THIS PART NEEDS TO BE REWRITTEN
+         * It selects all workrooms that are verified and active in requested region
+         * Then gets the usernames, who are the owners of these workrooms
+         * Then gets an array of those emails
+         */
 
+        //  SELECT ALL WORKROOMS FROM THIS REGION
+        $wrs = Workroom::where(['region' => $request->region, 'is_active' => '1', 'is_verified' => '1'])->get();
+        $email_array = [];
 
+        // FOR EVERY WORKROOM GO THROUGH LOOP AND FIND CORRESPONDING USERS
+        foreach ($wrs as $wr) {
+            $thisUser = User::where('id', $wr->company_id)->first();
 
-   	//  SELECT ALL WORKROOMS FROM THIS REGION
-   	 $wrs = Workroom::where(['region' => $request->region, 'is_active' => '1', 'is_verified' => '1'])->get();
-   	 $email_array = array();
+            if ($thisUser->pricerequest_email_to_user == '1') { // If user allows sending email notification
+                array_push($email_array, $thisUser->email); // Push email to array
+            }
+        }
 
-   	 	// FOR EVERY WORKROOM GO THROUGH LOOP AND FIND CORRESPONDING USERS
-   		foreach($wrs as $wr) {
-   			$thisUser = User::where('id', $wr->company_id)->first();
+        // Make array unique with no repeating emails
+        $email_array = array_unique($email_array);
 
-   			if($thisUser->pricerequest_email_to_user == '1') { // If user allows sending email notification
-   				array_push($email_array, $thisUser->email); // Push email to array
-   			}
-   		} 
+        // now send mails to these emails
+        for ($i = 0; $i < count($email_array); $i++) {
 
-   		// Make array unique with no repeating emails
-   		$email_array = array_unique($email_array);
-
-
-   		// now send mails to these emails
-   		for($i = 0; $i<count($email_array); $i++) {	
-
-        // Send email to users
-           $mailable = new PriceRequestNotification;
+            // Send email to users
+            $mailable = new PriceRequestNotification;
             $mailable->from('info@remondiradar.ee', 'Hinnapäring remonttööde kohta');
             $mailable->subject('Uus hinnapäring');
 
             \Mail::to($email_array[$i])
-              ->send($mailable); 
-             
+                ->send($mailable);
+            // SEND IT
+        }
 
-   			// SEND IT
-   		}
+        PriceRequests::create($request->all());
 
-
-		PriceRequests::create($request->all());
-
-
-   	  return redirect()->back()->with('message', '');
+        return redirect()->back()->with('message', '');
     }
-
-
-
-
 }
 

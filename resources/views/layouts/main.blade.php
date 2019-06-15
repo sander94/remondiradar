@@ -166,7 +166,7 @@ input:checked + .slider:before {
                             <div class="col-sm-6 col-md-4">
 
                                 <a href="{{ route('region.workrooms', $thisRegion) }}"
-                                   @if($region->id === $thisRegion->id) class="selected" @endif>
+                                   @if(optional($region)->id === $thisRegion->id) class="selected" @endif>
                                     <i class="fas fa-map-marker-alt fa-fw"> </i> {{ $thisRegion->region_name }}
                                 </a>
 

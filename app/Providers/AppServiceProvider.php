@@ -25,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('layouts.main', RegionsComposer::class);
+        View::composer(['layouts.main', 'pricerequest'], RegionsComposer::class);
     }
 }
