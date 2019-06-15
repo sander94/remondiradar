@@ -16,7 +16,7 @@ Route::get('/', 'MainController@index')->name('frontpage');
 Route::post('toggleMap', 'MainController@toggleMap')->name('toggleMap');
 
 // Route::get('finder', 'FinderController@index');
-Route::get('tookoda/{slug}', 'MainController@show');
+Route::get('tookoda/{slug}', 'MainController@show')->name('workroom.show');
 Route::get('hinnaparing', 'PriceRequestController@index');
 Route::post('hinnaparing', 'PriceRequestController@post');
 
