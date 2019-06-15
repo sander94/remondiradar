@@ -12,11 +12,11 @@
                 center: myLatLng
             });
 
-            const workrooms = @json($workrooms);
+            const workrooms = @json($mapWorkrooms);
             const markers = [];
             const views = [];
 
-            @foreach($workrooms as $workroom)
+            @foreach($mapWorkrooms as $workroom)
             views.push('@include('googlemaps.infobox', $workroom)');
             @endforeach
 

@@ -29,11 +29,9 @@ class MainController extends Controller
         $title = "Remondiradar.ee - Leia kiirelt kohalik remonditöökoda.";
         $og_image = asset('images/web/ogimg.jpg');
 
-        $coordinates = Workroom::query()->get()->map(function ($item) {
-            return ['lat' => (float) $item->lat, 'lng' => (float) $item->lng];
-        });
+        $mapWorkrooms = Workroom::query()->get();
 
-        return view('frontpage', compact('workrooms', 'coordinates'))->with([
+        return view('frontpage', compact('workrooms', 'mapWorkrooms'))->with([
             'region'     => $region,
             'regionName' => $regionName,
             'title'      => $title,
