@@ -65,7 +65,7 @@ class MainController extends Controller
                 'view_count' => $newViewCount,
             ]);
 
-            $region = $workroom->region;
+            $region = Regions::find($workroom->region);
             $currentRegion = Regions::all()->where('id', $workroom->region)->first();
             $regionName = $currentRegion->region_name;
             $title = $workroom->brand_name.' | Remondiradar.ee';
