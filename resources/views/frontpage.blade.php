@@ -8,7 +8,7 @@
             let myLatLng = @json(['lat' => (float) ($region->lat ?? $workrooms[0]->lat), 'lng' => (float) ($region->lng ?? $workrooms[0]->lng)]);
 
             let map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 12,
+                zoom: 10,
                 center: myLatLng
             });
 
