@@ -29,7 +29,7 @@ class MainController extends Controller
         $title = "Remondiradar.ee - Leia kiirelt kohalik remonditöökoda.";
         $og_image = asset('images/web/ogimg.jpg');
 
-        $mapWorkrooms = Workroom::query()->get();
+        $mapWorkrooms = Workroom::query()->active()->verified()->get();
 
         return view('frontpage', compact('workrooms', 'mapWorkrooms'))->with([
             'region'     => $region,
