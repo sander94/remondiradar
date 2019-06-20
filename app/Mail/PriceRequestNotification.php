@@ -36,7 +36,9 @@ class PriceRequestNotification extends Mailable
         $wr_info = "<p style=\"font-family: 'Arial';\">Tere, 
         Teile saabus uus hinnapäring Remondiradarist!
 
-        Auto: <strong>".$request->reg_no."</strong> ".$request->make." ".$request->model." ".$request->year."
+        <strong>Auto: </strong>".$request->reg_no.", ".$request->make." ".$request->model." ".$request->year."
+        <strong>Probleem: </strong>".$request->additional_info."<br>
+        <strong>Kliendi kontakt: </strong>".$request->name.", tel: ".$request->phone.", email: ".$request->email."<br>
         Päringule vastamiseks sisene: <a href=\"https://remondiradar.ee/admin/\">https://remondiradar.ee/admin/</a>
 
         Parimat
