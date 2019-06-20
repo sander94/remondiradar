@@ -3,7 +3,7 @@
 
 Vajuta allolevat nuppu, et logida uuesti Remondiradarisse sisse.
 
-@component('mail::button', ['url' => ''])
+@component('mail::button', ['url' => route('password.reset', ['token' => $token])])
 Vajuta siia
 @endcomponent
 
