@@ -66,7 +66,7 @@ class MainController extends Controller
             $region = Regions::find($workroom->region);
             $currentRegion = Regions::all()->where('id', $workroom->region)->first();
             $regionName = $currentRegion->region_name;
-            $title = $workroom->brand_name.' | Remondiradar.ee';
+            $title = $workroom->brand_name.' | Remondiradar.ee - kõik kohalikud autoremonditöökojad';
             $og_image = asset('images/t_logos/'.$workroom->brand_logo.'');
 
             return view('show2', compact('workroom', 'timeslots'))->with([
