@@ -55,11 +55,12 @@ class MainController extends Controller
             // get company name
             $company_name = DB::table('users')->where('id', $workroom->company_id)->first();
             $company_realname = $company_name->name;
+            $workroomId = $workroom->id;
 
             // calculate view count
             $newViewCount = $workroom->view_count + 1;
 
-            Workroom::where('id', $request->id)->update([
+            Workroom::where('id', $workroomId)->update([
                 'view_count' => $newViewCount,
             ]);
 
