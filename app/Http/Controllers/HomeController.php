@@ -75,8 +75,9 @@ class HomeController extends Controller
                     <td> ".$pricerequest->created_at->format('d.m.Y')." </td>
                     <td> ";
             // IF company has answered it already, show another button
-            if (PriceRequestsAnswers::where(['request_id'  => $pricerequest->id,
-                                             'answered_by' => Auth::user()->id,
+            if (PriceRequestsAnswers::where([
+                'request_id'  => $pricerequest->id,
+                'answered_by' => Auth::user()->id,
             ])->exists()) {
 
                 $line .= "
@@ -116,8 +117,9 @@ class HomeController extends Controller
 
         $pricerequest = PriceRequests::where('id', $request->id)->first();
 
-        if (PriceRequestsAnswers::where(['request_id'  => $pricerequest->id,
-                                         'answered_by' => Auth::user()->id,
+        if (PriceRequestsAnswers::where([
+            'request_id'  => $pricerequest->id,
+            'answered_by' => Auth::user()->id,
         ])->exists()) {
             $companyHasAnswered = true;
         } else {

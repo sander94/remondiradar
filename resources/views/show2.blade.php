@@ -148,7 +148,7 @@
                             </div>
                         </div>
                         <br>
-                        Arvustused ({{ count($workroom->reviews) }})
+                        Arvustused ({{ count($reviews) }})
 
                     </div>
                 </a>
@@ -180,11 +180,11 @@
 
                 </div>
                 <div class="col-md-8">
-                    @if(count($workroom->reviews) > 0)
+                    @if(count($reviews) > 0)
                         <h3 id="reviews">Arvustused</h3>
                     @endif
 
-                    @foreach($workroom->reviews as $review)
+                    @foreach($reviews as $review)
 
 
                         <div class="comment-card">

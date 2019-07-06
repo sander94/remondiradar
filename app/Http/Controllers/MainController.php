@@ -42,10 +42,11 @@ class MainController extends Controller
     public function show(Request $request)
     {
         // get the first one to show on page
+        /** @var Workroom $workroom */
         $workroom = Workroom::where('slug', $request->slug)->where('is_active', '1')->with([
             'reviews' => function ($query) {
-                $query->where('is_active', '1');
-                $query->orderBy('stars', 'desc');
+                $query->where('is_active', '1')
+                    ->orderBy('stars', 'desc');
             },
         ])->first();
 
@@ -70,6 +71,10 @@ class MainController extends Controller
             $title = $workroom->brand_name.' | Remondiradar.ee - kõik kohalikud autoremonditöökojad';
             $og_image = asset('images/t_logos/'.$workroom->brand_logo.'');
 
+            $reviews = $workroom->reviews->sortByDesc(function($review, $key) {
+               return $review->stars + strlen($review->comment);
+            });
+
             return view('show2', compact('workroom', 'timeslots'))->with([
                 'id'               => request()->id,
                 'region'           => $region,
@@ -77,6 +82,7 @@ class MainController extends Controller
                 'title'            => $title,
                 'og_image'         => $og_image,
                 'regionName'       => $regionName,
+                'reviews'          => $reviews,
             ]);
         } else {
             return redirect()->route('frontpage');
