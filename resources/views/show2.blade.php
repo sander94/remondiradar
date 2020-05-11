@@ -23,9 +23,19 @@
 
                     <h1 class="brand-name">{{ $workroom->brand_name }}</h1>
                     <h5 class="company-name">{{ $company_realname }}</h5>
-                    <div class="contact-info">
+                    <div class="contact-info" id="contact">
+                        <div class="info-row" v-if="!showPrivate">
+                            <div class="icon">
+                                <i class="fa fa-eye fa-fw fa-flip-horizontal"> </i>
+                            </div>
+                            <div class="icon-text">
+                                <a href="#" class="blue-link" @click.prevent="onPrivateClick">
+                                    Näita kontaktandmeid
+                                </a>
+                            </div>
+                        </div>
                         @if ($workroom->phone)
-                            <div class="info-row">
+                            <div class="info-row" v-if="showPrivate">
                                 <div class="icon">
                                     <i class="fa fa-phone fa-fw fa-flip-horizontal"> </i>
                                 </div>
@@ -35,7 +45,7 @@
                             </div>
                         @endif
                         @if ($workroom->email)
-                            <div class="info-row">
+                            <div class="info-row" v-if="showPrivate">
                                 <div class="icon">
                                     <i class="fa fa-envelope fa-fw"> </i>
                                 </div>
@@ -262,9 +272,28 @@
 
     <script>
 
+        const app = new Vue({
+            el: '#contact',
+
+            data() {
+                return {
+                    showPrivate: false
+                }
+            },
+
+            methods: {
+                onPrivateClick() {
+                    this.showPrivate = true;
+
+                    axios.post(@json(route('contact_click', $workroom)))
+                }
+            }
+        });
+
+
         // Select all links with hashes
         $('a[href*="#"]')
-        // Remove links that don't actually link to anything
+            // Remove links that don't actually link to anything
             .not('[href="#"]')
             .not('[href="#0"]')
             .click(function (event) {

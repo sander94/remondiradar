@@ -15,6 +15,7 @@ Route::get('/', 'MainController@index')->name('frontpage');
 Route::get('region/{region}', 'MainController@region')->name('region.workrooms');
 
 Route::post('toggleMap', 'MainController@toggleMap')->name('toggleMap');
+Route::post('contacts/{workroom}', 'MainController@saveContactClick')->name('contact_click');
 
 // Route::get('finder', 'FinderController@index');
 Route::get('tookoda/{slug}', 'MainController@show')->name('workroom.show');

@@ -161,4 +161,11 @@ class MainController extends Controller
                 },
             ])->get();
     }
+
+    public function saveContactClick(Workroom $workroom)
+    {
+        $workroom->increment('contact_clicks', 1);
+
+        return ['status' => 'ok'];
+    }
 }
