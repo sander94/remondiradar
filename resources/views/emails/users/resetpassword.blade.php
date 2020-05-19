@@ -1,8 +1,9 @@
 @component('mail::message')
-# Parooli taastamine
+#Tere
 
-Vajuta allolevat nuppu, et logida uuesti Remondiradarisse sisse.
+olete taastamas oma konto parooli Remondiradar.ee keskkonnas.
 
+Parooli taastamiseks klikkige siia
 @component('mail::button', ['url' => route('password.reset', ['token' => $token])])
 Vajuta siia
 @endcomponent
