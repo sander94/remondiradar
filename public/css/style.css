@@ -55,6 +55,7 @@ clip-path: polygon(0 0, 100% 0, 100% 10%, 0 100%);
 	background-position-x: 100px;
 	margin-top: -3px;
 	z-index: -1;
+	position: relative;
 
 }
 
@@ -163,6 +164,7 @@ h2.heading {
 	border: 0px solid #dadada;
 	height: auto;
 	z-index: 20;
+	position: relative;
 }
 
 .wr-card {
@@ -176,7 +178,7 @@ h2.heading {
 	-webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.17);
 	-moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.17);
 	box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.17);
-	z-index: 21;
+	z-index: 210;
 }
 
 .wr-card:hover {
