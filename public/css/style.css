@@ -50,12 +50,11 @@ overflow: hidden;
 	height: 200px;
 -webkit-clip-path: polygon(0 0, 100% 0, 100% 10%, 0 100%);
 clip-path: polygon(0 0, 100% 0, 100% 10%, 0 100%);
- transform: translateZ(0);
  outline: none;
 	background-image: url('/images/web/background.png');
 	background-position-x: 100px;
 	margin-top: -3px;
-	z-index: 0;
+	z-index: -1;
 
 }
 
