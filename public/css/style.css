@@ -163,6 +163,7 @@ h2.heading {
 	padding-top: 20px;
 	border: 0px solid #dadada;
 	height: auto;
+	z-index: 20;
 }
 
 .wr-card {
