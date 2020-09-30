@@ -55,6 +55,7 @@ clip-path: polygon(0 0, 100% 0, 100% 10%, 0 100%);
 	background-image: url('/images/web/background.png');
 	background-position-x: 100px;
 	margin-top: -3px;
+	z-index: 0;
 
 }
 
