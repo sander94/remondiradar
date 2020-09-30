@@ -34,15 +34,24 @@ class PriceRequestNotification extends Mailable
        
 
         $wr_info = "<p style=\"font-family: 'Arial';\">Tere, 
-        Teile saabus uus hinnapäring Remondiradarist!
+        pakkuge palun hind ja esimene vaba aeg töö teostamiseks.
+        
 
-        <strong>Auto: </strong>".$request->reg_no.", ".$request->make." ".$request->model." ".$request->year."
-        <strong>Probleem: </strong>".$request->additional_info."<br>
-        <strong>Kliendi kontakt: </strong>".$request->name.", tel: ".$request->phone.", email: ".$request->email."<br>
+        <strong>Probleem: </strong>".$request->additional_info."
+
+        <strong>Auto andmed </strong>
+        <strong>Nr märk: </strong>".$request->reg_no."
+        <strong>Mark ja mudel: </strong> ".$request->make." ".$request->model."
+        <strong>Aasta: </strong>".$request->year."
+        <strong>Mootor: </strong>".$request->fuel.", ".$request->engine." ".$request->kw." kW
+        <strong>Käigukast: </strong>".$request->gearbox."
+        <strong>Aasta: </strong>".$request->year."
+
+        <strong>Saatja: </strong>".$request->name.", tel: ".$request->phone.", email: ".$request->email."<br>
         Päringule vastamiseks sisene: <a href=\"https://remondiradar.ee/admin/\">https://remondiradar.ee/admin/</a>
 
         Parimat
-        Remondiradari meeskond</p><hr><p style=\"font-size: 12px; color: #adadad; font-family: 'Arial';\">Kui te ei soovi hinnapakkumiste kohta meiliteateid, saate need välja lülitada oma kohto lehelt.</p>";
+        Remondiradari meeskond</p><hr><p style=\"font-size: 12px; color: #adadad; font-family: 'Arial';\">Kui te ei soovi hinnapakkumiste kohta meiliteateid, saate need välja lülitada oma konto lehelt.</p>";
 
  
 

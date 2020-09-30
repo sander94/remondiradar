@@ -51,18 +51,19 @@ class PriceRequestController extends Controller
         }
 
         // Make array unique with no repeating emails
-        $email_array = array_unique($email_array);
+        $email_array = array_values(array_unique($email_array));
 
         // now send mails to these emails
         for ($i = 0; $i < count($email_array); $i++) {
 
             // Send email to users
             $mailable = new PriceRequestNotification;
-            $mailable->from('info@remondiradar.ee', 'Hinnapäring remonttööde kohta');
-            $mailable->subject('Uus hinnapäring');
+            $mailable->from('info@remondiradar.ee', 'Remondiradar.ee');
+            $mailable->replyTo($request->email);
+            $mailable->subject('Remondipäring');
 
             \Mail::to($email_array[$i])
-                ->send($mailable);
+                 ->send($mailable);
             // SEND IT
         }
 
