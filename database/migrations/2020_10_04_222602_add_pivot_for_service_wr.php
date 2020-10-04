@@ -13,7 +13,7 @@ class AddPivotForServiceWr extends Migration
      */
     public function up()
     {
-        Schema::table('service_work_room', function (Blueprint $table) {
+        Schema::create('service_work_room', function (Blueprint $table) {
             $table->unsignedInteger('service_id')->index();
             $table->unsignedInteger('wr_id')->index();
 
@@ -28,7 +28,7 @@ class AddPivotForServiceWr extends Migration
      */
     public function down()
     {
-        Schema::table('service_work_room', function (Blueprint $table) {
+        Schema::create('service_work_room', function (Blueprint $table) {
             //
         });
     }
