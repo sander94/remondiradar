@@ -164,8 +164,19 @@ input:checked + .slider:before {
                 <div class="button" style="text-align: left; padding-left: 20px; position: relative;"
                      id="region-menu-activator">
                     {{ $regionName }}
+                    <i class="fas fa-map-marker-alt fa-fw" style="position: absolute; top: 13px; right: 14px;"> </i>
+                </div>
+                <div class="button" style="text-align: left; padding-left: 20px; position: relative;"
+                     id="services-menu-activator">
+                    Vali teenused
+                    <i class="fas fa-wrench fa-fw" style="position: absolute; top: 13px; right: 14px;"> </i>
+                </div>
+                <button type="submit" class="finder-button">
+                <div class="button" style="text-align: left; padding-left: 20px; position: relative;">
+                    Leia
                     <i class="fas fa-search fa-fw" style="position: absolute; top: 13px; right: 14px;"> </i>
                 </div>
+                </button>
                 <div class="region-menu">
 
 
@@ -173,7 +184,7 @@ input:checked + .slider:before {
 
 
                         @foreach($allRegions as $thisRegion)
-
+<!--
 
                             <div class="col-sm-6 col-md-4">
 
@@ -185,9 +196,57 @@ input:checked + .slider:before {
                                 <br>
 
                             </div>
+                        -->
 
 
                         @endforeach
+
+
+                        @foreach($allRegions as $thisRegion)
+
+
+                            <div class="col-sm-6 col-md-4">
+                              
+                              <label class="region-object">
+                                <input type="radio" name="region">
+                                <span>
+                                <i class="fas fa-map-marker-alt fa-fw"></i>
+                                {{ $thisRegion->region_name }}
+                                </span>
+                              </label>
+
+                                <br>
+
+                            </div>
+
+
+                        @endforeach
+
+                    </div>
+
+
+                </div>
+
+<?php 
+$services = array('Hooldus', 'Ülevaatus', 'Üldremont', 'Diagnostika', 'Elektritööd', 'Helisüsteem', 'Kere- ja värvitööd', 'Klaasivahetus', 'Salongitööd', 'Rehvivahetus', 'Mootoriremont', 'Käigukasti remont', 'Kliimaseadme tööd', 'Välipesu', 'Keemiline puhastus', 'Tulede poleerimine');
+?>
+                <div class="services-menu">
+
+
+                    <div class="row">
+
+                      @foreach($services as $thisService)
+                            <div class="col-sm-6 col-md-4">
+                              <label class="service-object">
+                                <input type="checkbox">
+                                <span>
+                                  <i class="fas fa-caret-right fa-fw"> </i>
+                                  {{ $thisService }}</span>
+                              </label>
+                            </div>
+                      @endforeach
+
+
 
                     </div>
 
@@ -224,16 +283,31 @@ input:checked + .slider:before {
 </script>
 
 <script>
-    $(".region-menu ").hide();
+    $(".region-menu").hide();
     $("#region-menu-activator").show();
     $('#region-menu-activator').click(function (e) {
-        $(".region-menu ").slideToggle();
+        $(".region-menu").slideToggle();
         e.stopPropagation();
+        $(".services-menu").slideUp();
     });
 
     $(document).on('click', function (e) {
         if (!$('.region-menu').is(":hover")) {
             $('.region-menu').slideUp();
+        }
+    });
+
+    $(".services-menu").hide();
+    $("#services-menu-activator").show();
+    $('#services-menu-activator').click(function (e) {
+        $(".services-menu").slideToggle();
+        e.stopPropagation();
+        $(".region-menu").slideUp();
+    });
+
+    $(document).on('click', function (e) {
+        if (!$('.services-menu').is(":hover")) {
+            $('.services-menu').slideUp();
         }
     });
 

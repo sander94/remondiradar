@@ -72,7 +72,31 @@ a.logo {
 	display: table;
 }
 
-.region-menu {
+.region-menu i, .services-menu i {
+	color: rgba(255, 186, 0, 0.36);
+}
+
+.region-object input[type='radio'], .service-object input[type='checkbox'] {
+	display: none;
+}
+
+.region-object, .service-object {
+	cursor: pointer;
+}
+
+.region-object:hover span, .service-object:hover span {
+	font-weight: 500;
+}
+
+.region-object input:checked + span, .service-object input:checked + span {
+	font-weight: 900;
+}
+
+.region-object input:checked + span i, .service-object input:checked + span i {
+	color: #175df6;
+}
+
+.region-menu, .services-menu {
 	display: none;
 	position: absolute;
 	width: 750px;
@@ -90,17 +114,18 @@ a.logo {
 	box-shadow: 0px 3px 11px 2px rgba(0,0,0,0.37);
 }
 
-.region-menu a i {
-	color: rgba(255, 186, 0, 0.36);
+.services-menu {
+	height: 400px;
 }
 
-.region-menu a.selected { font-weight: bold; }
+
+.region-menu a.selected, .services-menu a.selected { font-weight: bold; }
 
 
 .button {
-	border: 1px solid rgba(255, 255, 255, 0.54);
+	/* border: 1px solid rgba(255, 255, 255, 0.54); */
 	border-radius: 10px;
-	background-color: #094ede;
+	background-color: #003198;
 	width: 180px;
 	padding-top: 8px;
 	padding-bottom: 8px;
@@ -111,10 +136,36 @@ a.logo {
 	transition: all 0.1s ease-in;
 }
 
-.button:hover {
+button.finder-button .button {
+	width: 100px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	display: inline-block;
+	color: #FFFFFF;
+	font-weight: 700;
+	text-align: center;
+	transition: all 0.1s ease-in;
+}
+
+button.finder-button {
+	-webkit-appearance: none;
+	border: 0;
+	padding: 0;
+	background: none;
+	color: #FFFFFF;
+	font-weight: 700;
+	outline: none;
+}
+
+.button:hover, button.finder-button .button:hover {
 	background-color: #FFFFFF;
 	color: #000000;
 	cursor: pointer;
+}
+
+button.finder-button:focus, button.finder-button:active {
+	border: 0;
+	-webkit-appearance: none;
 }
 
 .button.selected {
