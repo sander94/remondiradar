@@ -28,7 +28,7 @@ class Workroom extends Model
         'is_active',
         'slug',
         'lat',
-        'lng'
+        'lng',
     ];
 
     public function setCarsServicedAttribute($value)
@@ -100,4 +100,8 @@ class Workroom extends Model
         return $query->where('is_verified', '1');
     }
 
+    public function services()
+    {
+        return $this->belongsToMany(Service::class, 'service_work_room');
+    }
 }
