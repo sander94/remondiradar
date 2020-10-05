@@ -99,7 +99,7 @@ a.logo {
 .region-menu, .services-menu {
 	display: none;
 	position: absolute;
-	width: 750px;
+	width: 800px;
 	height: 300px;
 	z-index: 30;
 	background-color: #FFFFFF;
