@@ -160,12 +160,12 @@ input:checked + .slider:before {
 
         <div class="row mt-20">
             <div class="col-12 col-md-12">
-                <div class="button" style="text-align: left; padding-left: 20px; position: relative;"
+                <div class="button finder-button" style="text-align: left; padding-left: 20px; position: relative;"
                      id="region-menu-activator">
                     <span id="showRegionName">{{ $regionName }}</span>
                     <i class="fas fa-map-marker-alt fa-fw" style="position: absolute; top: 13px; right: 14px;"> </i>
                 </div>
-                <div class="button" style="text-align: left; padding-left: 20px; position: relative;"
+                <div class="button finder-button" style="text-align: left; padding-left: 20px; position: relative;"
                      id="services-menu-activator">
                     <span id="showServicesTitles">Vali teenused</span>
                     <i class="fas fa-wrench fa-fw" style="position: absolute; top: 13px; right: 14px;"> </i>
