@@ -95,7 +95,7 @@ class MainController extends Controller
             'og_image'   => '',
             'title'      => 'Meie missioon | Remondiradar.ee',
             'region'     => '',
-            'regionName' => 'Otsi töökoda',
+            'regionName' => 'Vali maakond',
         ]);
     }
 
@@ -107,7 +107,7 @@ class MainController extends Controller
             'og_image'   => '',
             'title'      => 'Saada tagasiside | Remondiradar.ee',
             'region'     => '',
-            'regionName' => 'Otsi töökoda',
+            'regionName' => 'Vali maakond',
         ]);
     }
 
@@ -129,7 +129,7 @@ class MainController extends Controller
             'og_image'   => '',
             'title'      => 'Saada tagasiside | Remondiradar.ee',
             'region'     => '',
-            'regionName' => 'Otsi töökoda',
+            'regionName' => 'Vali maakond',
         ]);
     }
 

@@ -153,7 +153,7 @@ input:checked + .slider:before {
         <div class="row mt-20">
             <div class="col-12">
                 <h2 class="heading white">
-                    Aitab otsimisest - sobiva remonditöökoja leiad siit!
+                    Leia sobiv remonditöökoda siit!
                 </h2>
             </div>
         </div>

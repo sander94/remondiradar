@@ -131,6 +131,26 @@ a.logo {
 	transition: all 0.1s ease-in;
 }
 
+.register-now-button {
+	border-radius: 10px;
+	background-color: #003198;
+	padding: 8px 20px;
+	display: inline-block;
+	color: #FFFFFF;
+	font-weight: 500;
+	text-align: center;
+	transition: all 0.1s ease-in;
+}
+
+.register-now-button {
+	color: #FFFFFF;
+}
+
+.register-now-button:hover {
+	background-color: #175df6;
+	color: #FFFFFF;
+}
+
 button.finder-button .button {
 	width: 100px;
 	padding-top: 8px;
@@ -324,6 +344,10 @@ input::placeholder {
 	margin-bottom: 15px;
 }
 
+.mb-60 {
+	margin-bottom: 60px;
+}
+
 .blue-line {
 	position: absolute;
 	width: 6px;
@@ -422,6 +446,12 @@ input::placeholder {
 	padding-right: 50px;
 	padding-bottom: 50px;
 	text-align: center;
+}
+
+.meist .content-box {
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-bottom: 50px;
 }
 
 .footer {
