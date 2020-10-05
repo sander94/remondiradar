@@ -163,20 +163,26 @@ input:checked + .slider:before {
             <div class="col-12 col-md-12">
                 <div class="button" style="text-align: left; padding-left: 20px; position: relative;"
                      id="region-menu-activator">
-                    {{ $regionName }}
+                    <span id="showRegionName">{{ $regionName }}</span>
                     <i class="fas fa-map-marker-alt fa-fw" style="position: absolute; top: 13px; right: 14px;"> </i>
                 </div>
                 <div class="button" style="text-align: left; padding-left: 20px; position: relative;"
                      id="services-menu-activator">
-                    Vali teenused
+                    <span id="showServicesTitles">Vali teenused</span>
                     <i class="fas fa-wrench fa-fw" style="position: absolute; top: 13px; right: 14px;"> </i>
                 </div>
+
+                <!-- Let's try filtering without submit button, but here's the code for the button in case of trouble
+
                 <button type="submit" class="finder-button">
                 <div class="button" style="text-align: left; padding-left: 20px; position: relative;">
                     Leia
                     <i class="fas fa-search fa-fw" style="position: absolute; top: 13px; right: 14px;"> </i>
                 </div>
                 </button>
+
+                -->
+
                 <div class="region-menu">
 
 
@@ -208,7 +214,7 @@ input:checked + .slider:before {
                             <div class="col-sm-6 col-md-4">
                               
                               <label class="region-object">
-                                <input type="radio" name="region">
+                                <input type="radio" name="region" value="{{ $thisRegion->id }}" data-name="{{ $thisRegion->region_name }}">
                                 <span>
                                 <i class="fas fa-map-marker-alt fa-fw"></i>
                                 {{ $thisRegion->region_name }}
@@ -238,7 +244,7 @@ $services = array('Hooldus', 'Ülevaatus', 'Üldremont', 'Diagnostika', 'Elektri
                       @foreach($services as $thisService)
                             <div class="col-sm-6 col-md-4">
                               <label class="service-object">
-                                <input type="checkbox">
+                                <input type="checkbox" name="service" value="" data-name="{{ $thisService }}">
                                 <span>
                                   <i class="fas fa-caret-right fa-fw"> </i>
                                   {{ $thisService }}</span>
@@ -326,6 +332,38 @@ $services = array('Hooldus', 'Ülevaatus', 'Üldremont', 'Diagnostika', 'Elektri
 
 </script>
 
+
 @stack('js-body')
+
+
+<script>
+$(document).ready(function(){
+    $('input:radio[name="region"]').change(function() {
+        $('#showRegionName').html($(this).data('name'));
+    });
+
+    $('input:checkbox[name="service"]').bind('change', function() {
+      var checkedArray = [];
+      $('input:checkbox[name="service"]').each(function() {  
+        if (this.checked) {
+          checkedArray.push($(this).data('name'));
+        }
+      })
+
+      if(checkedArray.length > 1) {
+        arrayCount = checkedArray.length;
+        $("#showServicesTitles").html('Valitud '+ arrayCount +' teenust');
+      }
+      if(checkedArray.length == 1) {
+        $("#showServicesTitles").html(checkedArray);
+      } 
+      if(checkedArray.length == 0) {
+        $("#showServicesTitles").html('Vali teenused');
+      }
+
+    });
+
+});
+</script>
 </body>
 </html>
