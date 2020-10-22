@@ -13,7 +13,8 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -38,100 +39,103 @@
 
     <!-- Hotjar Tracking Code for remondiradar.ee -->
     <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:2014850,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        (function (h, o, t, j, a, r) {
+            h.hj = h.hj || function () {
+                (h.hj.q = h.hj.q || []).push(arguments)
+            };
+            h._hjSettings = {hjid: 2014850, hjsv: 6};
+            a = o.getElementsByTagName('head')[0];
+            r = o.createElement('script');
+            r.async = 1;
+            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
             a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
     </script>
 
     <style>
 
         /* The switch - the box around the slider */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 58px;
-  height: 28px;
-}
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 58px;
+            height: 28px;
+        }
 
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
 
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #f1f1f1;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #f1f1f1;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 24px;
-  width: 24px;
-  left: 4px;
-  right: 4px;
-  bottom: 2px;
-  background-color: #e44a4a;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 24px;
+            width: 24px;
+            left: 4px;
+            right: 4px;
+            bottom: 2px;
+            background-color: #e44a4a;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
 
-input:checked + .slider {
-  background-color: #f1f1f1;
-}
+        input:checked + .slider {
+            background-color: #f1f1f1;
+        }
 
-input:checked + .slider:before {
-background-color: #06b333;
-}
+        input:checked + .slider:before {
+            background-color: #06b333;
+        }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 18px;
-}
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 18px;
+        }
 
-.slider.round:before {
-  border-radius: 18px;
-}
+        .slider.round:before {
+            border-radius: 18px;
+        }
 
 
-.maptoggle {
-    float: right;
-    color: #FFFFFF;
-}
+        .maptoggle {
+            float: right;
+            color: #FFFFFF;
+        }
 
-.maptoggle span.text {
-    margin-right: 10px;
-    font-weight: 500;
-}
+        .maptoggle span.text {
+            margin-right: 10px;
+            font-weight: 500;
+        }
 
     </style>
 
-	@stack('js')
+    @stack('js')
 </head>
 
 <body>
@@ -145,8 +149,8 @@ input:checked + .slider:before {
             </div>
             <div class="col-md-6 col-sm-8 col-5">
                 <a href="/hinnaparing" class="button yellow"><span
-                            class="ask-offer-text-desktop">Küsi hinnapakkumisi</span><span
-                            class="ask-offer-text-mobile">Hinnapäring</span></a>
+                        class="ask-offer-text-desktop">Küsi hinnapakkumisi</span><span
+                        class="ask-offer-text-mobile">Hinnapäring</span></a>
             </div>
         </div>
 
@@ -188,20 +192,20 @@ input:checked + .slider:before {
                     <div class="row">
 
 
-                        @foreach($allRegions as $thisRegion)
-<!--
+                    @foreach($allRegions as $thisRegion)
+                        <!--
 
                             <div class="col-sm-6 col-md-4">
 
                                 <a href="{{ route('region.workrooms', $thisRegion) }}"
                                    @if(optional($region)->id === $thisRegion->id) class="selected" @endif>
                                     <i class="fas fa-map-marker-alt fa-fw"> </i> {{ $thisRegion->region_name }}
-                                </a>
+                            </a>
 
-                                <br>
+                            <br>
 
-                            </div>
-                        -->
+                        </div>
+-->
 
 
                         @endforeach
@@ -211,14 +215,15 @@ input:checked + .slider:before {
 
 
                             <div class="col-sm-6 col-md-4">
-                              
-                              <label class="region-object">
-                                <input type="radio" name="region" value="{{ $thisRegion->id }}" data-name="{{ $thisRegion->region_name }}">
-                                <span>
+
+                                <label class="region-object">
+                                    <input type="radio" name="region" value="{{ $thisRegion->id }}"
+                                           data-name="{{ $thisRegion->region_name }}">
+                                    <span>
                                 <i class="fas fa-map-marker-alt fa-fw"></i>
                                 {{ $thisRegion->region_name }}
                                 </span>
-                              </label>
+                                </label>
 
                                 <br>
 
@@ -232,38 +237,32 @@ input:checked + .slider:before {
 
                 </div>
 
-<?php 
-$services = array('Hooldus', 'Ülevaatus', 'Üldremont', 'Diagnostika', 'Elektritööd', 'Helisüsteem', 'Kere- ja värvitööd', 'Klaasivahetus', 'Salongitööd', 'Rehvivahetus', 'Mootoriremont', 'Käigukasti remont', 'Kliimaseadme tööd', 'Välipesu', 'Keemiline puhastus', 'Tulede poleerimine');
-?>
                 <div class="services-menu">
 
 
-                    <div class="row">
+                    <div class="row" id="services">
 
-                      @foreach($services as $thisService)
-                            <div class="col-sm-6 col-md-4">
-                              <label class="service-object">
-                                <input type="checkbox" name="service" value="" data-name="{{ $thisService }}">
+                        <div class="col-sm-6 col-md-4" v-for="service in services">
+                            <label class="service-object">
+                                <input type="checkbox" v-model="selected" name="service" :value="service.id"
+                                       :data-name="service.title">
                                 <span>
                                   <i class="fas fa-caret-right fa-fw"> </i>
-                                  {{ $thisService }}</span>
-                              </label>
-                            </div>
-                      @endforeach
-
-
+                                  @{{ service.title }}</span>
+                            </label>
+                        </div>
 
                     </div>
 
-
                 </div>
 
-                <div class="maptoggle"> 
+                <div class="maptoggle">
                     <span class="text">Kaart</span>
                     <label class="switch">
-                        <input type="checkbox" id="mapCheckbox" @if(!\Illuminate\Support\Facades\Cookie::get('map_disabled')) checked @endif>
+                        <input type="checkbox" id="mapCheckbox"
+                               @if(!\Illuminate\Support\Facades\Cookie::get('map_disabled')) checked @endif>
                         <span class="slider round"></span>
-                    </label> 
+                    </label>
                 </div>
 
             </div>
@@ -286,7 +285,6 @@ $services = array('Hooldus', 'Ülevaatus', 'Üldremont', 'Diagnostika', 'Elektri
         maxTilt: 3
     })
 </script>
-
 <script>
     $(".region-menu").hide();
     $("#region-menu-activator").show();
@@ -316,6 +314,33 @@ $services = array('Hooldus', 'Ülevaatus', 'Üldremont', 'Diagnostika', 'Elektri
         }
     });
 
+    let timeout = null;
+
+    new window.Vue({
+        el: '#services',
+        data() {
+            return {
+                services: @json($services),
+                selected: {!! json_encode(request()->query('services') ? explode(',', request()->query('services')) : [])  !!}
+            }
+        },
+
+        watch: {
+            selected() {
+
+                if (timeout !== null) {
+                    clearTimeout(timeout);
+                }
+
+                timeout = setTimeout(() => {
+                    let query = "services=" + this.selected.join(',');
+
+                    window.location.replace("{{ url()->current() }}?" + query.toString())
+                }, 1000)
+            }
+        }
+    })
+
     const checkbox = document.getElementById('mapCheckbox')
     const map = document.getElementById('map')
     const mapcontainer = document.getElementById('map-container')
@@ -336,33 +361,29 @@ $services = array('Hooldus', 'Ülevaatus', 'Üldremont', 'Diagnostika', 'Elektri
 
 
 <script>
-$(document).ready(function(){
-    $('input:radio[name="region"]').change(function() {
-        $('#showRegionName').html($(this).data('name'));
-    });
+    $(document).ready(function () {
+        $('input:radio[name="region"]').change(function () {
+            $('#showRegionName').html($(this).data('name'));
+        });
 
-    $('input:checkbox[name="service"]').bind('change', function() {
-      var checkedArray = [];
-      $('input:checkbox[name="service"]').each(function() {  
-        if (this.checked) {
-          checkedArray.push($(this).data('name'));
+        var checkedArray = [];
+        $('input:checkbox[name="service"]').each(function () {
+            if (this.checked) {
+                checkedArray.push($(this).data('name'));
+            }
+        })
+
+        if (checkedArray.length > 1) {
+            arrayCount = checkedArray.length;
+            $("#showServicesTitles").html('Valitud ' + arrayCount + ' teenust');
         }
-      })
-
-      if(checkedArray.length > 1) {
-        arrayCount = checkedArray.length;
-        $("#showServicesTitles").html('Valitud '+ arrayCount +' teenust');
-      }
-      if(checkedArray.length == 1) {
-        $("#showServicesTitles").html(checkedArray);
-      } 
-      if(checkedArray.length == 0) {
-        $("#showServicesTitles").html('Vali teenused');
-      }
-
+        if (checkedArray.length == 1) {
+            $("#showServicesTitles").html(checkedArray);
+        }
+        if (checkedArray.length == 0) {
+            $("#showServicesTitles").html('Vali teenused');
+        }
     });
-
-});
 </script>
 </body>
 </html>
