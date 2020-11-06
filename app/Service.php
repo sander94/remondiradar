@@ -46,6 +46,6 @@ class Service extends Model
 
     public function workRooms()
     {
-        return $this->belongsToMany(Workroom::class, 'service_work_room', 'wr_id');
+        return $this->belongsToMany(Workroom::class, 'service_work_room');
     }
 }
