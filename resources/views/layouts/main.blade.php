@@ -174,6 +174,9 @@
                     <span id="showServicesTitles">Vali teenused</span>
                     <i class="fas fa-wrench fa-fw" style="position: absolute; top: 13px; right: 14px;"> </i>
                 </div>
+                <div class="button finder-button">
+                    <button>Submit</button>
+                </div>
 
                 <!-- Let's try filtering without submit button, but here's the code for the button in case of trouble
 
