@@ -186,42 +186,22 @@
 
                 -->
 
-                <div class="region-menu">
+                <div id="filter">
+                    <div class="region-menu">
 
 
-                    <div class="row">
+                        <div class="row">
 
 
-                    @foreach($allRegions as $thisRegion)
-                        <!--
-
-                            <div class="col-sm-6 col-md-4">
-
-                                <a href="{{ route('region.workrooms', $thisRegion) }}"
-                                   @if(optional($region)->id === $thisRegion->id) class="selected" @endif>
-                                    <i class="fas fa-map-marker-alt fa-fw"> </i> {{ $thisRegion->region_name }}
-                            </a>
-
-                            <br>
-
-                        </div>
--->
-
-
-                        @endforeach
-
-
-                        @foreach($allRegions as $thisRegion)
-
-
-                            <div class="col-sm-6 col-md-4">
+                            <div class="col-sm-6 col-md-4" v-for="regionItem in regions">
 
                                 <label class="region-object">
-                                    <input type="radio" name="region" value="{{ $thisRegion->id }}"
-                                           data-name="{{ $thisRegion->region_name }}">
+                                    <input type="radio" name="region" :value="regionItem.id"
+                                           v-model="region"
+                                           :data-name="regionItem.region_name">
                                     <span>
                                 <i class="fas fa-map-marker-alt fa-fw"></i>
-                                {{ $thisRegion->region_name }}
+                                @{{ regionItem.region_name }}
                                 </span>
                                 </label>
 
@@ -230,30 +210,29 @@
                             </div>
 
 
-                        @endforeach
+                        </div>
+
 
                     </div>
 
-
-                </div>
-
-                <div class="services-menu">
+                    <div class="services-menu">
 
 
-                    <div class="row" id="services">
+                        <div class="row">
 
-                        <div class="col-sm-6 col-md-4" v-for="service in services">
-                            <label class="service-object">
-                                <input type="checkbox" v-model="selected" name="service" :value="service.id"
-                                       :data-name="service.title">
-                                <span>
+                            <div class="col-sm-6 col-md-4" v-for="service in services">
+                                <label class="service-object">
+                                    <input type="checkbox" v-model="selected" name="service" :value="service.id"
+                                           :data-name="service.title">
+                                    <span>
                                   <i class="fas fa-caret-right fa-fw"> </i>
                                   @{{ service.title }}</span>
-                            </label>
+                                </label>
+                            </div>
+
                         </div>
 
                     </div>
-
                 </div>
 
                 <div class="maptoggle">
@@ -317,10 +296,12 @@
     let timeout = null;
 
     new window.Vue({
-        el: '#services',
+        el: '#filter',
         data() {
             return {
                 services: @json($services),
+                regions: @json($allRegions),
+                region: @json(optional(request()->route('region'))->getKey() ?? null),
                 selected: {!! json_encode(request()->query('services') ? explode(',', request()->query('services')) : [])  !!}
             }
         },
@@ -337,7 +318,19 @@
 
                     window.location.replace("{{ url()->current() }}?" + query.toString())
                 }, 1000)
-            }
+            },
+            region() {
+
+                if (timeout !== null) {
+                    clearTimeout(timeout);
+                }
+
+                timeout = setTimeout(() => {
+                    let query = "services=" + this.selected.join(',');
+
+                    window.location.replace("{{ url()->current() }}/region/" + this.region.id)
+                }, 1000)
+            },
         }
     })
 
