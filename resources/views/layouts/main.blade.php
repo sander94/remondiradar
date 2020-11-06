@@ -164,6 +164,8 @@
 
         <div class="row mt-20">
             <div class="col-12 col-md-12">
+
+
                 <div class="button finder-button" style="text-align: left; padding-left: 20px; position: relative;"
                      id="region-menu-activator">
                     <span id="showRegionName">{{ $regionName }}</span>
@@ -174,22 +176,22 @@
                     <span id="showServicesTitles">Vali teenused</span>
                     <i class="fas fa-wrench fa-fw" style="position: absolute; top: 13px; right: 14px;"> </i>
                 </div>
-                <div class="button finder-button">
-                    <button>Submit</button>
-                </div>
-
-                <!-- Let's try filtering without submit button, but here's the code for the button in case of trouble
-
-                <button type="submit" class="finder-button">
-                <div class="button" style="text-align: left; padding-left: 20px; position: relative;">
-                    Leia
-                    <i class="fas fa-search fa-fw" style="position: absolute; top: 13px; right: 14px;"> </i>
-                </div>
-                </button>
-
-                -->
 
                 <div id="filter">
+                    <div class="button finder-button" @click.prevent="onFilterSubmit">
+                        <button>Submit</button>
+                    </div>
+
+                    <!-- Let's try filtering without submit button, but here's the code for the button in case of trouble
+
+                    <button type="submit" class="finder-button">
+                    <div class="button" style="text-align: left; padding-left: 20px; position: relative;">
+                        Leia
+                        <i class="fas fa-search fa-fw" style="position: absolute; top: 13px; right: 14px;"> </i>
+                    </div>
+                    </button>
+
+                    -->
                     <div class="region-menu">
 
 
@@ -309,32 +311,31 @@
             }
         },
 
-        watch: {
-            selected() {
+        methods: {
+            onFilterSubmit() {
+                window.location.replace(this.url)
+            }
+        },
 
-                if (timeout !== null) {
-                    clearTimeout(timeout);
+        computed: {
+            url() {
+                let url = "{{ url()->current() }}";
+
+                if (this.region) {
+                    url = url + '/region/' + this.region
                 }
 
-                timeout = setTimeout(() => {
+                if (this.selected.length > 0) {
                     let query = "services=" + this.selected.join(',');
 
-                    window.location.replace("{{ url()->current() }}?" + query.toString())
-                }, 1000)
-            },
-            region() {
-
-                if (timeout !== null) {
-                    clearTimeout(timeout);
+                    url = url + '?' + query.toString();
                 }
 
-                timeout = setTimeout(() => {
-                    let query = "services=" + this.selected.join(',');
+                return url;
+            }
+        },
 
-                    window.location.replace("{{ url()->current() }}/region/" + this.region.id)
-                }, 1000)
-            },
-        }
+
     })
 
     const checkbox = document.getElementById('mapCheckbox')
