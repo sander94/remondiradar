@@ -164,7 +164,7 @@ class MainController extends Controller
     {
         return $region
             ->workrooms()
-            ->when(count($services) > 0, function ($query) {
+            ->when(count($services) > 0, function ($query) use ($services) {
                 return $query->whereHas('services', function ($query) use ($services) {
                     return $query->whereIn('id', $services);
                 });
