@@ -32,7 +32,7 @@ class MainController extends Controller
         $og_image = asset('images/web/ogimg.jpg');
 
         $mapWorkrooms = Workroom::query()
-            ->when(count($services) > 0, function ($query) use ($services) {
+            ->when(count($services) >= 1 && $services[0] !== "", function ($query) use ($services) {
                 return $query->whereHas('services', function ($query) use ($services) {
                     return $query->whereIn('id', $services);
                 });
@@ -164,7 +164,7 @@ class MainController extends Controller
     {
         return $region
             ->workrooms()
-            ->when(count($services) > 0, function ($query) use ($services) {
+            ->when(count($services) >= 1 && $services[0] !== "", function ($query) use ($services) {
                 return $query->whereHas('services', function ($query) use ($services) {
                     return $query->whereIn('id', $services);
                 });
