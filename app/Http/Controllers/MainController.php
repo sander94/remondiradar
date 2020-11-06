@@ -32,8 +32,10 @@ class MainController extends Controller
         $og_image = asset('images/web/ogimg.jpg');
 
         $mapWorkrooms = Workroom::query()
-            ->whereHas('services', function ($query) use ($services) {
-                return $query->whereIn('id', $services);
+            ->when(count($services) > 0, function ($query) {
+                return $query->whereHas('services', function ($query) use ($services) {
+                    return $query->whereIn('id', $services);
+                });
             })
             ->active()
             ->verified()
@@ -42,11 +44,11 @@ class MainController extends Controller
         $services = Service::query()->get();
 
         return view('frontpage', compact('workrooms', 'mapWorkrooms'))->with([
-            'region' => $region,
+            'region'     => $region,
             'regionName' => $regionName,
-            'title' => $title,
-            'og_image' => $og_image,
-            'services' => $services
+            'title'      => $title,
+            'og_image'   => $og_image,
+            'services'   => $services,
         ]);
     }
 
@@ -63,7 +65,7 @@ class MainController extends Controller
 
         $timeslots = Timeslot::all()->where('workroom_id', $workroom->id);
 
-        if (!empty ($workroom->company_id)) {
+        if (! empty ($workroom->company_id)) {
             // get company name
             $company_name = DB::table('users')->where('id', $workroom->company_id)->first();
             $company_realname = $company_name->name;
@@ -79,21 +81,21 @@ class MainController extends Controller
             $region = Regions::find($workroom->region);
             $currentRegion = Regions::all()->where('id', $workroom->region)->first();
             $regionName = $currentRegion->region_name;
-            $title = $workroom->brand_name . ' | Remondiradar.ee - kõik kohalikud autoremonditöökojad';
-            $og_image = asset('images/t_logos/' . $workroom->brand_logo . '');
+            $title = $workroom->brand_name.' | Remondiradar.ee - kõik kohalikud autoremonditöökojad';
+            $og_image = asset('images/t_logos/'.$workroom->brand_logo.'');
 
             $reviews = $workroom->reviews->sortByDesc(function ($review, $key) {
                 return $review->stars + strlen($review->comment);
             });
 
             return view('show2', compact('workroom', 'timeslots'))->with([
-                'id' => request()->id,
-                'region' => $region,
+                'id'               => request()->id,
+                'region'           => $region,
                 'company_realname' => $company_realname,
-                'title' => $title,
-                'og_image' => $og_image,
-                'regionName' => $regionName,
-                'reviews' => $reviews,
+                'title'            => $title,
+                'og_image'         => $og_image,
+                'regionName'       => $regionName,
+                'reviews'          => $reviews,
             ]);
         } else {
             return redirect()->route('frontpage');
@@ -103,9 +105,9 @@ class MainController extends Controller
     public function aboutUs()
     {
         return view('aboutUs')->with([
-            'og_image' => '',
-            'title' => 'Meie missioon | Remondiradar.ee',
-            'region' => '',
+            'og_image'   => '',
+            'title'      => 'Meie missioon | Remondiradar.ee',
+            'region'     => '',
             'regionName' => 'Vali maakond',
         ]);
     }
@@ -115,9 +117,9 @@ class MainController extends Controller
         $review = Reviews::all()->where('token', $request->token)->where('is_active', '0')->first();
 
         return view('writeReview', compact('review'))->with([
-            'og_image' => '',
-            'title' => 'Saada tagasiside | Remondiradar.ee',
-            'region' => '',
+            'og_image'   => '',
+            'title'      => 'Saada tagasiside | Remondiradar.ee',
+            'region'     => '',
             'regionName' => 'Vali maakond',
         ]);
     }
@@ -125,9 +127,9 @@ class MainController extends Controller
     public function sendReview(Request $request)
     {
         Reviews::where('token', $request->token)->update([
-            'name' => $request->name,
-            'comment' => $request->comment,
-            'stars' => $request->stars,
+            'name'      => $request->name,
+            'comment'   => $request->comment,
+            'stars'     => $request->stars,
             'is_active' => '1',
         ]);
 
@@ -137,9 +139,9 @@ class MainController extends Controller
     public function thanksForReview()
     {
         return view('thanksForReview')->with([
-            'og_image' => '',
-            'title' => 'Saada tagasiside | Remondiradar.ee',
-            'region' => '',
+            'og_image'   => '',
+            'title'      => 'Saada tagasiside | Remondiradar.ee',
+            'region'     => '',
             'regionName' => 'Vali maakond',
         ]);
     }
@@ -151,7 +153,7 @@ class MainController extends Controller
             $cookie = false;
         }
 
-        $disabled = !$cookie;
+        $disabled = ! $cookie;
         $cookie = cookie('map_disabled', $disabled);
 
         return response()->json(compact('disabled'))
@@ -162,8 +164,10 @@ class MainController extends Controller
     {
         return $region
             ->workrooms()
-            ->whereHas('services', function ($query) use ($services) {
-                return $query->whereIn('id', $services);
+            ->when(count($services) > 0, function ($query) {
+                return $query->whereHas('services', function ($query) use ($services) {
+                    return $query->whereIn('id', $services);
+                });
             })
             ->active()
             ->verified()
