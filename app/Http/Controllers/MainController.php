@@ -23,13 +23,13 @@ class MainController extends Controller
 
     public function region(Regions $region, Request $request)
     {
-        $workrooms = $this->getWorkroomsForRegion($region);
+        $services = explode(',', $request->query('services')) ?? [];
+
+        $workrooms = $this->getWorkroomsForRegion($region, $services);
 
         $regionName = $region->region_name;
         $title = "Remondiradar.ee - Leia kiirelt kohalik remonditöökoda.";
         $og_image = asset('images/web/ogimg.jpg');
-
-        $services = explode(',', $request->query('services')) ?? [];
 
         $mapWorkrooms = Workroom::query()
             ->whereHas('services', function ($query) use ($services) {
@@ -158,10 +158,13 @@ class MainController extends Controller
             ->cookie($cookie);
     }
 
-    private function getWorkroomsForRegion(Regions $region)
+    private function getWorkroomsForRegion(Regions $region, $services)
     {
         return $region
             ->workrooms()
+            ->whereHas('services', function ($query) use ($services) {
+                return $query->whereIn('id', $services);
+            })
             ->active()
             ->verified()
             ->withCount('reviews')
