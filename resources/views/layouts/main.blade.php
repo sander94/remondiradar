@@ -319,7 +319,7 @@
 
         computed: {
             url() {
-                let url = "{{ url()->current() }}";
+                let url = "{{ url() }}";
 
                 if (this.region) {
                     url = url + '/region/' + this.region
