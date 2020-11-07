@@ -35,13 +35,14 @@ class MainController extends Controller
             ->when(count($services) >= 1 && $services[0] !== "", function ($query) use ($services) {
                 return $query->whereHas('services', function ($query) use ($services) {
                     return $query->whereIn('id', $services);
-                });
+                }, '>=', count($services));
             })
             ->active()
             ->verified()
             ->get();
 
         $services = Service::query()->get();
+
         return view('frontpage', compact('workrooms', 'mapWorkrooms'))->with([
             'region'     => $region,
             'regionName' => $regionName,
@@ -97,7 +98,7 @@ class MainController extends Controller
                 'og_image'         => $og_image,
                 'regionName'       => $regionName,
                 'reviews'          => $reviews,
-                'services'          => $services,
+                'services'         => $services,
             ]);
         } else {
             return redirect()->route('frontpage');
@@ -169,7 +170,7 @@ class MainController extends Controller
             ->when(count($services) >= 1 && $services[0] !== "", function ($query) use ($services) {
                 return $query->whereHas('services', function ($query) use ($services) {
                     return $query->whereIn('id', $services);
-                });
+                }, '>=', count($services));
             })
             ->active()
             ->verified()
