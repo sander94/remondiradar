@@ -53,13 +53,15 @@
     <div class="content finder">
 
         @if(!empty($workrooms))
-        <div id="map-container" style=" @if(!!\Illuminate\Support\Facades\Cookie::get('map_disabled')) display:none; @endif">
-            <div id="map" style="height: 400px; @if(!!\Illuminate\Support\Facades\Cookie::get('map_disabled')) display:none; @endif"></div>
-        </div>
+            <div id="map-container"
+                 style=" @if(!!\Illuminate\Support\Facades\Cookie::get('map_disabled')) display:none; @endif">
+                <div id="map"
+                     style="height: 400px; @if(!!\Illuminate\Support\Facades\Cookie::get('map_disabled')) display:none; @endif"></div>
+            </div>
         @endif
         <div class="row">
 
-            @foreach($workrooms as $workroom)
+            @forelse($workrooms as $workroom)
 
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 wr-card-container js-tilt">
 
@@ -162,7 +164,10 @@
                     </a>
 
                 </div>
-
+            @empty
+                <div>
+                    No results
+                </div>
             @endforeach
 
 
