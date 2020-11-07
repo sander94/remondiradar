@@ -168,7 +168,7 @@
                 <div>
                     No results
                 </div>
-            @endforeach
+            @endforelse
 
 
         </div>
