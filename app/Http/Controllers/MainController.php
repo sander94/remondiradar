@@ -42,7 +42,6 @@ class MainController extends Controller
             ->get();
 
         $services = Service::query()->get();
-
         return view('frontpage', compact('workrooms', 'mapWorkrooms'))->with([
             'region'     => $region,
             'regionName' => $regionName,
@@ -54,6 +53,8 @@ class MainController extends Controller
 
     public function show(Request $request)
     {
+        $services = explode(',', $request->query('services')) ?? [];
+
         // get the first one to show on page
         /** @var Workroom $workroom */
         $workroom = Workroom::where('slug', $request->slug)->where('is_active', '1')->with([
@@ -96,6 +97,7 @@ class MainController extends Controller
                 'og_image'         => $og_image,
                 'regionName'       => $regionName,
                 'reviews'          => $reviews,
+                'services'          => $services,
             ]);
         } else {
             return redirect()->route('frontpage');
