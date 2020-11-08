@@ -75,6 +75,8 @@ class WorkroomController extends Controller
 
         $workroomStore = Workroom::create($request->all()); // create workroom
 
+        $workroomStore->services()->sync($request->get('services'));
+
         $request->request->add(['wr_id' => $workroomStore->id]); // get id of latest workroom
 
         foreach ($request->get('timeslots') as $timeslot) {
@@ -169,6 +171,8 @@ class WorkroomController extends Controller
         // SLUG FUNCTION END
 
         $workroom->update($request->all());
+
+        $workroom->services()->sync($request->get('services'));
 
         $timeslots = $workroom->timeslots->keyBy(function ($item) {
             return $item['day_of_week']->value();
