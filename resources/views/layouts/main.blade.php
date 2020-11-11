@@ -178,8 +178,8 @@
                 </div>
 
                 <div id="filter">
-                    <div class="button finder-button" @click.prevent="onFilterSubmit">
-                        <button>Submit</button>
+                    <div class="leia-button" @click.prevent="onFilterSubmit">
+                        <button>Leia <i class="fa fa-search fa-flip-horizontal fa-fw"> </i></button>
                     </div>
 
                     <!-- Let's try filtering without submit button, but here's the code for the button in case of trouble
