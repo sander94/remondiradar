@@ -27,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(['layouts.main', 'pricerequest'], RegionsComposer::class);
-        View::composer(['admin.workrooms.create', 'admin.workrooms.edit'], ServicesComposer::class);
+        View::composer(['admin.workrooms.create', 'admin.workrooms.edit', 'layouts.main'], ServicesComposer::class);
     }
 }
