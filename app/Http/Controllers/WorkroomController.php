@@ -52,6 +52,7 @@ class WorkroomController extends Controller
     {
         $request->validate([
             'brand_logo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:80000',
+            'additional_info' => ['required', 'string']
         ]);
 
         /* GENERATE SLUG AND CHECK IF PREVIOUS EXISTS */
@@ -59,7 +60,7 @@ class WorkroomController extends Controller
         if (Workroom::where('slug', $makeSlug)->count() > 0) {
             $i = 2;
             while (true) {
-                $newSlug = $makeSlug."-".$i;
+                $newSlug = $makeSlug . "-" . $i;
                 if (Workroom::where('slug', $newSlug)->count() > 0) {
                     $i++;
                 } else {
@@ -153,7 +154,7 @@ class WorkroomController extends Controller
             if (Workroom::where('slug', $slug)->count() > 0) {
                 $i = 2;
                 while (true) {
-                    $newSlug = $slug."-".$i;
+                    $newSlug = $slug . "-" . $i;
                     if (Workroom::where('slug', $newSlug)->count() > 0) {
                         $i++;
                     } else {
