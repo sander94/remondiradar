@@ -94,6 +94,15 @@
 
 
                 <div class="col-md-4">
+
+                    <ul>
+                        @foreach($services as $service)
+                            <li>
+                                <a href="{{ route('region.workrooms', ['region' => $workroom->region, 'services' => $service->getKey()]) }}">{{ $service->title }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+
                     <div class="openingtimes">
                         <?php
                         // Short list of weekdays.
@@ -103,7 +112,7 @@
                         // For each timeslot
                         foreach ($timeslots as $timeslot) {
 
-                            echo "<strong style=\"margin-right: 10px; font-weight: 700;\">".$arrayOfWeekdays[$i]."</strong>";
+                            echo "<strong style=\"margin-right: 10px; font-weight: 700;\">" . $arrayOfWeekdays[$i] . "</strong>";
                             echo " ";
 
                             // If its closed, say closed

@@ -54,8 +54,6 @@ class MainController extends Controller
 
     public function show(Request $request)
     {
-        $services = explode(',', $request->query('services')) ?? [];
-
         // get the first one to show on page
         /** @var Workroom $workroom */
         $workroom = Workroom::where('slug', $request->slug)->where('is_active', '1')->with([
@@ -89,6 +87,8 @@ class MainController extends Controller
             $reviews = $workroom->reviews->sortByDesc(function ($review, $key) {
                 return $review->stars + strlen($review->comment);
             });
+
+            $services = $workroom->services()->get();
 
             return view('show2', compact('workroom', 'timeslots'))->with([
                 'id'               => request()->id,
