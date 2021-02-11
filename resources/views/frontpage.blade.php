@@ -20,6 +20,12 @@
             views.push('@include('googlemaps.infobox', $workroom)');
             @endforeach
 
+            const icons = {
+                parking: {
+                    icon: "/map_icon.svg",
+                },
+            };
+
             workrooms.forEach((item, key) => {
 
                 let infoWindow = new google.maps.InfoWindow({
@@ -30,6 +36,10 @@
                 const position = {lat: parseFloat(lat), lng: parseFloat(lng)};
                 const marker = new google.maps.Marker({
                     position,
+                    icon: {
+                        url: "/map/marker.svg", // url
+                        scaledSize: new google.maps.Size(30, 30),
+                    },
                     map: map
                 });
 

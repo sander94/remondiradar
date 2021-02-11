@@ -345,7 +345,6 @@
     checkbox.addEventListener('change', (event) => {
         axios.post(@json(route('toggleMap')))
             .then(response => {
-                console.log(response.data);
                 map.style.display = response.data.disabled ? 'none' : 'block'
                 mapcontainer.style.display = response.data.disabled ? 'none' : 'block'
             })
