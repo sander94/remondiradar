@@ -95,7 +95,7 @@
 
                 <div class="col-md-4">
 
-                    <ul>
+                    <ul style="display: none;">
                         @foreach($services as $service)
                             <li>
                                 <a href="{{ route('region.workrooms', ['region' => $workroom->region, 'services' => $service->getKey()]) }}">{{ $service->title }}</a>
