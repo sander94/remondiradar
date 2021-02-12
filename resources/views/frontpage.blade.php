@@ -38,7 +38,7 @@
                     position,
                     icon: {
                         url: "/map/marker.svg", // url
-                        scaledSize: new google.maps.Size(30, 30),
+                        scaledSize: new google.maps.Size(40, 40),
                     },
                     map: map
                 });
