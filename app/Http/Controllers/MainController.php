@@ -66,9 +66,9 @@ class MainController extends Controller
                 $query->where('is_active', '1')
                     ->orderBy('stars', 'desc');
             },
-        ])->first();
+        ])->firstOrFail();
 
-        $timeslots = Timeslot::all()->where('workroom_id', $workroom->id);
+        $timeslots = $workroom->timeslots()->get();
 
         if (!empty ($workroom->company_id)) {
             // get company name
