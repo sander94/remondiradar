@@ -11,6 +11,10 @@
 |
 */
 
+
+Route::get('click/{advertisement}', 'AdvertisementController')->name('record_advertisement');
+
+
 Route::get('/', 'MainController@index')->name('frontpage');
 Route::get('region/{region}', 'MainController@region')->name('region.workrooms');
 

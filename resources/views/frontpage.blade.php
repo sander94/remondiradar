@@ -70,6 +70,65 @@
             </div>
         @endif
         <div class="row">
+            @foreach($advertisements as $advertisement)
+                <div class="col wr-card-container js-tilt">
+
+                    <a href="{{ route('record_advertisement', $advertisement) }}">
+
+                        <div class="wr-card">
+
+                            <div class="blue-line"></div>
+
+                            <div class="row headline-logo">
+
+                                <div class="col-8">
+
+                                    <h3>{{ $advertisement->title }}</h3>
+
+
+                                </div>
+
+                                <div class="col-4">
+                                    <img src="{{ $advertisement->getFirstMediaUrl('image') }}"
+                                         class="wr-logo">
+                                </div>
+
+                            </div>
+
+                            <div class="row dashed-top">
+
+                                <div class="col-12 col-sm-12">
+
+                                    <div class="info-row">
+
+                                        <div class="icon"><i class="fas fa-map-marker-alt fa-fw"> </i></div>
+
+                                        <div class="icon-text"> 123</div>
+
+                                    </div>
+
+                                    <div class="info-row">
+
+                                        <div class="icon"><i class="fas fa-phone fa-flip-horizontal fa-fw"> </i></div>
+
+                                        <div class="icon-text"> 123 </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </a>
+
+                </div>
+            @endforeach
+        </div>
+
+        <div class="row">
 
             @forelse($workrooms as $workroom)
 

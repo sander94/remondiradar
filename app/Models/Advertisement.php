@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Regions;
 use CyrildeWit\EloquentViewable\Viewable;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class Advertisement extends Model implements HasMedia
+class Advertisement extends Model implements HasMedia, \CyrildeWit\EloquentViewable\Contracts\Viewable
 {
     use Viewable, HasMediaTrait;
 
@@ -24,5 +25,10 @@ class Advertisement extends Model implements HasMedia
     {
         $this->addMediaCollection('image')
             ->singleFile();
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Regions::class, 'region_id');
     }
 }

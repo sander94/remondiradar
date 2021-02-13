@@ -20,6 +20,7 @@ class CreateAdvertismentsTable extends Migration
             $table->dateTime('ended_at')->nullable();
             $table->string('url');
             $table->boolean('is_active');
+            $table->unsignedInteger('region_id')->index();
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateAdvertismentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('advertisments');
+        Schema::dropIfExists('advertisements');
     }
 }
