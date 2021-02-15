@@ -73,7 +73,7 @@
             @foreach($advertisements as $advertisement)
                 <div class="col wr-card-container js-tilt">
 
-                    <a href="{{ route('record_advertisement', $advertisement) }}">
+                    <a href="{{ route('record_advertisement', $advertisement) }}" target="_blank">
 
                         <div class="wr-card">
 
