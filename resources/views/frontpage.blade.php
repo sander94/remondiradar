@@ -75,9 +75,9 @@
 
                     <a href="{{ route('record_advertisement', $advertisement) }}" target="_blank">
 
-                        <div class="wr-card">
+                        <div class="wr-card" style="padding: 0; overflow: hidden; height: 220px;">
 
-                            <div class="row headline-logo" style="background-image: url('{{ $advertisement->getFirstMediaUrl('image') }}');">
+                            <div class="row headline-logo" style="background-image: url('{{ $advertisement->getFirstMediaUrl('image') }}'); background-size: cover; background-position: center center;">
 
                                 <div class="col-12">
 
