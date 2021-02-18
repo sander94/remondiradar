@@ -10,10 +10,29 @@ use Spatie\MediaLibrary\UrlGenerator\LocalUrlGenerator as BaseLocalUrlGenerator;
 
 class LocalUrlGenerator extends BaseLocalUrlGenerator
 {
+    /**
+     * Get the url for a media item.
+     *
+     * @return string
+     *
+     * @throws \Spatie\MediaLibrary\Exceptions\UrlCannotBeDetermined
+     */
+    public function getUrl(): string
+    {
+        dd(123);
+        $url = $this->getBaseMediaDirectoryUrl().'/'.$this->getPathRelativeToRoot();
+
+        $url = $this->makeCompatibleForNonUnixHosts($url);
+
+        $url = $this->rawUrlEncodeFilename($url);
+
+        $url = $this->versionUrl($url);
+
+        return $url;
+    }
 
     protected function getBaseMediaDirectoryUrl(): string
     {
-        dd($diskUrl = $this->config->get("filesystems.disks.{$this->media->disk}.url"));
         if ($diskUrl = $this->config->get("filesystems.disks.{$this->media->disk}.url")) {
             return $diskUrl;
         }
