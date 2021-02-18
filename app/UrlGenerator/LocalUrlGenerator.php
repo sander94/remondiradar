@@ -19,7 +19,6 @@ class LocalUrlGenerator extends BaseLocalUrlGenerator
      */
     public function getUrl(): string
     {
-        dd(123);
         $url = $this->getBaseMediaDirectoryUrl().'/'.$this->getPathRelativeToRoot();
 
         $url = $this->makeCompatibleForNonUnixHosts($url);
@@ -33,6 +32,7 @@ class LocalUrlGenerator extends BaseLocalUrlGenerator
 
     protected function getBaseMediaDirectoryUrl(): string
     {
+        dd($this->media->disk);
         if ($diskUrl = $this->config->get("filesystems.disks.{$this->media->disk}.url")) {
             return $diskUrl;
         }
