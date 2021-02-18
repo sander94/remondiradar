@@ -74,7 +74,7 @@ return [
      * When urls to files get generated, this class will be called. Leave empty
      * if your files are stored locally above the site root or on s3.
      */
-    'url_generator' => \Spatie\MediaLibrary\UrlGenerator\LocalUrlGenerator::class,
+    'url_generator' => \App\UrlGenerator\LocalUrlGenerator::class,
 
     /*
      * Whether to activate versioning when urls to files get generated.
