@@ -81,7 +81,7 @@
 
                                 <div class="col-12">
 
-                                   <!-- <h3>{{ $advertisement->title }}</h3> -->
+                                    <h3>{{ $advertisement->title }}</h3>
 
 
                                 </div>
