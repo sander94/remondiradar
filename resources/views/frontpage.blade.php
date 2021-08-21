@@ -71,17 +71,17 @@
         @endif
         <div class="row">
             @foreach($advertisements as $advertisement)
-                <div class="col wr-card-container js-tilt">
+                <div class="col wr-card-container">
 
                     <a href="{{ route('record_advertisement', $advertisement) }}" target="_blank">
 
-                        <div class="wr-card" style="padding: 0; overflow: hidden; height: 220px;">
+                        <div class="wr-card" style="padding: 0; overflow: hidden; height: 280px;">
 
                             <div class="row headline-logo" style="background-image: url('{{ $advertisement->getFirstMediaUrl('image') }}'); background-size: cover; background-position: center center; height: 100%;">
 
                                 <div class="col-12">
 
-                                    <h3>{{ $advertisement->title }}</h3>
+                                    <h3 style="text-align: center;">{{ $advertisement->title }}</h3>
 
 
                                 </div>
