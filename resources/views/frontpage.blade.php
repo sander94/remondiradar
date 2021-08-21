@@ -81,7 +81,7 @@
 
                                 <div class="col-12">
 
-                                    <h3 style="text-align: center; color: #FFFFFF; margin-top: 20px;">{{ $advertisement->title }}</h3>
+                                    <h3 style="text-align: center; color: #FFFFFF; margin-top: 30px;">{{ $advertisement->title }}</h3>
 
 
                                 </div>
